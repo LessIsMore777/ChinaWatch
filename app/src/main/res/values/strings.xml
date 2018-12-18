@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name">沃特手表</string>
+    <string-array name="year">
+        <item>2000</item>
+        <item>2001</item>
+        <item>2002</item>
+        <item>2003</item>
+        <item>2004</item>
+        <item>2005</item>
+        <item>2006</item>
+        <item>2007</item>
+        <item>2008</item>
+        <item>2009</item>
+        <item>2010</item>
+        <item>2011</item>
+        <item>2012</item>
+        <item>2013</item>
+        <item>2014</item>
+        <item>2015</item>
+        <item>2016</item>
+        <item>2017</item>
+        <item>2018</item>
+    </string-array>
+    <!--TAB-->
+    <string name="tab_me">我的</string>
+    <string name="tab_home">主页</string>
+    <string name="tab_position">定位</string>
+    <string name="tab_message">聊天</string>
+    <!--通用-->
+    <string name="common_save">保存</string>
+    <string name="common_finish">完成</string>
+    <string name="common_default">未设置</string>
+    <!--模拟数据-->
+    <string name="test_1">宝贝的手表</string>
+    <string name="test_2">宝贝儿子</string>
+    <string name="my_application">我的应用</string>
+    <string name="tip_1">按住拖动调整排序</string>
+    <!--解绑手表-->
+    <string name="act_unbind">解除绑定</string>
+    <string name="act_shift_manager">移交管理权</string>
+    <string name="act_unbind_other_user">解除其他用户绑定</string>
+    <string name="act_factory_setting">恢复手表出厂设置</string>
+    <string name="act_relation">与宝贝的关系：</string>
+    <!--手表信息-->
+    <string name="watch_bind_qr_code">绑定码</string>
+    <string name="watch_type">手表型号</string>
+    <string name="watch_version">固件版本号</string>
+    <string name="watch_bind">绑定手表</string>
+    <string name="watch_unbind">解绑手表</string>
+    <string name="watch_imei">IMEI号</string>
+    <!--宝贝信息-->
+    <string name="babyInfo_avatar">头像</string>
+    <string name="babyInfo_nick">昵称</string>
+    <string name="babyInfo_gender">性别</string>
+    <string name="babyInfo_birthday">生日</string>
+    <string name="babyInfo_grade">年级</string>
+    <string name="babyInfo_class">班级</string>
+    <string name="babyInfo_height">身高</string>
+    <string name="babyInfo_weight">体重</string>
+    <string name="babyInfo_phoneNumber">手表号码</string>
+    <string name="common_photo">拍照</string>
+    <string name="common_album">从相册选择</string>
+
+    <!--登录界面-->
+    <string name="login">登录</string>
+    <string name="phone_number">手机号码</string>
+    <string name="input_password">输入密码</string>
+    <string name="forget_password">忘记密码</string>
+    <string name="verification_login">验证码登录</string>
+    <string name="register">注册</string>
+    <string name="confirm_password">确认密码</string>
+    <string name="input_verification_code">输入验证码</string>
+    <string name="get_verification_code">获取验证码</string>
+    <string name="has_account">已经有账号，直接</string>
+
+</resources>

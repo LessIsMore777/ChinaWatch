@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+	xmlns:app = "http://schemas.android.com/apk/res-auto"
+	xmlns:tools = "http://schemas.android.com/tools"
+	android:layout_width = "match_parent"
+	android:layout_height = "match_parent"
+	android:background = "@color/gray_2">
+	
+	<include
+		android:id = "@+id/header"
+		layout = "@layout/common_header"
+		app:layout_constraintEnd_toEndOf = "parent"
+		app:layout_constraintStart_toStartOf = "parent"
+		app:layout_constraintTop_toTopOf = "parent" />
+	<!--信息-->
+	<android.support.constraint.ConstraintLayout
+		android:id = "@+id/cl_baby_info"
+		android:layout_width = "match_parent"
+		android:layout_height = "wrap_content"
+		android:background = "@color/white_1"
+		app:layout_constraintEnd_toEndOf = "parent"
+		app:layout_constraintHorizontal_bias = "1.0"
+		app:layout_constraintStart_toStartOf = "parent"
+		app:layout_constraintTop_toBottomOf = "@+id/header">
+		<!--头像-->
+		<ImageView
+			android:id = "@+id/iv_baby_avatar"
+			android:layout_width = "64dp"
+			android:layout_height = "64dp"
+			android:layout_marginStart = "14dp"
+			android:layout_marginTop = "8dp"
+			android:layout_marginBottom = "8dp"
+			android:src = "@drawable/ic_avatar_1"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintStart_toStartOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+		<!--名称-->
+		<TextView
+			android:id = "@+id/tv_baby_name"
+			android:layout_width = "0dp"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "14dp"
+			android:layout_marginTop = "16dp"
+			android:layout_marginEnd = "32dp"
+			android:text = "宝贝"
+			android:textColor = "@color/black_1"
+			android:textSize = "16sp"
+			app:layout_constraintEnd_toStartOf = "@+id/iv_enter"
+			app:layout_constraintStart_toEndOf = "@+id/iv_baby_avatar"
+			app:layout_constraintTop_toTopOf = "parent" />
+		<!--电话-->
+		<TextView
+			android:id = "@+id/tv_baby_phone"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "14dp"
+			android:layout_marginBottom = "16dp"
+			android:text = "电话："
+			android:textColor = "@color/gray_1"
+			android:textSize = "14sp"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintStart_toEndOf = "@+id/iv_baby_avatar" />
+		<!--号码-->
+		<TextView
+			android:id = "@+id/tv_baby_phoneNumber"
+			android:layout_width = "0dp"
+			android:layout_height = "wrap_content"
+			android:layout_marginEnd = "32dp"
+			android:layout_marginBottom = "16dp"
+			android:text = "17763693759"
+			android:textColor = "@color/gray_1"
+			android:textSize = "14sp"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintEnd_toStartOf = "@+id/iv_enter"
+			app:layout_constraintStart_toEndOf = "@+id/tv_baby_phone" />
+		<!--箭头-->
+		<ImageView
+			android:id = "@+id/iv_enter"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginEnd = "20dp"
+			android:src = "@drawable/ic_arrow_right"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintEnd_toEndOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+	</android.support.constraint.ConstraintLayout>
+	
+	<ScrollView
+		android:layout_width = "0dp"
+		android:layout_height = "0dp"
+		app:layout_constraintBottom_toBottomOf = "parent"
+		app:layout_constraintEnd_toEndOf = "parent"
+		app:layout_constraintHorizontal_bias = "1.0"
+		app:layout_constraintStart_toStartOf = "parent"
+		app:layout_constraintTop_toBottomOf = "@+id/cl_baby_info"
+		app:layout_constraintVertical_bias = "0.0">
+		
+		<LinearLayout
+			android:layout_width = "match_parent"
+			android:layout_height = "wrap_content"
+			android:orientation = "vertical">
+			<!--二维码-->
+			<android.support.constraint.ConstraintLayout
+				android:id = "@+id/cl_watch_bind_code"
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content"
+				android:layout_marginTop = "20dp"
+				android:background = "@color/white_1">
+				
+				<ImageView
+					android:id = "@+id/iv_code"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_marginStart = "20dp"
+					android:layout_marginTop = "14dp"
+					android:layout_marginBottom = "14dp"
+					android:src = "@drawable/ic_watch_qr_code"
+					app:layout_constraintBottom_toBottomOf = "parent"
+					app:layout_constraintStart_toStartOf = "parent"
+					app:layout_constraintTop_toTopOf = "parent" />
+				
+				<TextView
+					android:id = "@+id/tv_code"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_marginStart = "20dp"
+					android:text = "@string/watch_bind_qr_code"
+					android:textColor = "@color/black_1"
+					android:textSize = "16sp"
+					app:layout_constraintBottom_toBottomOf = "parent"
+					app:layout_constraintStart_toEndOf = "@+id/iv_code"
+					app:layout_constraintTop_toTopOf = "parent" />
+				
+				<ImageView
+					android:id = "@+id/iv_code_enter"
+					android:layout_width = "6dp"
+					android:layout_height = "wrap_content"
+					android:layout_marginEnd = "20dp"
+					android:src = "@drawable/ic_arrow_right"
+					app:layout_constraintBottom_toBottomOf = "parent"
+					app:layout_constraintEnd_toEndOf = "parent"
+					app:layout_constraintTop_toTopOf = "parent" />
+			</android.support.constraint.ConstraintLayout>
+			<!--手表型号-->
+			<android.support.constraint.ConstraintLayout
+				android:id = "@+id/cl_watch_type"
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content"
+				android:layout_marginTop = "20dp"
+				android:background = "@color/white_1">
+				
+				<ImageView
+					android:id = "@+id/iv_watch_type"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_marginStart = "20dp"
+					android:layout_marginTop = "14dp"
+					android:layout_marginBottom = "14dp"
+					android:src = "@drawable/ic_watch_type"
+					app:layout_constraintBottom_toBottomOf = "parent"
+					app:layout_constraintStart_toStartOf = "parent"
+					app:layout_constraintTop_toTopOf = "parent" />
+				
+				<TextView
+					android:id = "@+id/tv_watch_type"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_marginStart = "20dp"
+					android:text = "@string/watch_type"
+					android:textColor = "@color/black_1"
+					android:textSize = "16sp"
+					app:layout_constraintBottom_toBottomOf = "parent"
+					app:layout_constraintStart_toEndOf = "@+id/iv_watch_type"
+					app:layout_constraintTop_toTopOf = "parent"
+					app:layout_constraintVertical_bias = "0.466" />
+				
+				<TextView
+					android:id = "@+id/tv_watch_type_info"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_marginEnd = "20dp"
+					tools:text = "Q20TC"
+					android:textColor = "@color/gray_3"
+					android:textSize = "14sp"
+					app:layout_constraintBottom_toBottomOf = "parent"
+					app:layout_constraintEnd_toEndOf = "parent"
+					app:layout_constraintTop_toTopOf = "parent" />
+			</android.support.constraint.ConstraintLayout>
+			<!--固件版本号-->
+			<android.support.constraint.ConstraintLayout
+				android:id = "@+id/cl_watch_version"
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content"
+				android:layout_marginTop = "20dp"
+				android:background = "@color/white_1">
+				
+				<ImageView
+					android:id = "@+id/iv_watch_version"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_marginStart = "20dp"
+					android:layout_marginTop = "14dp"
+					android:layout_marginBottom = "14dp"
+					android:src = "@drawable/ic_watch_version"
+					app:layout_constraintBottom_toBottomOf = "parent"
+					app:layout_constraintStart_toStartOf = "parent"
+					app:layout_constraintTop_toTopOf = "parent" />
+				
+				<TextView
+					android:id = "@+id/tv_watch_version"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_marginStart = "20dp"
+					android:text = "@string/watch_version"
+					android:textColor = "@color/black_1"
+					android:textSize = "16sp"
+					app:layout_constraintBottom_toBottomOf = "parent"
+					app:layout_constraintStart_toEndOf = "@+id/iv_watch_version"
+					app:layout_constraintTop_toTopOf = "parent"
+					app:layout_constraintVertical_bias = "0.466" />
+				
+				<TextView
+					android:id = "@+id/tv_watch_version_info"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_marginEnd = "20dp"
+					tools:text = "Q20TC_TY_V04"
+					android:textColor = "@color/gray_3"
+					android:textSize = "14sp"
+					app:layout_constraintBottom_toBottomOf = "parent"
+					app:layout_constraintEnd_toEndOf = "parent"
+					app:layout_constraintTop_toTopOf = "parent" />
+			</android.support.constraint.ConstraintLayout>
+			<!--绑定手表-->
+			<android.support.constraint.ConstraintLayout
+				android:id = "@+id/cl_watch_bind"
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content"
+				android:layout_marginTop = "20dp"
+				android:background = "@color/white_1">
+				
+				<ImageView
+					android:id = "@+id/iv_watch_bind"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_marginStart = "20dp"
+					android:layout_marginTop = "14dp"
+					android:layout_marginBottom = "14dp"
+					android:src = "@drawable/ic_watch_bind"
+					app:layout_constraintBottom_toBottomOf = "parent"
+					app:layout_constraintStart_toStartOf = "parent"
+					app:layout_constraintTop_toTopOf = "parent" />
+				
+				<TextView
+					android:id = "@+id/tv_watch_bind"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_marginStart = "20dp"
+					android:text = "@string/watch_bind"
+					android:textColor = "@color/black_1"
+					android:textSize = "16sp"
+					app:layout_constraintBottom_toBottomOf = "parent"
+					app:layout_constraintStart_toEndOf = "@+id/iv_watch_bind"
+					app:layout_constraintTop_toTopOf = "parent"
+					app:layout_constraintVertical_bias = "0.466" />
+				
+				<ImageView
+					android:id = "@+id/iv_watch_bind_enter"
+					android:layout_width = "6dp"
+					android:layout_height = "wrap_content"
+					android:layout_marginEnd = "20dp"
+					android:src = "@drawable/ic_arrow_right"
+					app:layout_constraintBottom_toBottomOf = "parent"
+					app:layout_constraintEnd_toEndOf = "parent"
+					app:layout_constraintTop_toTopOf = "parent" />
+			</android.support.constraint.ConstraintLayout>
+			<!--解绑手表-->
+			<android.support.constraint.ConstraintLayout
+				android:id = "@+id/cl_watch_unbind"
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content"
+				android:background = "@color/white_1">
+				
+				<View
+					android:layout_width = "0dp"
+					android:layout_height = "0.1dp"
+					android:layout_marginStart = "8dp"
+					android:layout_marginEnd = "8dp"
+					android:background = "@color/gray_2"
+					app:layout_constraintEnd_toEndOf = "parent"
+					app:layout_constraintStart_toStartOf = "parent"
+					app:layout_constraintTop_toTopOf = "parent" />
+				
+				<ImageView
+					android:id = "@+id/iv_watch_unbind"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_marginStart = "20dp"
+					android:layout_marginTop = "14dp"
+					android:layout_marginBottom = "14dp"
+					android:src = "@drawable/ic_watch_unbind"
+					app:layout_constraintBottom_toBottomOf = "parent"
+					app:layout_constraintStart_toStartOf = "parent"
+					app:layout_constraintTop_toTopOf = "parent" />
+				
+				<TextView
+					android:id = "@+id/tv_watch_unbind"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_marginStart = "20dp"
+					android:text = "@string/watch_unbind"
+					android:textColor = "@color/black_1"
+					android:textSize = "16sp"
+					app:layout_constraintBottom_toBottomOf = "parent"
+					app:layout_constraintStart_toEndOf = "@+id/iv_watch_unbind"
+					app:layout_constraintTop_toTopOf = "parent"
+					app:layout_constraintVertical_bias = "0.466" />
+				
+				<ImageView
+					android:id = "@+id/iv_watch_unbind_enter"
+					android:layout_width = "6dp"
+					android:layout_height = "wrap_content"
+					android:layout_marginEnd = "20dp"
+					android:src = "@drawable/ic_arrow_right"
+					app:layout_constraintBottom_toBottomOf = "parent"
+					app:layout_constraintEnd_toEndOf = "parent"
+					app:layout_constraintTop_toTopOf = "parent" />
+			</android.support.constraint.ConstraintLayout>
+		</LinearLayout>
+	</ScrollView>
+
+</android.support.constraint.ConstraintLayout>

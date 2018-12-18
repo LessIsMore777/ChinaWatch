@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+	android:layout_width = "match_parent"
+	android:layout_height = "wrap_content"
+	xmlns:tools = "http://schemas.android.com/tools"
+	android:orientation = "vertical">
+	<!--消息内容-->
+	<TextView
+		android:id = "@+id/tv_content"
+		android:layout_width = "match_parent"
+		android:layout_height = "wrap_content"
+		android:gravity = "center"
+		android:paddingTop = "30dp"
+		android:paddingBottom = "30dp"
+		tools:text = "确认恢复手表出厂设置？"
+		android:textColor = "@color/black_1"
+		android:textSize = "16sp" />
+	
+	<LinearLayout
+		android:layout_width = "match_parent"
+		android:layout_height = "wrap_content"
+		android:orientation = "horizontal">
+		<!--取消-->
+		<Button
+			android:id = "@+id/btn_exit"
+			android:layout_width = "0dp"
+			android:layout_height = "wrap_content"
+			android:layout_weight = "1"
+			android:background = "@null"
+			tools:text = "取消"
+			android:textColor = "@color/black_1"
+			android:textSize = "18sp" />
+		<!--确定-->
+		<Button
+			android:id = "@+id/btn_enter"
+			android:layout_width = "0dp"
+			android:layout_height = "wrap_content"
+			android:layout_weight = "1"
+			android:background = "@null"
+			tools:text = "确定"
+			android:textColor = "@color/black_1"
+			android:textSize = "18sp" />
+	</LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+	xmlns:app = "http://schemas.android.com/apk/res-auto"
+	xmlns:tools = "http://schemas.android.com/tools"
+	android:layout_width = "match_parent"
+	android:layout_height = "wrap_content"
+	android:id="@+id/parent">
+	<!--头像-->
+	<ImageView
+		android:id="@+id/iv_contact_avatar"
+		android:layout_width = "45dp"
+		android:layout_height = "45dp"
+		android:layout_marginStart = "14dp"
+		android:layout_marginTop = "10dp"
+		android:layout_marginBottom = "14dp"
+		android:src = "@drawable/ic_avatar_1"
+		app:layout_constraintBottom_toBottomOf = "parent"
+		app:layout_constraintStart_toStartOf = "parent"
+		app:layout_constraintTop_toTopOf = "parent" />
+	<!--联系人名称-->
+	<TextView
+		android:id = "@+id/tv_contact_name"
+		android:layout_width = "wrap_content"
+		android:layout_height = "wrap_content"
+		android:layout_marginStart = "14dp"
+		android:layout_marginTop = "14dp"
+		android:text = "爸爸"
+		android:textColor = "@color/black_1"
+		android:textSize = "16sp"
+		app:layout_constraintStart_toEndOf = "@+id/iv_contact_avatar"
+		app:layout_constraintTop_toTopOf = "parent" />
+	<!--电话号码-->
+	<TextView
+		android:id = "@+id/tv_contact_phone"
+		android:layout_width = "wrap_content"
+		android:layout_height = "wrap_content"
+		android:layout_marginStart = "14dp"
+		android:layout_marginBottom = "14dp"
+		android:text = "17763693759"
+		android:textColor = "@color/gray_1"
+		android:textSize = "12sp"
+		app:layout_constraintBottom_toBottomOf = "parent"
+		app:layout_constraintStart_toEndOf = "@+id/iv_contact_avatar" />
+	<!--箭头-->
+	<ImageView
+		android:id = "@+id/iv_enter"
+		android:layout_width = "wrap_content"
+		android:layout_height = "wrap_content"
+		android:layout_marginEnd = "20dp"
+		android:src = "@drawable/ic_arrow_right"
+		app:layout_constraintBottom_toBottomOf = "parent"
+		app:layout_constraintEnd_toEndOf = "parent"
+		app:layout_constraintTop_toTopOf = "parent" />
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+	xmlns:tools = "http://schemas.android.com/tools"
+	android:id = "@+id/parentView"
+	android:layout_width = "match_parent"
+	android:layout_height = "match_parent"
+	android:orientation = "vertical">
+	<!--header-->
+	<include
+		android:id = "@+id/header"
+		layout = "@layout/common_header" />
+	<!--body-->
+	<ScrollView
+		android:layout_width = "match_parent"
+		android:layout_height = "match_parent">
+		<!--ScrollView里面只有一个View的时候才能滚动-->
+		<LinearLayout
+			android:layout_width = "match_parent"
+			android:layout_height = "wrap_content"
+			android:orientation = "vertical">
+			<!--头像-->
+			<RelativeLayout
+				android:id = "@+id/rl_select_avatar"
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content">
+				<!--头像-->
+				<TextView
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_alignParentStart = "true"
+					android:layout_centerVertical = "true"
+					android:layout_margin = "18dp"
+					android:text = "头像"
+					android:textColor = "@color/black_1"
+					android:textSize = "16sp" />
+				<!--用户数据-->
+				<ImageView
+					android:id = "@+id/iv_avatar"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_centerVertical = "true"
+					android:layout_toStartOf = "@id/iv_enter1"
+					android:src = "@drawable/ic_avatar_1" />
+				<!--箭头图标-->
+				<ImageView
+					android:id = "@+id/iv_enter1"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_alignParentEnd = "true"
+					android:layout_centerVertical = "true"
+					android:layout_marginStart = "20dp"
+					android:layout_marginEnd = "20dp"
+					android:src = "@drawable/ic_arrow_right" />
+			</RelativeLayout>
+			<!--分割线-->
+			<View
+				android:layout_width = "match_parent"
+				android:layout_height = "0.1dp"
+				android:background = "@color/gray_1" />
+			<!--昵称-->
+			<RelativeLayout
+				android:id = "@+id/rl_nick"
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content"
+				android:focusable = "true"
+				android:focusableInTouchMode = "true">
+				<!--昵称-->
+				<TextView
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_alignParentStart = "true"
+					android:layout_centerVertical = "true"
+					android:layout_margin = "18dp"
+					android:text = "@string/babyInfo_nick"
+					android:textColor = "@color/black_1"
+					android:textSize = "16sp" />
+				<!--用户数据-->
+				<EditText
+					android:id = "@+id/et_nick"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_centerVertical = "true"
+					android:layout_toStartOf = "@id/iv_enter2"
+					android:background = "@null"
+					android:hint = "@string/common_default"
+					android:singleLine = "true"
+					android:textColor = "@color/gray_1"
+					android:textSize = "14sp"
+					android:textCursorDrawable="@drawable/edit_cursor"/>
+				<!--箭头图标-->
+				<ImageView
+					android:id = "@+id/iv_enter2"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_alignParentEnd = "true"
+					android:layout_centerVertical = "true"
+					android:layout_marginStart = "20dp"
+					android:layout_marginEnd = "20dp"
+					android:src = "@drawable/ic_arrow_right" />
+			</RelativeLayout>
+			<!--分割线-->
+			<View
+				android:layout_width = "match_parent"
+				android:layout_height = "0.1dp"
+				android:background = "@color/gray_1" />
+			<!--性别-->
+			<RelativeLayout
+				android:id = "@+id/rl_gender"
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content"
+				android:clickable = "true"
+				android:focusable = "true">
+				<!--性别-->
+				<TextView
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_alignParentStart = "true"
+					android:layout_centerVertical = "true"
+					android:layout_margin = "18dp"
+					android:text = "@string/babyInfo_gender"
+					android:textColor = "@color/black_1"
+					android:textSize = "16sp" />
+				<!--用户数据-->
+				<TextView
+					android:id = "@+id/tv_gender"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_centerVertical = "true"
+					android:layout_toStartOf = "@id/iv_enter3"
+					android:text = "@string/common_default"
+					android:textColor = "@color/gray_1"
+					android:textSize = "14sp" />
+				<!--箭头图标-->
+				<ImageView
+					android:id = "@+id/iv_enter3"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_alignParentEnd = "true"
+					android:layout_centerVertical = "true"
+					android:layout_marginStart = "20dp"
+					android:layout_marginEnd = "20dp"
+					android:src = "@drawable/ic_arrow_right" />
+			</RelativeLayout>
+			<!--分割线-->
+			<View
+				android:layout_width = "match_parent"
+				android:layout_height = "0.1dp"
+				android:background = "@color/gray_1" />
+			<!--生日-->
+			<RelativeLayout
+				android:id = "@+id/rl_birthday"
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content"
+				android:clickable = "true"
+				android:focusable = "true">
+				<!--生日-->
+				<TextView
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_alignParentStart = "true"
+					android:layout_centerVertical = "true"
+					android:layout_margin = "18dp"
+					android:text = "@string/babyInfo_birthday"
+					android:textColor = "@color/black_1"
+					android:textSize = "16sp" />
+				<!--用户数据-->
+				<TextView
+					android:id = "@+id/tv_birthday"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_centerVertical = "true"
+					android:layout_toStartOf = "@id/iv_enter4"
+					android:text = "@string/common_default"
+					android:textColor = "@color/gray_1"
+					android:textSize = "14sp" />
+				<!--箭头图标-->
+				<ImageView
+					android:id = "@+id/iv_enter4"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_alignParentEnd = "true"
+					android:layout_centerVertical = "true"
+					android:layout_marginStart = "20dp"
+					android:layout_marginEnd = "20dp"
+					android:src = "@drawable/ic_arrow_right" />
+			</RelativeLayout>
+			<!--分割线-->
+			<View
+				android:layout_width = "match_parent"
+				android:layout_height = "0.1dp"
+				android:background = "@color/gray_1" />
+			<!--年级-->
+			<RelativeLayout
+				android:id = "@+id/rl_grade"
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content"
+				android:focusable = "true"
+				android:focusableInTouchMode = "true">
+				<!--年级-->
+				<TextView
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_alignParentStart = "true"
+					android:layout_centerVertical = "true"
+					android:layout_margin = "18dp"
+					android:text = "@string/babyInfo_grade"
+					android:textColor = "@color/black_1"
+					android:textSize = "16sp" />
+				<!--用户数据-->
+				<EditText
+					android:id = "@+id/et_grade"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_centerVertical = "true"
+					android:layout_toStartOf = "@id/iv_enter5"
+					android:background = "@null"
+					android:hint = "@string/common_default"
+					android:singleLine = "true"
+					android:textColor = "@color/gray_1"
+					android:textSize = "14sp"
+					android:textCursorDrawable="@drawable/edit_cursor"/>
+				<!--箭头图标-->
+				<ImageView
+					android:id = "@+id/iv_enter5"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_alignParentEnd = "true"
+					android:layout_centerVertical = "true"
+					android:layout_marginStart = "20dp"
+					android:layout_marginEnd = "20dp"
+					android:src = "@drawable/ic_arrow_right" />
+			</RelativeLayout>
+			<!--分割线-->
+			<View
+				android:layout_width = "match_parent"
+				android:layout_height = "0.1dp"
+				android:background = "@color/gray_1" />
+			<!--班级-->
+			<RelativeLayout
+				android:id = "@+id/rl_class"
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content"
+				android:focusable = "true"
+				android:focusableInTouchMode = "true">
+				<!--班级-->
+				<TextView
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_alignParentStart = "true"
+					android:layout_centerVertical = "true"
+					android:layout_margin = "18dp"
+					android:text = "@string/babyInfo_class"
+					android:textColor = "@color/black_1"
+					android:textSize = "16sp" />
+				<!--用户数据-->
+				<EditText
+					android:id = "@+id/et_class"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_centerVertical = "true"
+					android:layout_toStartOf = "@id/iv_enter6"
+					android:background = "@null"
+					android:hint = "@string/common_default"
+					android:singleLine = "true"
+					android:textColor = "@color/gray_1"
+					android:textSize = "14sp"
+					android:textCursorDrawable="@drawable/edit_cursor"/>
+				<!--箭头图标-->
+				<ImageView
+					android:id = "@+id/iv_enter6"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_alignParentEnd = "true"
+					android:layout_centerVertical = "true"
+					android:layout_marginStart = "20dp"
+					android:layout_marginEnd = "20dp"
+					android:src = "@drawable/ic_arrow_right" />
+			</RelativeLayout>
+			<!--分割线-->
+			<View
+				android:layout_width = "match_parent"
+				android:layout_height = "0.1dp"
+				android:background = "@color/gray_1" />
+			<!--身高-->
+			<RelativeLayout
+				android:id = "@+id/rl_height"
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content"
+				android:focusable = "true"
+				android:focusableInTouchMode = "true">
+				<!--身高-->
+				<TextView
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_alignParentStart = "true"
+					android:layout_centerVertical = "true"
+					android:layout_margin = "18dp"
+					android:text = "@string/babyInfo_height"
+					android:textColor = "@color/black_1"
+					android:textSize = "16sp" />
+				<!--用户数据-->
+				<EditText
+					android:id = "@+id/et_height"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_centerVertical = "true"
+					android:layout_toStartOf = "@id/iv_enter7"
+					android:background = "@null"
+					android:hint = "@string/common_default"
+					android:singleLine = "true"
+					android:textColor = "@color/gray_1"
+					android:textSize = "14sp"
+					android:inputType="number"
+					android:textCursorDrawable="@drawable/edit_cursor"/>
+				<!--箭头图标-->
+				<ImageView
+					android:id = "@+id/iv_enter7"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_alignParentEnd = "true"
+					android:layout_centerVertical = "true"
+					android:layout_marginStart = "20dp"
+					android:layout_marginEnd = "20dp"
+					android:src = "@drawable/ic_arrow_right" />
+			</RelativeLayout>
+			<!--分割线-->
+			<View
+				android:layout_width = "match_parent"
+				android:layout_height = "0.1dp"
+				android:background = "@color/gray_1" />
+			<!--体重-->
+			<RelativeLayout
+				android:id = "@+id/rl_weight"
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content"
+				android:focusable = "true"
+				android:focusableInTouchMode = "true">
+				<!--体重-->
+				<TextView
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_alignParentStart = "true"
+					android:layout_centerVertical = "true"
+					android:layout_margin = "18dp"
+					android:text = "@string/babyInfo_weight"
+					android:textColor = "@color/black_1"
+					android:textSize = "16sp" />
+				<!--用户数据-->
+				<EditText
+					android:id = "@+id/et_weight"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_centerVertical = "true"
+					android:layout_toStartOf = "@id/iv_enter8"
+					android:background = "@null"
+					android:hint = "@string/common_default"
+					android:singleLine = "true"
+					android:textColor = "@color/gray_1"
+					android:textSize = "14sp"
+					android:inputType="number"
+					android:textCursorDrawable="@drawable/edit_cursor"/>
+				<!--箭头图标-->
+				<ImageView
+					android:id = "@+id/iv_enter8"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_alignParentEnd = "true"
+					android:layout_centerVertical = "true"
+					android:layout_marginStart = "20dp"
+					android:layout_marginEnd = "20dp"
+					android:src = "@drawable/ic_arrow_right" />
+			</RelativeLayout>
+			<!--分割线-->
+			<View
+				android:layout_width = "match_parent"
+				android:layout_height = "0.1dp"
+				android:background = "@color/gray_1" />
+			<!--手表号码-->
+			<RelativeLayout
+				android:id = "@+id/rl_phoneNumber"
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content"
+				android:focusable = "true"
+				android:focusableInTouchMode = "true">
+				<!--手表号码-->
+				<TextView
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_alignParentStart = "true"
+					android:layout_centerVertical = "true"
+					android:layout_margin = "18dp"
+					android:text = "@string/babyInfo_phoneNumber"
+					android:textColor = "@color/black_1"
+					android:textSize = "16sp" />
+				<!--用户数据-->
+				<TextView
+					android:id = "@+id/tv_phoneNumber"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_centerVertical = "true"
+					android:layout_toStartOf = "@id/iv_enter9"
+					android:text = "@string/common_default"
+					android:textColor = "@color/gray_1"
+					android:textSize = "14sp" />
+				<!--箭头图标-->
+				<ImageView
+					android:id = "@+id/iv_enter9"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_alignParentEnd = "true"
+					android:layout_centerVertical = "true"
+					android:layout_marginStart = "20dp"
+					android:layout_marginEnd = "20dp"
+					android:src = "@drawable/ic_arrow_right" />
+			</RelativeLayout>
+			<!--分割线-->
+			<View
+				android:layout_width = "match_parent"
+				android:layout_height = "0.1dp"
+				android:background = "@color/gray_1" />
+		</LinearLayout>
+	</ScrollView>
+</LinearLayout>

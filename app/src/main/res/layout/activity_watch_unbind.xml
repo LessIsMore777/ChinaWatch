@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+	xmlns:app = "http://schemas.android.com/apk/res-auto"
+	android:layout_width = "match_parent"
+	android:layout_height = "match_parent">
+	<!--header-->
+	<include
+		android:id = "@+id/header"
+		layout = "@layout/common_header" />
+	<!--body-->
+	<LinearLayout
+		android:id = "@+id/body"
+		android:layout_width = "match_parent"
+		android:layout_height = "match_parent"
+		android:layout_below = "@+id/header"
+		android:orientation = "vertical">
+		<!--解除绑定-->
+		<RelativeLayout
+			android:id = "@+id/rl_unbind"
+			android:layout_width = "match_parent"
+			android:layout_height = "wrap_content">
+			<!---->
+			<TextView
+				android:layout_width = "wrap_content"
+				android:layout_height = "wrap_content"
+				android:layout_alignParentStart = "true"
+				android:layout_centerVertical = "true"
+				android:layout_margin = "18dp"
+				android:text = "@string/act_unbind"
+				android:textColor = "@color/black_1"
+				android:textSize = "16sp" />
+			<!---->
+			<ImageView
+				android:layout_width = "wrap_content"
+				android:layout_height = "wrap_content"
+				android:layout_alignParentEnd = "true"
+				android:layout_centerVertical = "true"
+				android:layout_margin = "18dp"
+				android:src = "@drawable/ic_arrow_right" />
+		</RelativeLayout>
+		<!--分割线-->
+		<View
+			android:layout_width = "match_parent"
+			android:layout_height = "0.1dp"
+			android:background = "@color/gray_3" />
+		<!--移交管理权-->
+		<RelativeLayout
+			android:id = "@+id/rl_shift_manager"
+			android:layout_width = "match_parent"
+			android:layout_height = "wrap_content">
+			<!---->
+			<TextView
+				android:layout_width = "wrap_content"
+				android:layout_height = "wrap_content"
+				android:layout_alignParentStart = "true"
+				android:layout_centerVertical = "true"
+				android:layout_margin = "18dp"
+				android:text = "@string/act_shift_manager"
+				android:textColor = "@color/black_1"
+				android:textSize = "16sp" />
+			<!---->
+			<ImageView
+				android:layout_width = "wrap_content"
+				android:layout_height = "wrap_content"
+				android:layout_alignParentEnd = "true"
+				android:layout_centerVertical = "true"
+				android:layout_margin = "18dp"
+				android:src = "@drawable/ic_arrow_right" />
+		</RelativeLayout>
+		<!--分割线-->
+		<View
+			android:layout_width = "match_parent"
+			android:layout_height = "0.1dp"
+			android:background = "@color/gray_3" />
+		<!--解除其他用户绑定-->
+		<RelativeLayout
+			android:id = "@+id/rl_unbind_other_user"
+			android:layout_width = "match_parent"
+			android:layout_height = "wrap_content">
+			<!---->
+			<TextView
+				android:layout_width = "wrap_content"
+				android:layout_height = "wrap_content"
+				android:layout_alignParentStart = "true"
+				android:layout_centerVertical = "true"
+				android:layout_margin = "18dp"
+				android:text = "@string/act_unbind_other_user"
+				android:textColor = "@color/black_1"
+				android:textSize = "16sp" />
+			<!---->
+			<ImageView
+				android:layout_width = "wrap_content"
+				android:layout_height = "wrap_content"
+				android:layout_alignParentEnd = "true"
+				android:layout_centerVertical = "true"
+				android:layout_margin = "18dp"
+				android:src = "@drawable/ic_arrow_right" />
+		</RelativeLayout>
+		<!--分割线-->
+		<View
+			android:layout_width = "match_parent"
+			android:layout_height = "0.1dp"
+			android:background = "@color/gray_3" />
+		<!--恢复手表出厂设置-->
+		<RelativeLayout
+			android:id = "@+id/rl_factory_setting"
+			android:layout_width = "match_parent"
+			android:layout_height = "wrap_content">
+			<!---->
+			<TextView
+				android:layout_width = "wrap_content"
+				android:layout_height = "wrap_content"
+				android:layout_alignParentStart = "true"
+				android:layout_centerVertical = "true"
+				android:layout_margin = "18dp"
+				android:text = "@string/act_factory_setting"
+				android:textColor = "@color/black_1"
+				android:textSize = "16sp" />
+			<!---->
+			<ImageView
+				android:layout_width = "wrap_content"
+				android:layout_height = "wrap_content"
+				android:layout_alignParentEnd = "true"
+				android:layout_centerVertical = "true"
+				android:layout_margin = "18dp"
+				android:src = "@drawable/ic_arrow_right" />
+		</RelativeLayout>
+		<!--分割线-->
+		<View
+			android:layout_width = "match_parent"
+			android:layout_height = "0.1dp"
+			android:background = "@color/gray_3" />
+	</LinearLayout>
+</RelativeLayout>
