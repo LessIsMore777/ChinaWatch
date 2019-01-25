@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+	xmlns:app = "http://schemas.android.com/apk/res-auto"
+	xmlns:tools = "http://schemas.android.com/tools"
+	android:layout_width = "match_parent"
+	android:layout_height = "match_parent">
+	
+	<include
+		android:id = "@+id/header"
+		layout = "@layout/common_header"
+		app:layout_constraintEnd_toEndOf = "parent"
+		app:layout_constraintStart_toStartOf = "parent"
+		app:layout_constraintTop_toTopOf = "parent" />
+	<!--上课时间关闭手表-->
+	<android.support.constraint.ConstraintLayout
+		android:id = "@+id/cl_close_watch"
+		android:layout_width = "match_parent"
+		android:layout_height = "wrap_content"
+		android:background = "@color/gray_2"
+		app:layout_constraintEnd_toEndOf = "parent"
+		app:layout_constraintStart_toStartOf = "parent"
+		app:layout_constraintTop_toBottomOf = "@+id/header">
+		
+		<TextView
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "14dp"
+			android:layout_marginTop = "18dp"
+			android:layout_marginBottom = "18dp"
+			android:text = "上课时间关闭手表"
+			android:textColor = "@color/black_1"
+			android:textSize = "16sp"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintStart_toStartOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+		
+		<CheckBox
+			android:id = "@+id/cb_close_watch"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginEnd = "14dp"
+			android:background = "@drawable/selector_check"
+			android:button = "@null"
+			android:checked = "true"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintEnd_toEndOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+	</android.support.constraint.ConstraintLayout>
+	
+	<LinearLayout
+		android:id = "@+id/parentView"
+		android:layout_width = "match_parent"
+		android:layout_height = "0dp"
+		android:orientation = "horizontal"
+		app:layout_constraintBottom_toBottomOf = "parent"
+		app:layout_constraintEnd_toEndOf = "parent"
+		app:layout_constraintStart_toStartOf = "parent"
+		app:layout_constraintTop_toBottomOf = "@+id/cl_close_watch">
+		<!--节/天-->
+		<LinearLayout
+			android:layout_width = "0dp"
+			android:layout_height = "wrap_content"
+			android:layout_weight = "1"
+			android:orientation = "vertical">
+			<!--周几-->
+			<RelativeLayout
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content">
+				
+				<TextView
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_centerInParent = "true"
+					android:layout_marginTop = "14dp"
+					android:layout_marginBottom = "14dp"
+					android:text = "@string/skill_curriculum_table_header"
+					android:textColor = "@color/translate"
+					android:textSize = "16sp" />
+			</RelativeLayout>
+			<!--课程节数与时间-->
+			<android.support.v7.widget.RecyclerView
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content" />
+		</LinearLayout>
+		<!--周一-->
+		<LinearLayout
+			android:id = "@+id/ll_monday"
+			android:layout_width = "0dp"
+			android:layout_height = "wrap_content"
+			android:layout_weight = "1"
+			android:orientation = "vertical">
+			
+			<RelativeLayout
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content">
+				
+				<TextView
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_centerInParent = "true"
+					android:layout_marginTop = "14dp"
+					android:layout_marginBottom = "14dp"
+					android:text = "@string/skill_curriculum_monday"
+					android:textColor = "@color/black_1"
+					android:textSize = "16sp" />
+			</RelativeLayout>
+			<!--详细的课程-->
+			<android.support.v7.widget.RecyclerView
+				android:id = "@+id/rv_monday"
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content" />
+		</LinearLayout>
+		<!--周二-->
+		<LinearLayout
+			android:id = "@+id/ll_tuesday"
+			android:layout_width = "0dp"
+			android:layout_height = "wrap_content"
+			android:layout_weight = "1"
+			android:orientation = "vertical">
+			
+			<RelativeLayout
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content">
+				
+				<TextView
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_centerInParent = "true"
+					android:layout_marginTop = "14dp"
+					android:layout_marginBottom = "14dp"
+					android:text = "@string/skill_curriculum_tuesday"
+					android:textColor = "@color/black_1"
+					android:textSize = "16sp" />
+			</RelativeLayout>
+			<!--详细的课程-->
+			<android.support.v7.widget.RecyclerView
+				android:id = "@+id/rv_tuesday"
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content" />
+		</LinearLayout>
+		<!--周三-->
+		<LinearLayout
+			android:id = "@+id/ll_wednesday"
+			android:layout_width = "0dp"
+			android:layout_height = "wrap_content"
+			android:layout_weight = "1"
+			android:orientation = "vertical">
+			
+			<RelativeLayout
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content">
+				
+				<TextView
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_centerInParent = "true"
+					android:layout_marginTop = "14dp"
+					android:layout_marginBottom = "14dp"
+					android:text = "@string/skill_curriculum_wednesday"
+					android:textColor = "@color/black_1"
+					android:textSize = "16sp" />
+			</RelativeLayout>
+			<!--详细的课程-->
+			
+			<android.support.v7.widget.RecyclerView
+				android:id = "@+id/rv_wednesday"
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content" />
+		</LinearLayout>
+		<!--周四-->
+		<LinearLayout
+			android:id = "@+id/ll_thursday"
+			android:layout_width = "0dp"
+			android:layout_height = "wrap_content"
+			android:layout_weight = "1"
+			android:orientation = "vertical">
+			
+			<RelativeLayout
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content">
+				
+				<TextView
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_centerInParent = "true"
+					android:layout_marginTop = "14dp"
+					android:layout_marginBottom = "14dp"
+					android:text = "@string/skill_curriculum_thursday"
+					android:textColor = "@color/black_1"
+					android:textSize = "16sp" />
+			</RelativeLayout>
+			<!--详细的课程-->
+			<android.support.v7.widget.RecyclerView
+				android:id = "@+id/rv_thursday"
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content" />
+		</LinearLayout>
+		<!--周五-->
+		<LinearLayout
+			android:id = "@+id/ll_friday"
+			android:layout_width = "0dp"
+			android:layout_height = "wrap_content"
+			android:layout_weight = "1"
+			android:orientation = "vertical">
+			
+			<RelativeLayout
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content">
+				
+				<TextView
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_centerInParent = "true"
+					android:layout_marginTop = "14dp"
+					android:layout_marginBottom = "14dp"
+					android:text = "@string/skill_curriculum_friday"
+					android:textColor = "@color/black_1"
+					android:textSize = "16sp" />
+			</RelativeLayout>
+			<!--详细的课程-->
+			<android.support.v7.widget.RecyclerView
+				android:id = "@+id/rv_friday"
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content" />
+		</LinearLayout>
+		<!--周六-->
+		<LinearLayout
+			android:id = "@+id/ll_saturday"
+			android:layout_width = "0dp"
+			android:layout_height = "wrap_content"
+			android:layout_weight = "1"
+			android:orientation = "vertical"
+			android:visibility = "visible">
+			
+			<RelativeLayout
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content">
+				
+				<TextView
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_centerInParent = "true"
+					android:layout_marginTop = "14dp"
+					android:layout_marginBottom = "14dp"
+					android:text = "@string/skill_curriculum_saturday"
+					android:textColor = "@color/black_1"
+					android:textSize = "16sp" />
+			</RelativeLayout>
+			<!--详细的课程-->
+			<android.support.v7.widget.RecyclerView
+				android:id = "@+id/rv_saturday"
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content" />
+		</LinearLayout>
+		<!--周日-->
+		<LinearLayout
+			android:id = "@+id/ll_sunday"
+			android:layout_width = "0dp"
+			android:layout_height = "wrap_content"
+			android:layout_weight = "1"
+			android:orientation = "vertical"
+			android:visibility = "visible">
+			
+			<RelativeLayout
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content">
+				
+				<TextView
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_centerInParent = "true"
+					android:layout_marginTop = "14dp"
+					android:layout_marginBottom = "14dp"
+					android:text = "@string/skill_curriculum_sunday"
+					android:textColor = "@color/black_1"
+					android:textSize = "16sp" />
+			</RelativeLayout>
+			<!--详细的课程-->
+			<android.support.v7.widget.RecyclerView
+				android:id = "@+id/rv_sunday"
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content" />
+		</LinearLayout>
+	</LinearLayout>
+</android.support.constraint.ConstraintLayout>

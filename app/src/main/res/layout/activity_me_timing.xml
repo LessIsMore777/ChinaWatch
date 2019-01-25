@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+	xmlns:app = "http://schemas.android.com/apk/res-auto"
+	xmlns:tools = "http://schemas.android.com/tools"
+	android:layout_width = "match_parent"
+	android:layout_height = "match_parent"
+	android:id="@+id/parentView">
+	<!--header-->
+	<include
+		android:id = "@+id/include"
+		layout = "@layout/common_header" />
+	<!--自动开机-->
+	<android.support.constraint.ConstraintLayout
+		android:id = "@+id/cl_auto_boot"
+		android:layout_width = "match_parent"
+		android:layout_height = "wrap_content"
+		android:background = "@color/white_1"
+		app:layout_constraintEnd_toEndOf = "parent"
+		app:layout_constraintHorizontal_bias = "0.0"
+		app:layout_constraintStart_toStartOf = "parent"
+		app:layout_constraintTop_toBottomOf = "@+id/include">
+		<!--文本-->
+		<TextView
+			android:id = "@+id/tv_auto_boot"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "20dp"
+			android:layout_marginTop = "18dp"
+			android:layout_marginBottom = "18dp"
+			android:text = "自动开机"
+			android:textColor = "@color/black_1"
+			android:textSize = "16sp"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintStart_toStartOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+		<!--时间-->
+		<TextView
+			android:id="@+id/tv_auto_boot_time"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "20dp"
+			android:text = "06:30"
+			android:textColor = "@color/black_1"
+			android:textSize = "16sp"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintStart_toEndOf = "@+id/tv_auto_boot"
+			app:layout_constraintTop_toTopOf = "parent" />
+		<!--开关-->
+		<CheckBox
+			android:id="@+id/cb_auto_boot"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginEnd = "20dp"
+			android:background = "@drawable/selector_check"
+			android:button = "@null"
+			android:checked = "true"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintEnd_toEndOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+	</android.support.constraint.ConstraintLayout>
+	<!--分割线-->
+	<View
+		android:id = "@+id/line"
+		android:layout_width = "match_parent"
+		android:layout_height = "1dp"
+		android:layout_marginStart = "8dp"
+		android:layout_marginEnd = "8dp"
+		android:background = "@color/gray_2"
+		app:layout_constraintEnd_toEndOf = "parent"
+		app:layout_constraintStart_toStartOf = "parent"
+		app:layout_constraintTop_toBottomOf = "@+id/cl_auto_boot" />
+	<!--自动开机-->
+	<android.support.constraint.ConstraintLayout
+		android:id="@+id/cl_auto_shutdown"
+		android:layout_width = "match_parent"
+		android:layout_height = "wrap_content"
+		android:background = "@color/white_1"
+		app:layout_constraintEnd_toEndOf = "parent"
+		app:layout_constraintHorizontal_bias = "0.0"
+		app:layout_constraintStart_toStartOf = "parent"
+		app:layout_constraintTop_toBottomOf = "@+id/line">
+		<!--文本-->
+		<TextView
+			android:id = "@+id/tv_auto_shutdown"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "20dp"
+			android:layout_marginTop = "18dp"
+			android:layout_marginBottom = "18dp"
+			android:text = "自动关机"
+			android:textColor = "@color/black_1"
+			android:textSize = "16sp"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintStart_toStartOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+		<!--时间-->
+		<TextView
+			android:id="@+id/tv_auto_shutdown_time"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "20dp"
+			android:text = "06:30"
+			android:textColor = "@color/black_1"
+			android:textSize = "16sp"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintStart_toEndOf = "@+id/tv_auto_shutdown"
+			app:layout_constraintTop_toTopOf = "parent" />
+		<!--开关-->
+		<CheckBox
+			android:id="@+id/cb_auto_shutdown"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginEnd = "20dp"
+			android:background = "@drawable/selector_check"
+			android:button = "@null"
+			android:checked = "true"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintEnd_toEndOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+	</android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>

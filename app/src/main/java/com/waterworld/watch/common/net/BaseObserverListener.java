@@ -6,7 +6,10 @@ package com.waterworld.watch.common.net;
  */
 
 public interface BaseObserverListener<T> {
+
     void onCompleted();
-    void onError(Throwable t);
+
+    void onError(Throwable e);
+
     void onNext(T t);
 }

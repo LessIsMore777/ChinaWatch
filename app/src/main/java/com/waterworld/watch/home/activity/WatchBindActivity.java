@@ -15,7 +15,7 @@ import com.waterworld.watch.common.util.ScreenAdapterUtil;
 /**
  * 编写者：Created by SunnyTang
  * 时间：2018/12/5 18:01
- * 主要作用：绑定手表页
+ * 主要作用：绑定手表(活动)
  */
 public class WatchBindActivity extends BaseActivity implements View.OnClickListener {
 
@@ -39,11 +39,10 @@ public class WatchBindActivity extends BaseActivity implements View.OnClickListe
     }
 
     private void initView() {
-        setViewSize(header_parent, ViewGroup.LayoutParams.MATCH_PARENT, ScreenAdapterUtil.getHeightPx(this) / 11);
+        setViewSize(header_parent, ViewGroup.LayoutParams.MATCH_PARENT, ScreenAdapterUtil.getHeightPx(this) / 12);
         header_title.setText("绑定手表");
         header_back.setVisibility(View.VISIBLE);
         header_title.setVisibility(View.VISIBLE);
-
     }
 
     private void bindClick() {
@@ -56,7 +55,6 @@ public class WatchBindActivity extends BaseActivity implements View.OnClickListe
             case R.id.header_back:
                 finish();
                 break;
-
         }
     }
 }

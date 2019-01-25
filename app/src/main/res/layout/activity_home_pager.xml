@@ -1,143 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android = "http://schemas.android.com/apk/res/android"
-	xmlns:app = "http://schemas.android.com/apk/res-auto"
-	xmlns:tools = "http://schemas.android.com/tools"
-	android:layout_width = "match_parent"
-	android:layout_height = "match_parent"
-	tools:context = ".common.activity.HomoPagerActivity">
-	<!--header-->
-	<include
-		android:id = "@+id/header"
-		layout = "@layout/common_header" />
-	<!--body-->
-	<android.support.v4.view.ViewPager
-		android:id="@+id/view_pager"
-		android:layout_width = "match_parent"
-		android:layout_height = "match_parent"
-		android:layout_above = "@id/tab_line"
-		android:layout_below = "@+id/header" />
-	<!--分割线-->
-	<View
-		android:id = "@+id/tab_line"
-		android:layout_width = "match_parent"
-		android:layout_height = "0.1dp"
-		android:layout_above = "@+id/foot_tab"
-		android:background = "@color/gray_1" />
-	<!--foot-->
-	<LinearLayout
-		android:id = "@+id/foot_tab"
-		android:layout_width = "match_parent"
-		android:layout_height = "wrap_content"
-		android:layout_alignParentBottom = "true"
-		android:orientation = "horizontal">
-		<!--主页-->
-		<LinearLayout
-			android:id = "@+id/tab_home"
-			android:layout_width = "0dp"
-			android:layout_height = "wrap_content"
-			android:layout_weight = "1"
-			android:clickable = "true"
-			android:focusable = "true"
-			android:gravity = "center"
-			android:orientation = "vertical">
-			<!--icon-->
-			<ImageView
-				android:id = "@+id/iv_home"
-				android:layout_width = "wrap_content"
-				android:layout_height = "wrap_content"
-				android:layout_marginTop = "6dp"
-				android:src="@drawable/ic_home_false" />
-			<!--text-->
-			<TextView
-				android:id = "@+id/tv_home"
-				android:layout_width = "wrap_content"
-				android:layout_height = "wrap_content"
-				android:layout_marginBottom = "6dp"
-				android:focusable = "true"
-				android:text = "@string/tab_home"
-				android:textColor = "@color/gray_1"
-				android:textSize = "12sp" />
-		</LinearLayout>
-		<!--定位-->
-		<LinearLayout
-			android:id = "@+id/tab_position"
-			android:layout_width = "0dp"
-			android:layout_height = "wrap_content"
-			android:layout_weight = "1"
-			android:clickable = "true"
-			android:focusable = "true"
-			android:gravity = "center"
-			android:orientation = "vertical">
-			<!--icon-->
-			<ImageView
-				android:id = "@+id/iv_position"
-				android:layout_width = "wrap_content"
-				android:layout_height = "wrap_content"
-				android:layout_marginTop = "6dp"
-				android:src="@drawable/ic_position_false" />
-			<!--text-->
-			<TextView
-				android:id = "@+id/tv_position"
-				android:layout_width = "wrap_content"
-				android:layout_height = "wrap_content"
-				android:layout_marginBottom = "6dp"
-				android:text = "@string/tab_position"
-				android:textColor = "@color/gray_1"
-				android:textSize = "12sp" />
-		</LinearLayout>
-		<!--聊天-->
-		<LinearLayout
-			android:id = "@+id/tab_message"
-			android:layout_width = "0dp"
-			android:layout_height = "wrap_content"
-			android:layout_weight = "1"
-			android:clickable = "true"
-			android:focusable = "true"
-			android:gravity = "center"
-			android:orientation = "vertical">
-			<!--icon-->
-			<ImageView
-				android:id = "@+id/iv_message"
-				android:layout_width = "wrap_content"
-				android:layout_height = "wrap_content"
-				android:layout_marginTop = "6dp"
-				android:src="@drawable/ic_message_false" />
-			<!--text-->
-			<TextView
-				android:id = "@+id/tv_message"
-				android:layout_width = "wrap_content"
-				android:layout_height = "wrap_content"
-				android:layout_marginBottom = "6dp"
-				android:text = "@string/tab_message"
-				android:textColor = "@color/gray_1"
-				android:textSize = "12sp" />
-		</LinearLayout>
-		<!--我的-->
-		<LinearLayout
-			android:id = "@+id/tab_me"
-			android:layout_width = "0dp"
-			android:layout_height = "wrap_content"
-			android:layout_weight = "1"
-			android:clickable = "true"
-			android:focusable = "true"
-			android:gravity = "center"
-			android:orientation = "vertical">
-			<!--icon-->
-			<ImageView
-				android:id = "@+id/iv_me"
-				android:layout_width = "wrap_content"
-				android:layout_height = "wrap_content"
-				android:layout_marginTop = "6dp"
-				android:src="@drawable/ic_me_false" />
-			<!--text-->
-			<TextView
-				android:id = "@+id/tv_me"
-				android:layout_width = "wrap_content"
-				android:layout_height = "wrap_content"
-				android:layout_marginBottom = "6dp"
-				android:text = "@string/tab_me"
-				android:textColor = "@color/gray_1"
-				android:textSize = "12sp" />
-		</LinearLayout>
-	</LinearLayout>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".home.activity.HomePagerActivity">
+    <!--header-->
+    <include
+            android:id="@+id/header"
+            layout="@layout/common_header"/>
+    <!--body-->
+    <!--<android.support.v4.view.ViewPager-->
+    <!--android:id="@+id/view_pager"-->
+    <!--android:layout_width = "match_parent"-->
+    <!--android:layout_height = "match_parent"-->
+    <!--android:layout_above = "@id/tab_line"-->
+    <!--android:layout_below = "@+id/header" />-->
+    <com.waterworld.watch.common.customview.CustomViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/tab_line"
+            android:layout_below="@+id/header"/>
+    <!--分割线-->
+    <View
+            android:id="@+id/tab_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_above="@+id/foot_tab"
+            android:background="@color/gray_1"/>
+    <!--foot-->
+    <LinearLayout
+            android:id="@+id/foot_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+        <!--主页-->
+        <LinearLayout
+                android:id="@+id/tab_home"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+            <!--icon-->
+            <ImageView
+                    android:id="@+id/iv_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:src="@drawable/ic_home_false"/>
+            <!--text-->
+            <TextView
+                    android:id="@+id/tv_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:focusable="true"
+                    android:text="@string/tab_home"
+                    android:textColor="@color/gray_1"
+                    android:textSize="12sp"/>
+        </LinearLayout>
+        <!--定位-->
+        <LinearLayout
+                android:id="@+id/tab_position"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+            <!--icon-->
+            <ImageView
+                    android:id="@+id/iv_position"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:src="@drawable/ic_position_false"/>
+            <!--text-->
+            <TextView
+                    android:id="@+id/tv_position"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:text="@string/tab_position"
+                    android:textColor="@color/gray_1"
+                    android:textSize="12sp"/>
+        </LinearLayout>
+        <!--聊天-->
+        <LinearLayout
+                android:id="@+id/tab_message"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+            <!--icon-->
+            <ImageView
+                    android:id="@+id/iv_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:src="@drawable/ic_message_false"/>
+            <!--text-->
+            <TextView
+                    android:id="@+id/tv_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:text="@string/tab_message"
+                    android:textColor="@color/gray_1"
+                    android:textSize="12sp"/>
+        </LinearLayout>
+        <!--我的-->
+        <LinearLayout
+                android:id="@+id/tab_me"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+            <!--icon-->
+            <ImageView
+                    android:id="@+id/iv_me"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:src="@drawable/ic_me_false"/>
+            <!--text-->
+            <TextView
+                    android:id="@+id/tv_me"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:text="@string/tab_me"
+                    android:textColor="@color/gray_1"
+                    android:textSize="12sp"/>
+        </LinearLayout>
+    </LinearLayout>
 </RelativeLayout>

@@ -13,11 +13,12 @@ import android.widget.TextView;
 import com.waterworld.watch.R;
 import com.waterworld.watch.common.activity.BaseActivity;
 import com.waterworld.watch.common.util.ScreenAdapterUtil;
+import com.waterworld.watch.common.util.ToastUtils;
 
 /**
  * 编写者：Created by SunnyTang
  * 时间：2018/12/5 18:26
- * 主要作用：解绑手表
+ * 主要作用：解绑手表(活动)
  */
 public class WatchUnbindActivity extends BaseActivity implements View.OnClickListener {
 
@@ -49,7 +50,7 @@ public class WatchUnbindActivity extends BaseActivity implements View.OnClickLis
     }
 
     private void initView() {
-        setViewSize(header_parent, ViewGroup.LayoutParams.MATCH_PARENT, ScreenAdapterUtil.getHeightPx(this) / 11);
+        setViewSize(header_parent, ViewGroup.LayoutParams.MATCH_PARENT, ScreenAdapterUtil.getHeightPx(this) / 12);
         header_title.setText("解除绑定");
         header_back.setVisibility(View.VISIBLE);
         header_title.setVisibility(View.VISIBLE);
@@ -85,15 +86,26 @@ public class WatchUnbindActivity extends BaseActivity implements View.OnClickLis
     }
 
     private void unbindClick(String content,String btnExitText,String btnEnterText){
-        showNormalDialog(content, btnExitText, btnEnterText, new DialogInterface.OnClickListener() {
+//        showNormalDialog(content, btnExitText, btnEnterText, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                ToastUtils.showCustomTime(WatchUnbindActivity.this, "解绑成功", 3000);
+//            }
+//        }, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                ToastUtils.showCustomTime(WatchUnbindActivity.this, "解绑成功", 3000);
+//            }
+//        });
+        showNormalDialog("解绑", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                setCustomTimeToast(WatchUnbindActivity.this, "解绑成功", 3000);
+
             }
         }, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                setCustomTimeToast(WatchUnbindActivity.this, "解绑成功", 3000);
+
             }
         });
     }

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+	xmlns:app = "http://schemas.android.com/apk/res-auto"
+	xmlns:tools = "http://schemas.android.com/tools"
+	android:layout_width = "match_parent"
+	android:layout_height = "wrap_content"
+	android:background="@color/translate">
+	
+	<ImageView
+		android:layout_width = "wrap_content"
+		android:layout_height = "wrap_content"
+		android:layout_marginEnd = "8dp"
+		android:background = "@drawable/svg_triangle"
+		app:layout_constraintBottom_toTopOf = "@+id/background"
+		app:layout_constraintEnd_toEndOf = "@+id/background"
+		app:layout_constraintTop_toTopOf = "parent" />
+	
+	<android.support.constraint.ConstraintLayout
+		android:id = "@+id/background"
+		android:layout_width = "match_parent"
+		android:layout_height = "wrap_content"
+		android:layout_marginEnd = "8dp"
+		android:background = "@drawable/shape_bg_rectangle"
+		app:layout_constraintBottom_toBottomOf = "parent"
+		app:layout_constraintEnd_toEndOf = "parent"
+		app:layout_constraintStart_toStartOf = "parent">
+		<!--全部删除-->
+		<android.support.constraint.ConstraintLayout
+			android:id = "@+id/cl_delete"
+			android:layout_width = "match_parent"
+			android:layout_height = "wrap_content"
+			app:layout_constraintEnd_toEndOf = "parent"
+			app:layout_constraintStart_toStartOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent">
+			
+			<ImageView
+				android:id = "@+id/iv_delete"
+				android:layout_width = "wrap_content"
+				android:layout_height = "wrap_content"
+				android:layout_marginStart = "18dp"
+				android:layout_marginTop = "12dp"
+				android:layout_marginBottom = "12dp"
+				android:src = "@drawable/ic_common_delete"
+				app:layout_constraintBottom_toBottomOf = "parent"
+				app:layout_constraintStart_toStartOf = "parent"
+				app:layout_constraintTop_toTopOf = "parent" />
+			
+			<TextView
+				android:id = "@+id/tv_delete"
+				android:layout_width = "wrap_content"
+				android:layout_height = "wrap_content"
+				android:layout_marginStart = "18dp"
+				android:layout_marginEnd = "18dp"
+				android:text = "全部删除"
+				android:textColor = "@color/black_1"
+				android:textSize = "16sp"
+				app:layout_constraintBottom_toBottomOf = "parent"
+				app:layout_constraintEnd_toEndOf = "parent"
+				app:layout_constraintStart_toEndOf = "@+id/iv_delete"
+				app:layout_constraintTop_toTopOf = "parent" />
+		</android.support.constraint.ConstraintLayout>
+		<!--全部已读-->
+		<android.support.constraint.ConstraintLayout
+			android:id = "@+id/cl_read"
+			android:layout_width = "match_parent"
+			android:layout_height = "wrap_content"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintEnd_toEndOf = "parent"
+			app:layout_constraintStart_toStartOf = "parent"
+			app:layout_constraintTop_toBottomOf = "@+id/cl_delete">
+			
+			<TextView
+				android:id = "@+id/iv_read"
+				android:layout_width = "wrap_content"
+				android:layout_height = "wrap_content"
+				android:layout_marginStart = "18dp"
+				android:layout_marginTop = "12dp"
+				android:layout_marginBottom = "12dp"
+				android:background = "@drawable/ic_common_read"
+				app:layout_constraintBottom_toBottomOf = "parent"
+				app:layout_constraintStart_toStartOf = "parent"
+				app:layout_constraintTop_toTopOf = "parent" />
+			
+			<TextView
+				android:id = "@+id/tv_read"
+				android:layout_width = "wrap_content"
+				android:layout_height = "wrap_content"
+				android:layout_marginStart = "18dp"
+				android:layout_marginEnd = "18dp"
+				android:text = "全部已读"
+				android:textColor = "@color/black_1"
+				android:textSize = "16sp"
+				app:layout_constraintBottom_toBottomOf = "parent"
+				app:layout_constraintEnd_toEndOf = "parent"
+				app:layout_constraintStart_toEndOf = "@+id/iv_read"
+				app:layout_constraintTop_toTopOf = "parent" />
+		
+		</android.support.constraint.ConstraintLayout>
+	</android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>

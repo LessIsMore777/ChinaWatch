@@ -5,37 +5,42 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Toast;
 
 import com.hjq.permissions.OnPermission;
 import com.hjq.permissions.XXPermissions;
+import com.waterworld.watch.R;
+import com.waterworld.watch.common.customview.dialog.LoadingDialog;
 import com.waterworld.watch.common.util.AppManager;
 
-import java.security.Permission;
 import java.util.List;
+
+
 
 /**
  * 编写者：Created by SunnyTang
  * 时间：2018/11/27 17:57
  * 主要作用：基础活动
  */
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends AppCompatActivity{
 
-    private final String TAG = "BaseActivity";
+    private final String TAG = BaseActivity.class.getSimpleName();
     private InputMethodManager manager;//输入管理类
-    public static boolean isShow = true;//是否显示吐司
+
+    protected LoadingDialog mLoadingDialog;
+    private LoadingDialog.Speed speed = LoadingDialog.Speed.SPEED_TWO;
+    private int repeatTime = 0;
+    private int color = Color.argb(255, 1, 162, 157);
     /**
      * 权限集合
      */
@@ -96,16 +101,6 @@ public class BaseActivity extends AppCompatActivity {
         return super.onTouchEvent(event);
     }
 
-    /**
-     * 自定义显示Toast时间
-     */
-    public static void setCustomTimeToast(Context context, CharSequence message, int duration) {
-        if (isShow) {
-            Toast toast = Toast.makeText(context, message, duration);
-            toast.setGravity(Gravity.CENTER, 0, 0);
-            toast.show();
-        }
-    }
 
     /**
      * 界面跳转
@@ -188,4 +183,62 @@ public class BaseActivity extends AppCompatActivity {
     public void gotoPermissionSettings() {
         XXPermissions.gotoPermissionSettings(this);
     }
+
+
+    /**
+     ***********************************************************************************************
+     *
+    */
+    /**
+     * showCustomTime Dialog
+     */
+
+    public void showDialog(String loading,String loadSuccess,String loadFail){
+        if(mLoadingDialog == null){
+            mLoadingDialog = new LoadingDialog(this);
+        }
+        if(loading != null && !loading.equals("")){
+            mLoadingDialog.setLoadingText(loading);
+        }else {
+            mLoadingDialog.setLoadingText(getString(R.string.loading));
+        }
+
+        if(loadSuccess != null && !loadSuccess.equals("")){
+            mLoadingDialog.setSuccessText(loadSuccess);
+        }else {
+            mLoadingDialog.setSuccessText(getString(R.string.load_success));
+        }
+
+        if(loadFail != null && !loadFail.equals("")){
+            mLoadingDialog.setFailedText(loadFail);
+        }else {
+            mLoadingDialog.setFailedText(getString(R.string.load_fail));
+        }
+        mLoadingDialog.setLoadStyle(LoadingDialog.STYLE_RING); //转圈圈样式
+        mLoadingDialog.setLoadSpeed(speed);
+        mLoadingDialog.setRepeatCount(repeatTime);
+        mLoadingDialog.setDrawColor(color);
+        mLoadingDialog.setTextColor(Color.WHITE);
+        mLoadingDialog.show();
+    }
+
+    protected void showNormalDialog(String content, DialogInterface.OnClickListener pos, DialogInterface.OnClickListener nega) {
+        final AlertDialog.Builder normalDialog = new AlertDialog.Builder(this);
+        normalDialog.setTitle(getString(R.string.sweet_toast));
+        normalDialog.setMessage(content);
+        normalDialog.setPositiveButton(getString(R.string.confirm), pos);
+        normalDialog.setNegativeButton(getString(R.string.cancel), nega);
+        normalDialog.show();
+    }
+
+    /**
+     * 关闭Dialog
+     */
+    public void closeDialog(){
+        if(mLoadingDialog != null){
+            mLoadingDialog.close();
+            mLoadingDialog = null;
+        }
+    }
+
 }

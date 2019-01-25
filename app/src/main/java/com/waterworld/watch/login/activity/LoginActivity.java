@@ -1,6 +1,11 @@
 package com.waterworld.watch.login.activity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -10,11 +15,19 @@ import android.widget.TextView;
 
 import com.waterworld.watch.R;
 import com.waterworld.watch.common.activity.BaseActivity;
+import com.waterworld.watch.home.activity.HomePagerActivity;
+import com.waterworld.watch.common.util.AppManager;
+import com.waterworld.watch.common.util.LoginUtils;
+import com.waterworld.watch.common.util.ToastUtils;
 import com.waterworld.watch.login.bean.LoginBean;
 import com.waterworld.watch.login.interfaces.ILoginManager;
 import com.waterworld.watch.login.interfaces.LoginResultListener;
 import com.waterworld.watch.login.manager.LoginManager;
+import com.waterworld.watch.mine.activity.MyInformationActivity;
 
+/**
+ * 登录页
+ */
 public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
     //用户
@@ -34,13 +47,21 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     //注册
     private Button register;
 
+    private static final int LOGIN_SUCCESS_TYPE = 0X01;
+    private static final int LOGIN_FAIL_TYPE = 0X02;
+    private static final int LOGIN_NET_ERROR = 0x03;
+
+    //密码是否显示(默认不显示)
+    private boolean inputPwdIsShow = false;
     private ILoginManager iLoginManager = LoginManager.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         bindView();
         bindClick();
+        setDefault();
     }
 
     private void bindView(){
@@ -66,48 +87,111 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     }
 
     private void setDefault(){
-
+        if (iLoginManager.getLastLogin() != null){
+            LoginBean loginBean = (LoginBean) iLoginManager.getLastLogin();
+            user.setText(loginBean.getUsername());
+            password.setText(loginBean.getPassword());
+        }
     }
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.et_login_user:
-                break;
             case R.id.iv_login_clear_user:
-                break;
-            case R.id.et_login_password:
+                user.setText("");
                 break;
             case R.id.iv_login_hide_password:
+                hide_password.setImageResource(inputPwdIsShow ? R.drawable.login_hide_password : R.drawable.login_show_password);
+                password.setInputType(inputPwdIsShow ? InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD : InputType.TYPE_CLASS_TEXT);
+                inputPwdIsShow = !inputPwdIsShow;
                 break;
             case R.id.tv_forget_password:
+                startActivity(new Intent(this,ForgetPasswordActivity.class));
+                finish();
                 break;
             case R.id.tv_verification_login:
+                startActivity(new Intent(this,VerifyLoginActivity.class));
+                finish();
                 break;
             case R.id.btn_login:
-                if(iLoginManager != null){
-                    iLoginManager.login(user.getText().toString(),password.getText().toString(),"0",new LoginResultListener() {
-                        @Override
-                        public void onSuccess(Object o) {
-                            LoginBean.getInstance().setUsername(user.getText().toString());
-                            LoginBean.getInstance().setPassword(password.getText().toString());
-                            Log.d("nihuan","成功");
-                        }
-
-                        @Override
-                        public void onFail(Object o) {
-                            Log.d("nihuan","失败");
-                        }
-
-                        @Override
-                        public void onError(Object o) {
-                        }
-                    });
+                if(LoginUtils.isPhone(this,user.getText().toString()) &&
+                        LoginUtils.isPassword(this,password.getText().toString())) {
+                    showDialog(getString(R.string.logining), null, null);
+                    login();
                 }
                 break;
             case R.id.btn_register:
+                startActivity(new Intent(this,RegisterActivity.class));
+                finish();
                 break;
             default:
                 break;
+        }
+    }
+
+    @SuppressLint("HandlerLeak")
+    private Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case LOGIN_SUCCESS_TYPE:
+                    loginSuccess();
+                    break;
+                case LOGIN_FAIL_TYPE:
+                    loginFail();
+                    break;
+                case LOGIN_NET_ERROR:
+                    loginNetError();
+                default:
+                    break;
+            }
+        }
+    };
+
+    private void loginSuccess(){
+        if (iLoginManager != null){
+            iLoginManager.insertDB(LoginBean.getInstance());
+        }
+        closeDialog();
+        ToastUtils.showShort(this,getString(R.string.login_success));
+        Intent intent = new Intent(LoginActivity.this, HomePagerActivity.class);
+        startActivity(intent);
+        AppManager.finishAllActivity();
+        finish();
+    }
+
+    private void loginFail(){
+        closeDialog();
+        ToastUtils.showShort(this,getString(R.string.login_fail));
+    }
+
+    private void loginNetError(){
+        closeDialog();
+        ToastUtils.showShort(this,getString(R.string.check_net_is_error));
+    }
+
+    private void login(){
+        if (iLoginManager != null) {
+            iLoginManager.login(user.getText().toString(), "0", password.getText().toString(), new LoginResultListener() {
+                @Override
+                public void onSuccess(Object o) {
+                    LoginBean.getInstance().setUsername(user.getText().toString());
+                    LoginBean.getInstance().setPassword(password.getText().toString());
+                    mHandler.sendEmptyMessage(LOGIN_SUCCESS_TYPE);
+                }
+
+                @Override
+                public void onFail(Object o) {
+                    //服务器原因
+                    mHandler.sendEmptyMessage(LOGIN_FAIL_TYPE);
+                }
+
+                @Override
+                public void onError(Object o) {
+                    //网络原因
+                    mHandler.sendEmptyMessage(LOGIN_NET_ERROR);
+                }
+            });
         }
     }
 }

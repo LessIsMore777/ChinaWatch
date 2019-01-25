@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+	xmlns:app = "http://schemas.android.com/apk/res-auto"
+	xmlns:tools = "http://schemas.android.com/tools"
+	android:layout_width = "match_parent"
+	android:layout_height = "match_parent">
+	<!--header-->
+	<include
+		android:id = "@+id/header"
+		layout = "@layout/common_header" />
+	<!--body-->
+	<LinearLayout
+		android:layout_width = "match_parent"
+		android:layout_height = "match_parent"
+		android:layout_below = "@+id/header"
+		android:orientation = "vertical">
+		
+		<android.support.constraint.ConstraintLayout
+			android:layout_width = "match_parent"
+			android:layout_height = "0dp"
+			android:layout_weight = "3"
+			android:background = "@color/white_1">
+			
+			<android.support.constraint.ConstraintLayout
+				android:layout_width = "wrap_content"
+				android:layout_height = "wrap_content"
+				app:layout_constraintBottom_toBottomOf = "parent"
+				app:layout_constraintEnd_toEndOf = "parent"
+				app:layout_constraintStart_toStartOf = "parent"
+				app:layout_constraintTop_toTopOf = "parent">
+				<!--步数-->
+				<android.support.constraint.ConstraintLayout
+					android:id = "@+id/constraintLayout2"
+					android:layout_width = "150dp"
+					android:layout_height = "150dp"
+					android:background = "@drawable/ic_sport_circle"
+					app:layout_constraintEnd_toEndOf = "parent"
+					app:layout_constraintStart_toStartOf = "parent">
+					<!--今日步数-->
+					<TextView
+						android:layout_width = "wrap_content"
+						android:layout_height = "wrap_content"
+						android:text = "今日步数"
+						android:textColor = "@color/gray_1"
+						android:textSize = "12sp"
+						app:layout_constraintBottom_toTopOf = "@+id/tv_walk_count"
+						app:layout_constraintEnd_toEndOf = "parent"
+						app:layout_constraintStart_toStartOf = "parent" />
+					<!--步数显示-->
+					<TextView
+						android:id = "@+id/tv_walk_count"
+						android:layout_width = "wrap_content"
+						android:layout_height = "wrap_content"
+						android:text = "2679"
+						android:textColor = "@color/gray_4"
+						android:textSize = "36sp"
+						app:layout_constraintBottom_toBottomOf = "parent"
+						app:layout_constraintEnd_toEndOf = "parent"
+						app:layout_constraintStart_toStartOf = "parent"
+						app:layout_constraintTop_toTopOf = "parent" />
+				</android.support.constraint.ConstraintLayout>
+				<!--数据上传时间-->
+				<TextView
+					android:id = "@+id/tv_time"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_marginTop = "20dp"
+					android:gravity = "center"
+					android:text = "13小时前用户上传的数据"
+					android:textColor = "@color/gray_1"
+					android:textSize = "12sp"
+					app:layout_constraintEnd_toEndOf = "parent"
+					app:layout_constraintHorizontal_bias = "0.502"
+					app:layout_constraintStart_toStartOf = "parent"
+					app:layout_constraintTop_toBottomOf = "@+id/constraintLayout2" />
+				<!--刷新数据按钮-->
+				<Button
+					android:id = "@+id/btn_Refresh"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_marginTop = "20dp"
+					android:background = "@drawable/bg_rectangle_yellow"
+					android:minWidth = "0dp"
+					android:minHeight = "0dp"
+					android:text = "点击刷新数据"
+					android:textColor = "@color/white_1"
+					android:textSize = "16sp"
+					app:layout_constraintEnd_toEndOf = "parent"
+					app:layout_constraintHorizontal_bias = "1.0"
+					app:layout_constraintStart_toStartOf = "parent"
+					app:layout_constraintTop_toBottomOf = "@+id/tv_time" />
+			</android.support.constraint.ConstraintLayout>
+		</android.support.constraint.ConstraintLayout>
+		
+		<android.support.constraint.ConstraintLayout
+			android:layout_width = "match_parent"
+			android:layout_height = "0dp"
+			android:layout_weight = "2">
+			
+			<android.support.constraint.ConstraintLayout
+				android:id = "@+id/cl_calorie"
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content"
+				android:layout_marginTop = "20dp"
+				android:background = "@color/white_1"
+				app:layout_constraintEnd_toEndOf = "parent"
+				app:layout_constraintStart_toStartOf = "parent"
+				app:layout_constraintTop_toTopOf = "parent">
+				<!--icon-->
+				<ImageView
+					android:id = "@+id/iv_calorie"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_marginStart = "20dp"
+					android:layout_marginTop = "14dp"
+					android:layout_marginBottom = "14dp"
+					android:src = "@drawable/ic_sport_calorie"
+					app:layout_constraintBottom_toBottomOf = "parent"
+					app:layout_constraintStart_toStartOf = "parent"
+					app:layout_constraintTop_toTopOf = "parent" />
+				
+				<TextView
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_marginStart = "24dp"
+					android:text = "@string/skill_sport_calorie"
+					android:textColor = "@color/black_1"
+					android:textSize = "16sp"
+					app:layout_constraintBottom_toBottomOf = "parent"
+					app:layout_constraintStart_toEndOf = "@+id/iv_calorie"
+					app:layout_constraintTop_toTopOf = "parent" />
+				<!--分割线-->
+				<View
+					android:layout_width = "match_parent"
+					android:layout_height = "0.1dp"
+					android:layout_marginStart = "8dp"
+					android:layout_marginEnd = "8dp"
+					android:background = "@color/gray_1"
+					app:layout_constraintBottom_toBottomOf = "parent"
+					app:layout_constraintEnd_toEndOf = "parent"
+					app:layout_constraintStart_toStartOf = "parent" />
+				<!--显示卡里路-->
+				<TextView
+					android:id = "@+id/tv_calorie"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_marginTop = "14dp"
+					android:layout_marginEnd = "20dp"
+					android:layout_marginBottom = "14dp"
+					android:text = "588"
+					android:textSize = "14sp"
+					app:layout_constraintBottom_toBottomOf = "parent"
+					app:layout_constraintEnd_toEndOf = "parent"
+					app:layout_constraintTop_toTopOf = "parent" />
+			</android.support.constraint.ConstraintLayout>
+			
+			<android.support.constraint.ConstraintLayout
+				android:id = "@+id/cl_mileage"
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content"
+				android:background = "@color/white_1"
+				app:layout_constraintEnd_toEndOf = "parent"
+				app:layout_constraintStart_toStartOf = "parent"
+				app:layout_constraintTop_toBottomOf = "@+id/cl_calorie">
+				<!--icon-->
+				<ImageView
+					android:id = "@+id/iv_mileage"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_marginStart = "20dp"
+					android:layout_marginTop = "14dp"
+					android:layout_marginBottom = "14dp"
+					android:src = "@drawable/ic_sport_mileage"
+					app:layout_constraintBottom_toBottomOf = "parent"
+					app:layout_constraintStart_toStartOf = "parent"
+					app:layout_constraintTop_toTopOf = "parent" />
+				
+				<TextView
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_marginStart = "24dp"
+					android:text = "@string/skill_sport_mileage"
+					android:textColor = "@color/black_1"
+					android:textSize = "16sp"
+					app:layout_constraintBottom_toBottomOf = "parent"
+					app:layout_constraintStart_toEndOf = "@+id/iv_mileage"
+					app:layout_constraintTop_toTopOf = "parent" />
+				<!--分割线-->
+				<View
+					android:layout_width = "match_parent"
+					android:layout_height = "0.1dp"
+					android:layout_marginStart = "8dp"
+					android:layout_marginEnd = "8dp"
+					android:background = "@color/gray_1"
+					app:layout_constraintBottom_toBottomOf = "parent"
+					app:layout_constraintEnd_toEndOf = "parent"
+					app:layout_constraintStart_toStartOf = "parent" />
+				<!--显示里程-->
+				<TextView
+					android:id = "@+id/tv_mileage"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_marginTop = "14dp"
+					android:layout_marginEnd = "20dp"
+					android:layout_marginBottom = "14dp"
+					android:text = "588"
+					android:textSize = "14sp"
+					app:layout_constraintBottom_toBottomOf = "parent"
+					app:layout_constraintEnd_toEndOf = "parent"
+					app:layout_constraintTop_toTopOf = "parent" />
+			</android.support.constraint.ConstraintLayout>
+			
+			<android.support.constraint.ConstraintLayout
+				android:id = "@+id/cl_locus"
+				android:layout_width = "match_parent"
+				android:layout_height = "wrap_content"
+				android:background = "@color/white_1"
+				app:layout_constraintEnd_toEndOf = "parent"
+				app:layout_constraintHorizontal_bias = "0.0"
+				app:layout_constraintStart_toStartOf = "parent"
+				app:layout_constraintTop_toBottomOf = "@+id/cl_mileage">
+				<!--icon-->
+				<ImageView
+					android:id = "@+id/iv_locus"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_marginStart = "20dp"
+					android:layout_marginTop = "14dp"
+					android:layout_marginBottom = "14dp"
+					android:src = "@drawable/ic_sport_locus"
+					app:layout_constraintBottom_toBottomOf = "parent"
+					app:layout_constraintStart_toStartOf = "parent"
+					app:layout_constraintTop_toTopOf = "parent" />
+				
+				<TextView
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_marginStart = "24dp"
+					android:text = "@string/skill_sport_locus"
+					android:textColor = "@color/black_1"
+					android:textSize = "16sp"
+					app:layout_constraintBottom_toBottomOf = "parent"
+					app:layout_constraintStart_toEndOf = "@+id/iv_locus"
+					app:layout_constraintTop_toTopOf = "parent" />
+				<!--进入运动轨迹查询-->
+				<ImageView
+					android:id = "@+id/tv_locus"
+					android:layout_width = "wrap_content"
+					android:layout_height = "wrap_content"
+					android:layout_marginTop = "14dp"
+					android:layout_marginEnd = "20dp"
+					android:layout_marginBottom = "14dp"
+					android:src = "@drawable/ic_arrow_right"
+					app:layout_constraintBottom_toBottomOf = "parent"
+					app:layout_constraintEnd_toEndOf = "parent"
+					app:layout_constraintTop_toTopOf = "parent" />
+			</android.support.constraint.ConstraintLayout>
+		
+		</android.support.constraint.ConstraintLayout>
+	</LinearLayout>
+
+
+</RelativeLayout>

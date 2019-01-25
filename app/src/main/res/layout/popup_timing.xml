@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+	xmlns:app = "http://schemas.android.com/apk/res-auto"
+	xmlns:tools = "http://schemas.android.com/tools"
+	android:layout_width = "match_parent"
+	android:layout_height = "wrap_content"
+	android:background="@drawable/bg_popup_window">
+	<!--泡泡窗口标题-->
+	<TextView
+		android:id = "@+id/tv_popup_title"
+		android:layout_width = "match_parent"
+		android:layout_height = "wrap_content"
+		android:layout_marginTop = "24dp"
+		android:gravity = "center"
+		android:textColor = "@color/black_1"
+		android:textSize = "18sp"
+		app:layout_constraintEnd_toEndOf = "parent"
+		app:layout_constraintStart_toStartOf = "parent"
+		app:layout_constraintTop_toTopOf = "parent"
+		tools:text = "开机时间" />
+	<!--分割线-->
+	<android.support.constraint.Guideline
+		android:id = "@+id/line"
+		android:layout_width = "wrap_content"
+		android:layout_height = "wrap_content"
+		android:orientation = "vertical"
+		app:layout_constraintGuide_percent = "0.5" />
+	<!--时-->
+	<cn.carbswang.android.numberpickerview.library.NumberPickerView
+		android:id = "@+id/np_hour"
+		android:layout_width = "wrap_content"
+		android:layout_height = "wrap_content"
+		android:layout_marginTop = "20dp"
+		android:layout_marginEnd = "20dp"
+		app:layout_constraintEnd_toStartOf = "@+id/line"
+		app:layout_constraintTop_toBottomOf = "@+id/tv_popup_title"
+		app:npv_DividerColor = "@color/translate"
+		app:npv_HintText = "时"
+		app:npv_RespondChangeOnDetached = "false"
+		app:npv_ShowCount = "5"
+		app:npv_ShowDivider = "true"
+		app:npv_TextColorHint = "@color/black_1"
+		app:npv_TextColorNormal = "@color/gray_2"
+		app:npv_TextColorSelected = "@color/black_1"
+		app:npv_TextSizeHint = "12sp"
+		app:npv_TextSizeNormal = "26sp"
+		app:npv_TextSizeSelected = "34sp"
+		app:npv_WrapSelectorWheel = "true" />
+	<!--分-->
+	<cn.carbswang.android.numberpickerview.library.NumberPickerView
+		android:id = "@+id/np_minute"
+		android:layout_width = "wrap_content"
+		android:layout_height = "wrap_content"
+		android:layout_marginStart = "20dp"
+		android:layout_marginTop = "20dp"
+		app:layout_constraintStart_toEndOf = "@+id/line"
+		app:layout_constraintTop_toBottomOf = "@+id/tv_popup_title"
+		app:npv_DividerColor = "@color/translate"
+		app:npv_HintText = "时"
+		app:npv_RespondChangeOnDetached = "false"
+		app:npv_ShowCount = "5"
+		app:npv_ShowDivider = "true"
+		app:npv_TextColorHint = "@color/black_1"
+		app:npv_TextColorNormal = "@color/gray_2"
+		app:npv_TextColorSelected = "@color/black_1"
+		app:npv_TextSizeHint = "12sp"
+		app:npv_TextSizeNormal = "26sp"
+		app:npv_TextSizeSelected = "34sp"
+		app:npv_WrapSelectorWheel = "true" />
+	<!--取消按钮-->
+	<android.support.constraint.ConstraintLayout
+		android:id = "@+id/cl_cancel"
+		android:layout_width = "wrap_content"
+		android:layout_height = "wrap_content"
+		app:layout_constraintBottom_toBottomOf = "parent"
+		app:layout_constraintEnd_toStartOf = "@+id/line"
+		app:layout_constraintTop_toBottomOf = "@+id/np_hour">
+		<!--文本-->
+		<TextView
+			android:id = "@+id/tv_cancel"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "40dp"
+			android:layout_marginTop = "24dp"
+			android:layout_marginEnd = "40dp"
+			android:layout_marginBottom = "24dp"
+			android:text = "取消"
+			android:textColor = "@color/black_1"
+			android:textSize = "16sp"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintEnd_toEndOf = "parent"
+			app:layout_constraintStart_toStartOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+	</android.support.constraint.ConstraintLayout>
+	<!--确认按钮-->
+	<android.support.constraint.ConstraintLayout
+		android:id = "@+id/cl_confirm"
+		android:layout_width = "wrap_content"
+		android:layout_height = "wrap_content"
+		app:layout_constraintBottom_toBottomOf = "parent"
+		app:layout_constraintStart_toEndOf = "@+id/line"
+		app:layout_constraintTop_toBottomOf = "@+id/np_minute">
+		<!--文本-->
+		<TextView
+			android:id = "@+id/tv_confirm"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "40dp"
+			android:layout_marginTop = "24dp"
+			android:layout_marginEnd = "40dp"
+			android:layout_marginBottom = "24dp"
+			android:text = "确认"
+			android:textColor = "@color/black_1"
+			android:textSize = "16sp"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintEnd_toEndOf = "parent"
+			app:layout_constraintStart_toStartOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+	</android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>

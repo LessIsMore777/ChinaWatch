@@ -16,7 +16,7 @@ import com.waterworld.watch.common.util.ScreenAdapterUtil;
 /**
  * 编写者：Created by SunnyTang
  * 时间：2018/12/5 15:11
- * 主要作用：手表信息页
+ * 主要作用：手表信息(活动)
  */
 public class WatchInfoActivity extends BaseActivity implements View.OnClickListener {
     /**
@@ -57,7 +57,7 @@ public class WatchInfoActivity extends BaseActivity implements View.OnClickListe
         watchUnbind = findViewById(R.id.cl_watch_unbind);
     }
     private void initView(){
-        setViewSize(header_parent,ViewGroup.LayoutParams.MATCH_PARENT,ScreenAdapterUtil.getHeightPx(this) / 11);
+        setViewSize(header_parent,ViewGroup.LayoutParams.MATCH_PARENT,ScreenAdapterUtil.getHeightPx(this) / 12);
         header_back.setVisibility(View.VISIBLE);
         header_title.setVisibility(View.VISIBLE);
         header_title.setText("手表信息");

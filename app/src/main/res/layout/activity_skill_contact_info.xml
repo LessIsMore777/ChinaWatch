@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+	xmlns:app = "http://schemas.android.com/apk/res-auto"
+	xmlns:tools = "http://schemas.android.com/tools"
+	android:layout_width = "match_parent"
+	android:layout_height = "match_parent">
+	<!--header-->
+	<include
+		android:id = "@+id/header"
+		layout = "@layout/common_header"
+		app:layout_constraintEnd_toEndOf = "parent"
+		app:layout_constraintStart_toStartOf = "parent"
+		app:layout_constraintTop_toTopOf = "parent" />
+	<!--基本信息-->
+	<android.support.constraint.ConstraintLayout
+		android:id = "@+id/cl_base_info"
+		android:layout_width = "match_parent"
+		android:layout_height = "wrap_content"
+		android:background = "@color/white_1"
+		android:focusable = "true"
+		android:focusableInTouchMode = "true"
+		app:layout_constraintEnd_toEndOf = "parent"
+		app:layout_constraintStart_toStartOf = "parent"
+		app:layout_constraintTop_toBottomOf = "@+id/header">
+		<!--联系人头像-->
+		<ImageView
+			android:id = "@+id/iv_contact_avatar"
+			android:layout_width = "64dp"
+			android:layout_height = "64dp"
+			android:layout_marginTop = "12dp"
+			android:src = "@drawable/ic_avatar_1"
+			app:layout_constraintEnd_toEndOf = "parent"
+			app:layout_constraintStart_toStartOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+		<!--联系人名称-->
+		<EditText
+			android:id = "@+id/et_contact_name"
+			android:layout_width = "match_parent"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "20dp"
+			android:layout_marginTop = "18dp"
+			android:layout_marginEnd = "20dp"
+			android:background = "@null"
+			android:hint = "@string/babyInfo_nick"
+			android:singleLine = "true"
+			android:textColor = "@color/gray_3"
+			android:textCursorDrawable = "@drawable/edit_cursor"
+			android:textSize = "16sp"
+			app:layout_constraintEnd_toEndOf = "parent"
+			app:layout_constraintStart_toStartOf = "parent"
+			app:layout_constraintTop_toBottomOf = "@+id/iv_contact_avatar" />
+		<!--分割线-->
+		<View
+			android:id = "@+id/line"
+			android:layout_width = "match_parent"
+			android:layout_height = "1dp"
+			android:layout_marginStart = "8dp"
+			android:layout_marginTop = "18dp"
+			android:layout_marginEnd = "8dp"
+			android:background = "@color/gray_2"
+			app:layout_constraintEnd_toEndOf = "parent"
+			app:layout_constraintStart_toStartOf = "parent"
+			app:layout_constraintTop_toBottomOf = "@+id/et_contact_name" />
+		<!--联系人电话号码-->
+		<EditText
+			android:id = "@+id/et_contact_phone"
+			android:layout_width = "0dp"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "20dp"
+			android:layout_marginTop = "18dp"
+			android:layout_marginEnd = "20dp"
+			android:layout_marginBottom = "18dp"
+			android:background = "@null"
+			android:hint = "@string/phone_number"
+			android:inputType = "phone"
+			android:singleLine = "true"
+			android:textColor = "@color/gray_3"
+			android:textCursorDrawable = "@drawable/edit_cursor"
+			android:textSize = "16sp"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintEnd_toEndOf = "parent"
+			app:layout_constraintStart_toStartOf = "parent"
+			app:layout_constraintTop_toBottomOf = "@+id/line" />
+	</android.support.constraint.ConstraintLayout>
+	<!--普通通话权限-->
+	<android.support.constraint.ConstraintLayout
+		android:id = "@+id/cl_normal_call"
+		android:layout_width = "match_parent"
+		android:layout_height = "wrap_content"
+		android:layout_marginTop = "20dp"
+		android:background = "@color/white_1"
+		app:layout_constraintEnd_toEndOf = "parent"
+		app:layout_constraintStart_toStartOf = "parent"
+		app:layout_constraintTop_toBottomOf = "@+id/cl_base_info">
+		<!--图标-->
+		<ImageView
+			android:id = "@+id/icon1"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "20dp"
+			android:layout_marginTop = "14dp"
+			android:layout_marginBottom = "14dp"
+			android:src = "@drawable/ic_rect_normal_call"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintStart_toStartOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+		<!--功能名称-->
+		<TextView
+			android:id = "@+id/textView1"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "22dp"
+			android:text = "@string/skill_contact_normal_call"
+			android:textColor = "@color/black_1"
+			android:textSize = "16sp"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintStart_toEndOf = "@+id/icon1"
+			app:layout_constraintTop_toTopOf = "parent" />
+		<!--开关-->
+		<CheckBox
+			android:id = "@+id/cb_normal_call"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginEnd = "20dp"
+			android:background = "@drawable/selector_check"
+			android:button = "@null"
+			android:checked = "true"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintEnd_toEndOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+	</android.support.constraint.ConstraintLayout>
+	<!--紧急通话权限-->
+	<android.support.constraint.ConstraintLayout
+		android:id = "@+id/cl_urgent_call"
+		android:layout_width = "match_parent"
+		android:layout_height = "wrap_content"
+		android:layout_marginTop = "20dp"
+		android:background = "@color/white_1"
+		app:layout_constraintEnd_toEndOf = "parent"
+		app:layout_constraintHorizontal_bias = "1.0"
+		app:layout_constraintStart_toStartOf = "parent"
+		app:layout_constraintTop_toBottomOf = "@+id/cl_normal_call">
+		<!--图标-->
+		<ImageView
+			android:id = "@+id/icon2"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "20dp"
+			android:layout_marginTop = "14dp"
+			android:layout_marginBottom = "14dp"
+			android:src = "@drawable/ic_rect_urgent_call"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintStart_toStartOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+		<!--功能名称-->
+		<TextView
+			android:id = "@+id/textView2"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "22dp"
+			android:text = "@string/skill_contact_urgent_call"
+			android:textColor = "@color/black_1"
+			android:textSize = "16sp"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintStart_toEndOf = "@+id/icon2"
+			app:layout_constraintTop_toTopOf = "parent" />
+		<!--开关-->
+		<CheckBox
+			android:id = "@+id/cb_urgent_call"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginEnd = "20dp"
+			android:background = "@drawable/selector_check"
+			android:button = "@null"
+			android:checked = "true"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintEnd_toEndOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+	</android.support.constraint.ConstraintLayout>
+	<!--单向聆听权限-->
+	<android.support.constraint.ConstraintLayout
+		android:id = "@+id/cl_listener"
+		android:layout_width = "match_parent"
+		android:layout_height = "wrap_content"
+		android:layout_marginTop = "20dp"
+		android:background = "@color/white_1"
+		app:layout_constraintEnd_toEndOf = "parent"
+		app:layout_constraintStart_toStartOf = "parent"
+		app:layout_constraintTop_toBottomOf = "@+id/cl_urgent_call">
+		<!--图标-->
+		<ImageView
+			android:id = "@+id/icon3"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "20dp"
+			android:layout_marginTop = "14dp"
+			android:layout_marginBottom = "14dp"
+			android:src = "@drawable/ic_rect_single_listener"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintStart_toStartOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+		<!--功能名称-->
+		<TextView
+			android:id = "@+id/textView3"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "22dp"
+			android:text = "@string/skill_contact_listener"
+			android:textColor = "@color/black_1"
+			android:textSize = "16sp"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintStart_toEndOf = "@+id/icon3"
+			app:layout_constraintTop_toTopOf = "parent" />
+		<!--开关-->
+		<CheckBox
+			android:id = "@+id/cb_single_listener"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginEnd = "20dp"
+			android:background = "@drawable/selector_check"
+			android:button = "@null"
+			android:checked = "true"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintEnd_toEndOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+	</android.support.constraint.ConstraintLayout>
+	<!--删除按钮-->
+	<Button
+		android:id = "@+id/btn_delete"
+		android:layout_width = "match_parent"
+		android:layout_height = "wrap_content"
+		android:layout_marginStart = "60dp"
+		android:layout_marginEnd = "60dp"
+		android:layout_marginBottom = "18dp"
+		android:background = "@drawable/bg_rectangle_red"
+		android:minWidth = "0dp"
+		android:minHeight = "0dp"
+		android:text = "@string/common_delete"
+		android:textColor = "@color/white_1"
+		android:textSize = "16sp"
+		android:visibility = "gone"
+		app:layout_constraintBottom_toBottomOf = "parent"
+		app:layout_constraintEnd_toEndOf = "parent"
+		app:layout_constraintStart_toStartOf = "parent" />
+</android.support.constraint.ConstraintLayout>

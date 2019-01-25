@@ -14,8 +14,9 @@ import android.widget.TextView;
 import com.waterworld.watch.R;
 import com.waterworld.watch.common.activity.BaseActivity;
 import com.waterworld.watch.common.util.ScreenAdapterUtil;
-import com.waterworld.watch.home.adapter.OtherUserAdapter;
-import com.waterworld.watch.home.bean.OtherUserBean;
+import com.waterworld.watch.common.util.ToastUtils;
+import com.waterworld.watch.home.adapter.WatchOtherUserAdapter;
+import com.waterworld.watch.home.bean.WatchOtherUserBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ import java.util.List;
 /**
  * 编写者：Created by SunnyTang
  * 时间：2018/12/6 10:07
- * 主要作用：解除与其他用户的绑定页
+ * 主要作用：解除与其他用户的绑定页(活动)
  */
 public class WatchUnbindOtherUserActivity extends BaseActivity implements View.OnClickListener {
 
@@ -31,14 +32,14 @@ public class WatchUnbindOtherUserActivity extends BaseActivity implements View.O
     private ImageButton header_back;
     private TextView header_title;
     private RecyclerView otherUserRecycler;
-    private List<OtherUserBean> otherUserList;
-    private OtherUserAdapter otherUserAdapter;
+    private List<WatchOtherUserBean> otherUserList;
+    private WatchOtherUserAdapter otherUserAdapter;
     private LinearLayoutManager layoutManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_unbind_other_user);
+        setContentView(R.layout.activity_watch_unbind_other_user);
         bindView();
         initView();
         initRecycler();
@@ -55,7 +56,7 @@ public class WatchUnbindOtherUserActivity extends BaseActivity implements View.O
     }
 
     private void initView() {
-        setViewSize(header_parent, ViewGroup.LayoutParams.MATCH_PARENT, ScreenAdapterUtil.getHeightPx(this) / 11);
+        setViewSize(header_parent, ViewGroup.LayoutParams.MATCH_PARENT, ScreenAdapterUtil.getHeightPx(this) / 12);
         header_title.setText("解除其它用户的绑定");
         header_back.setVisibility(View.VISIBLE);
         header_title.setVisibility(View.VISIBLE);
@@ -63,15 +64,15 @@ public class WatchUnbindOtherUserActivity extends BaseActivity implements View.O
 
     private void initRecycler() {
         otherUserList = new ArrayList<>();
-        otherUserList.add(new OtherUserBean(1, getResources().getDrawable(R.drawable.ic_avatar_1), "唐家辉", "哥哥"));
-        otherUserList.add(new OtherUserBean(2, getResources().getDrawable(R.drawable.ic_avatar_1), "唐家辉", "哥哥"));
-        otherUserList.add(new OtherUserBean(3, getResources().getDrawable(R.drawable.ic_avatar_1), "唐家辉", "哥哥"));
-        otherUserList.add(new OtherUserBean(4, getResources().getDrawable(R.drawable.ic_avatar_1), "唐家辉", "哥哥"));
-        otherUserList.add(new OtherUserBean(5, getResources().getDrawable(R.drawable.ic_avatar_1), "唐家辉", "哥哥"));
-        otherUserList.add(new OtherUserBean(6, getResources().getDrawable(R.drawable.ic_avatar_1), "唐家辉", "哥哥"));
-        otherUserList.add(new OtherUserBean(7, getResources().getDrawable(R.drawable.ic_avatar_1), "唐家辉", "哥哥"));
-        otherUserList.add(new OtherUserBean(8, getResources().getDrawable(R.drawable.ic_avatar_1), "唐家辉", "哥哥"));
-        otherUserAdapter = new OtherUserAdapter(this, otherUserList);
+        otherUserList.add(new WatchOtherUserBean(1, getResources().getDrawable(R.drawable.ic_avatar_1), "唐家辉", "哥哥"));
+        otherUserList.add(new WatchOtherUserBean(2, getResources().getDrawable(R.drawable.ic_avatar_1), "唐家辉", "哥哥"));
+        otherUserList.add(new WatchOtherUserBean(3, getResources().getDrawable(R.drawable.ic_avatar_1), "唐家辉", "哥哥"));
+        otherUserList.add(new WatchOtherUserBean(4, getResources().getDrawable(R.drawable.ic_avatar_1), "唐家辉", "哥哥"));
+        otherUserList.add(new WatchOtherUserBean(5, getResources().getDrawable(R.drawable.ic_avatar_1), "唐家辉", "哥哥"));
+        otherUserList.add(new WatchOtherUserBean(6, getResources().getDrawable(R.drawable.ic_avatar_1), "唐家辉", "哥哥"));
+        otherUserList.add(new WatchOtherUserBean(7, getResources().getDrawable(R.drawable.ic_avatar_1), "唐家辉", "哥哥"));
+        otherUserList.add(new WatchOtherUserBean(8, getResources().getDrawable(R.drawable.ic_avatar_1), "唐家辉", "哥哥"));
+        otherUserAdapter = new WatchOtherUserAdapter(this, otherUserList);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         otherUserRecycler.setLayoutManager(layoutManager);
         otherUserRecycler.setAdapter(otherUserAdapter);
@@ -92,7 +93,7 @@ public class WatchUnbindOtherUserActivity extends BaseActivity implements View.O
     }
 
     private void unbindClick() {
-        otherUserAdapter.setOnOtherUserClick(new OtherUserAdapter.OtherUserClickListener() {
+        otherUserAdapter.setOnOtherUserClick(new WatchOtherUserAdapter.OtherUserClickListener() {
             @Override
             public void onOtherUserClick(View view, int position) {
                 unbindOtherUser(position);
@@ -104,12 +105,12 @@ public class WatchUnbindOtherUserActivity extends BaseActivity implements View.O
         showNormalDialog("确定解绑？", "取消", "确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                setCustomTimeToast(WatchUnbindOtherUserActivity.this, "解绑成功", 3000);
+                ToastUtils.showCustomTime(WatchUnbindOtherUserActivity.this, "解绑成功", 3000);
             }
         }, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                setCustomTimeToast(WatchUnbindOtherUserActivity.this, "解绑成功", 3000);
+                ToastUtils.showCustomTime(WatchUnbindOtherUserActivity.this, "解绑成功", 3000);
             }
         });
     }

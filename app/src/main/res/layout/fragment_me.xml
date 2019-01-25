@@ -1,9 +1,369 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android = "http://schemas.android.com/apk/res/android"
-	android:orientation = "vertical" android:layout_width = "match_parent"
-	android:layout_height = "match_parent">
-	<TextView
-		android:layout_width = "wrap_content"
+<android.support.constraint.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+	xmlns:app = "http://schemas.android.com/apk/res-auto"
+	xmlns:tools = "http://schemas.android.com/tools"
+	android:layout_width = "match_parent"
+	android:layout_height = "match_parent"
+	android:background = "@color/gray_2"
+	android:id="@+id/parentView">
+	<!--家长信息-->
+	<android.support.constraint.ConstraintLayout
+		android:id = "@+id/cl_myInfo"
+		android:layout_width = "match_parent"
 		android:layout_height = "wrap_content"
-		android:text="@string/tab_me"/>
-</LinearLayout>
+		android:background = "@color/white_1">
+		<!--家长头像-->
+		<ImageView
+			android:id = "@+id/parent_avatar"
+			android:layout_width = "64dp"
+			android:layout_height = "64dp"
+			android:layout_marginStart = "14dp"
+			android:layout_marginTop = "8dp"
+			android:layout_marginBottom = "8dp"
+			android:src = "@drawable/ic_avatar_3"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintStart_toStartOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+		<!--家长姓名-->
+		<TextView
+			android:id = "@+id/parent_name"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "18dp"
+			android:layout_marginBottom = "4dp"
+			android:text = "@string/data_name"
+			android:textColor = "@color/black_1"
+			android:textSize = "16sp"
+			app:layout_constraintBottom_toTopOf = "@+id/guideline"
+			app:layout_constraintStart_toEndOf = "@+id/parent_avatar" />
+		<!--分割线-->
+		<android.support.constraint.Guideline
+			android:id = "@+id/guideline"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:orientation = "horizontal"
+			app:layout_constraintGuide_percent = "0.5" />
+		<!--绑定手表-->
+		<TextView
+			android:id = "@+id/textView1"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "18dp"
+			android:layout_marginTop = "4dp"
+			android:text = "@string/parent_bind_watch"
+			android:textColor = "@color/gray_3"
+			android:textSize = "14sp"
+			app:layout_constraintStart_toEndOf = "@+id/parent_avatar"
+			app:layout_constraintTop_toTopOf = "@+id/guideline" />
+		<!--手表号码-->
+		<TextView
+			android:id = "@+id/tv_watchPhone"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginTop = "4dp"
+			android:text = "@string/data_phone"
+			android:textColor = "@color/gray_3"
+			android:textSize = "14sp"
+			app:layout_constraintStart_toEndOf = "@+id/textView1"
+			app:layout_constraintTop_toTopOf = "@+id/guideline" />
+		<!--enter-->
+		<ImageView
+			android:id = "@+id/imageView1"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginEnd = "20dp"
+			android:src = "@drawable/ic_arrow_right"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintEnd_toEndOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+	</android.support.constraint.ConstraintLayout>
+	<!--消息通知-->
+	<android.support.constraint.ConstraintLayout
+		android:id = "@+id/cl_notification"
+		android:layout_width = "match_parent"
+		android:layout_height = "wrap_content"
+		android:layout_marginTop = "20dp"
+		android:background = "@color/white_1"
+		app:layout_constraintEnd_toEndOf = "parent"
+		app:layout_constraintStart_toStartOf = "parent"
+		app:layout_constraintTop_toBottomOf = "@+id/cl_myInfo">
+		<!--图标-->
+		<ImageView
+			android:id = "@+id/img_notification"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "20dp"
+			android:layout_marginTop = "14dp"
+			android:layout_marginBottom = "14dp"
+			android:src = "@drawable/ic_rect_notification"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintStart_toStartOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+		<!--文本-->
+		<TextView
+			android:id = "@+id/textView2"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "20dp"
+			android:text = "消息通知"
+			android:textColor = "@color/black_1"
+			android:textSize = "16sp"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintStart_toEndOf = "@+id/img_notification"
+			app:layout_constraintTop_toTopOf = "parent" />
+		<!--enter-->
+		<ImageView
+			android:id = "@+id/img_notification_enter"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginEnd = "20dp"
+			android:src = "@drawable/ic_arrow_right"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintEnd_toEndOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+	</android.support.constraint.ConstraintLayout>
+	<!--贴心设置-->
+	<android.support.constraint.ConstraintLayout
+		android:id = "@+id/cl_intimate"
+		android:layout_width = "match_parent"
+		android:layout_height = "wrap_content"
+		android:layout_marginTop = "20dp"
+		android:background = "@color/white_1"
+		app:layout_constraintEnd_toEndOf = "parent"
+		app:layout_constraintHorizontal_bias = "1.0"
+		app:layout_constraintStart_toStartOf = "parent"
+		app:layout_constraintTop_toBottomOf = "@+id/cl_notification">
+		<!--图标-->
+		<ImageView
+			android:id = "@+id/img_intimate"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "20dp"
+			android:layout_marginTop = "14dp"
+			android:layout_marginBottom = "14dp"
+			android:src = "@drawable/ic_rect_intimate"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintStart_toStartOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+		<!--文本-->
+		<TextView
+			android:id = "@+id/tv_intimate"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "20dp"
+			android:text = "贴心设置"
+			android:textColor = "@color/black_1"
+			android:textSize = "16sp"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintStart_toEndOf = "@+id/img_intimate"
+			app:layout_constraintTop_toTopOf = "parent" />
+		<!--enter-->
+		<ImageView
+			android:id = "@+id/img_intimate_enter"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginEnd = "20dp"
+			android:src = "@drawable/ic_arrow_right"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintEnd_toEndOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+	</android.support.constraint.ConstraintLayout>
+	<!--定时开关机-->
+	<android.support.constraint.ConstraintLayout
+		android:id = "@+id/cl_timing"
+		android:layout_width = "match_parent"
+		android:layout_height = "wrap_content"
+		android:background = "@color/white_1"
+		app:layout_constraintEnd_toEndOf = "parent"
+		app:layout_constraintHorizontal_bias = "0.0"
+		app:layout_constraintStart_toStartOf = "parent"
+		app:layout_constraintTop_toBottomOf = "@+id/cl_intimate">
+		<!--图标-->
+		<ImageView
+			android:id = "@+id/img_timing"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "20dp"
+			android:layout_marginTop = "14dp"
+			android:layout_marginBottom = "14dp"
+			android:src = "@drawable/ic_rect_timing"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintStart_toStartOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+		<!--文本-->
+		<TextView
+			android:id = "@+id/tv_timing"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "20dp"
+			android:text = "定时开关机"
+			android:textColor = "@color/black_1"
+			android:textSize = "16sp"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintStart_toEndOf = "@+id/img_timing"
+			app:layout_constraintTop_toTopOf = "parent" />
+		<!--enter-->
+		<ImageView
+			android:id = "@+id/img_timing_enter"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginEnd = "20dp"
+			android:src = "@drawable/ic_arrow_right"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintEnd_toEndOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+	</android.support.constraint.ConstraintLayout>
+	<!--远程关机-->
+	<android.support.constraint.ConstraintLayout
+		android:id = "@+id/cl_shutdown"
+		android:layout_width = "match_parent"
+		android:layout_height = "wrap_content"
+		android:background = "@color/white_1"
+		app:layout_constraintEnd_toEndOf = "parent"
+		app:layout_constraintHorizontal_bias = "0.0"
+		app:layout_constraintStart_toStartOf = "parent"
+		app:layout_constraintTop_toBottomOf = "@+id/cl_timing">
+		<!--图标-->
+		<ImageView
+			android:id = "@+id/img_shutdown"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "20dp"
+			android:layout_marginTop = "14dp"
+			android:layout_marginBottom = "14dp"
+			android:src = "@drawable/ic_rect_shutdown"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintStart_toStartOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+		<!--文本-->
+		<TextView
+			android:id = "@+id/tv_auto_shutdown_time"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "20dp"
+			android:text = "远程关机"
+			android:textColor = "@color/black_1"
+			android:textSize = "16sp"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintStart_toEndOf = "@+id/img_shutdown"
+			app:layout_constraintTop_toTopOf = "parent" />
+		<!--enter-->
+		<ImageView
+			android:id = "@+id/img_shutdown_enter"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginEnd = "20dp"
+			android:src = "@drawable/ic_arrow_right"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintEnd_toEndOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+	</android.support.constraint.ConstraintLayout>
+	<!--清除缓存-->
+	<android.support.constraint.ConstraintLayout
+		android:id = "@+id/cl_clean"
+		android:layout_width = "match_parent"
+		android:layout_height = "wrap_content"
+		android:layout_marginTop = "20dp"
+		android:background = "@color/white_1"
+		app:layout_constraintEnd_toEndOf = "parent"
+		app:layout_constraintHorizontal_bias = "0.0"
+		app:layout_constraintStart_toStartOf = "parent"
+		app:layout_constraintTop_toBottomOf = "@+id/cl_shutdown">
+		<!--图标-->
+		<ImageView
+			android:id = "@+id/img_clean"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "20dp"
+			android:layout_marginTop = "14dp"
+			android:layout_marginBottom = "14dp"
+			android:src = "@drawable/ic_rect_clean"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintStart_toStartOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+		<!--文本-->
+		<TextView
+			android:id = "@+id/tv_clean"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "20dp"
+			android:text = "清除缓存"
+			android:textColor = "@color/black_1"
+			android:textSize = "16sp"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintStart_toEndOf = "@+id/img_clean"
+			app:layout_constraintTop_toTopOf = "parent" />
+		<!--enter-->
+		<ImageView
+			android:id = "@+id/img_clean_enter"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginEnd = "20dp"
+			android:src = "@drawable/ic_arrow_right"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintEnd_toEndOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+	</android.support.constraint.ConstraintLayout>
+	<!--版本更新-->
+	<android.support.constraint.ConstraintLayout
+		android:id = "@+id/cl_update"
+		android:layout_width = "match_parent"
+		android:layout_height = "wrap_content"
+		android:background = "@color/white_1"
+		app:layout_constraintEnd_toEndOf = "parent"
+		app:layout_constraintHorizontal_bias = "1.0"
+		app:layout_constraintStart_toStartOf = "parent"
+		app:layout_constraintTop_toBottomOf = "@+id/cl_clean">
+		<!--图标-->
+		<ImageView
+			android:id = "@+id/img_update"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "20dp"
+			android:layout_marginTop = "14dp"
+			android:layout_marginBottom = "14dp"
+			android:src = "@drawable/ic_rect_update"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintStart_toStartOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+		<!--文本-->
+		<TextView
+			android:id = "@+id/tv_update"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginStart = "20dp"
+			android:text = "版本更新"
+			android:textColor = "@color/black_1"
+			android:textSize = "16sp"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintStart_toEndOf = "@+id/img_update"
+			app:layout_constraintTop_toTopOf = "parent" />
+		<!--enter-->
+		<ImageView
+			android:id = "@+id/img_update_enter"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_marginEnd = "20dp"
+			android:src = "@drawable/ic_arrow_right"
+			app:layout_constraintBottom_toBottomOf = "parent"
+			app:layout_constraintEnd_toEndOf = "parent"
+			app:layout_constraintTop_toTopOf = "parent" />
+	</android.support.constraint.ConstraintLayout>
+	<!--退出登录-->
+	<Button
+		android:id="@+id/btn_outLogin"
+		android:layout_width = "match_parent"
+		android:layout_height = "wrap_content"
+		android:layout_marginTop = "20dp"
+		android:background = "@color/white_1"
+		android:minWidth = "0dp"
+		android:minHeight = "0dp"
+		android:paddingTop = "18dp"
+		android:paddingBottom = "18dp"
+		android:text = "退出登录"
+		android:textColor = "@color/black_1"
+		android:textSize = "16sp"
+		app:layout_constraintEnd_toEndOf = "parent"
+		app:layout_constraintStart_toStartOf = "parent"
+		app:layout_constraintTop_toBottomOf = "@+id/cl_update" />
+</android.support.constraint.ConstraintLayout>

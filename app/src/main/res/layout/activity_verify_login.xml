@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#ffffff">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -42,6 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@+id/iv_user"
                 android:hint="@string/phone_number"
+                android:textCursorDrawable = "@drawable/edit_cursor"
                 android:layout_marginStart="16dp"
                 android:background="#FFFFFF"
                 android:textSize="14sp"
@@ -83,11 +85,11 @@
                 />
             <EditText
                 android:id="@+id/et_input_verification"
-                android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@+id/iv_verification"
                 android:hint="@string/input_verification_code"
+                android:textCursorDrawable = "@drawable/edit_cursor"
                 android:layout_marginStart="16dp"
                 android:background="#FFFFFF"
                 android:textSize="13sp"
@@ -98,18 +100,32 @@
             <View
                 android:layout_width="1dp"
                 android:layout_height="14dp"
-                android:layout_toStartOf="@+id/tv_get_verification"
+                android:layout_toStartOf="@+id/id_relative_layout"
                 android:layout_marginRight="14dp"
                 android:layout_centerVertical="true"
                 android:background="#E3E3E3"/>
-            <TextView
-                android:id="@+id/tv_get_verification"
+            <RelativeLayout
+                android:id="@+id/id_relative_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:text="@string/get_verification_code"
-                android:textColor="#FED533"
-                android:textSize="13sp"/>
+                android:layout_alignParentEnd="true">
+                <TextView
+                    android:id="@+id/tv_get_verification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/get_verification_code"
+                    android:textColor="#FED533"
+                    android:textSize="13sp"
+                    />
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="13dp"
+                    android:layout_height="13dp"
+                    android:layout_centerInParent="true"
+                    android:indeterminateTint="#FED533"
+                    android:visibility="gone"/>
+            </RelativeLayout>
         </RelativeLayout>
         <View
             android:layout_width="match_parent"

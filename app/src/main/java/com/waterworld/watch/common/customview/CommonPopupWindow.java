@@ -80,7 +80,6 @@ public abstract class CommonPopupWindow{
         mInstance.setTouchable(true);
     }
 
-
     /**
      * 显示泡泡窗口
      * @param anchor        泡泡窗口所依附的View
@@ -93,10 +92,24 @@ public abstract class CommonPopupWindow{
         mInstance.showAsDropDown(anchor, offset[0] + xmerge, offset[1] + ymerge);
     }
 
+    /**
+     *
+     * 设置泡泡窗口显示的位置(相对某个控件的位置)
+     * @param anchor 某个控件
+     * @param xOffSet 水平偏移量
+     * @param yOffSet 垂直偏移量
+     */
     public void showAsDropDown(View anchor, int xOffSet, int yOffSet) {
         mInstance.showAsDropDown(anchor, xOffSet, yOffSet);
     }
 
+    /**
+     * 设置泡泡窗口显示的位置(相对于父控件的位置)
+     * @param parent 父控件
+     * @param gravity 水平还是垂直？比如Gravity.CENTER或者Gravity.BOTTOM等
+     * @param x 水平偏移量
+     * @param y 垂直偏移量
+     */
     public void showAtLocation(View parent, int gravity, int x, int y) {
         mInstance.showAtLocation(parent, gravity, x, y);
     }

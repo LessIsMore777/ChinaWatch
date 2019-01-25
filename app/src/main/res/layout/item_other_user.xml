@@ -39,7 +39,7 @@
 		android:layout_marginStart = "14dp"
 		android:layout_marginTop = "8dp"
 		android:layout_marginBottom = "14dp"
-		android:text = "@string/act_relation"
+		android:text = "@string/watch_relation"
 		android:textColor = "@color/gray_3"
 		android:textSize = "12sp"
 		app:layout_constraintBottom_toBottomOf = "parent"

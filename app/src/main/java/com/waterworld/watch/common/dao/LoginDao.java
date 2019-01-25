@@ -3,6 +3,7 @@ package com.waterworld.watch.common.dao;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.waterworld.watch.common.db.DBHelper;
 import com.waterworld.watch.common.db.TableConfig;
@@ -12,6 +13,7 @@ import com.waterworld.watch.login.bean.LoginBean;
 /**
  * Created by nhuan
  * Time:2018/12/13.
+ * 登录信息
  */
 
 public class LoginDao implements ILoginDao {
@@ -31,7 +33,6 @@ public class LoginDao implements ILoginDao {
                ContentValues contentValues = new ContentValues();
                contentValues.put(TableConfig.LOGIN.LOGIN_USERNAME,loginBean.getUsername());
                contentValues.put(TableConfig.LOGIN.LOGIN_PASSWORD,loginBean.getPassword());
-               contentValues.put(TableConfig.LOGIN.LOGIN_USER_ID,loginBean.getUser_id());
                contentValues.put(TableConfig.SAVE_TIME,System.currentTimeMillis()/1000);
                db.replace(TableConfig.LOGIN.LOGIN_TABLE,null,contentValues);
            }
@@ -39,16 +40,15 @@ public class LoginDao implements ILoginDao {
     }
 
     @Override
-    public void upDate(Object o) {
+    public void upDate(String username,Object o) {
         if (o instanceof LoginBean) {
             LoginBean loginBean = (LoginBean) o;
             if(db != null) {
                 ContentValues contentValues = new ContentValues();
                 contentValues.put(TableConfig.LOGIN.LOGIN_USERNAME,loginBean.getUsername());
                 contentValues.put(TableConfig.LOGIN.LOGIN_PASSWORD,loginBean.getPassword());
-                contentValues.put(TableConfig.LOGIN.LOGIN_USER_ID,loginBean.getUser_id());
                 contentValues.put(TableConfig.SAVE_TIME,System.currentTimeMillis()/1000);
-                db.replace(TableConfig.LOGIN.LOGIN_TABLE,null,contentValues);
+                db.update(TableConfig.LOGIN.LOGIN_TABLE, contentValues, TableConfig.LOGIN.LOGIN_USERNAME + " = ?", new String[]{username});
             }
         }
     }
@@ -68,13 +68,9 @@ public class LoginDao implements ILoginDao {
                         int password_Index = cursor.getColumnIndex(TableConfig.LOGIN.LOGIN_PASSWORD);
                         String password = cursor.getString(password_Index);
 
-                        int userId_Index = cursor.getColumnIndex(TableConfig.LOGIN.LOGIN_USER_ID);
-                        int userId = cursor.getInt(userId_Index);
-
                         loginBean = LoginBean.getInstance();
                         loginBean.setUsername(username);
                         loginBean.setPassword(password);
-                        loginBean.setUser_id(userId);
                     }
                 }
             }catch (Exception e){
@@ -91,12 +87,12 @@ public class LoginDao implements ILoginDao {
     }
 
     @Override
-    public void delPassword(int id) {
+    public void delPassword(String phone) {
         if (db != null) {
             ContentValues contentValues = new ContentValues();
             contentValues.put(TableConfig.LOGIN.LOGIN_PASSWORD,"");
             contentValues.put(TableConfig.SAVE_TIME, System.currentTimeMillis() / 1000);
-            db.update(TableConfig.LOGIN.LOGIN_TABLE, contentValues, TableConfig.LOGIN.LOGIN_USER_ID + " = ?", new String[]{id+""});
+            db.update(TableConfig.LOGIN.LOGIN_TABLE, contentValues, TableConfig.LOGIN.LOGIN_USERNAME + " = ?", new String[]{phone});
         }
     }
 }

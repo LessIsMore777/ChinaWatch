@@ -2,16 +2,24 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.waterworld.watch">
-	
-	<uses-permission android:name="android.permission.CALL_PHONE"/>
-	<uses-permission android:name="android.permission.CAMERA"/>
-	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
     <!-- 读写数据 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- 网络 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
         android:name=".common.application.MyApplication"
@@ -24,32 +32,90 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <!-- 启动页 -->
-        <activity android:name=".login.activity.LoginActivity">
+        <activity android:name=".login.activity.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- 增加技能页 -->
-        <activity android:name=".home.activity.ManagerSkillActivity" />
+
+        <!-- 高德KEY -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="775e37fd6e96dde33d1de26f98fde2c9" />
+
+        <service android:name="com.amap.api.location.APSService" />
+
+        <!-- 主界面 -->
+        <activity android:name=".home.activity.HomePagerActivity" />
+        <!-- 技能管理页 -->
+        <activity android:name=".home.activity.SkillManagerActivity" />
         <!-- 手表信息页 -->
         <activity android:name=".home.activity.WatchInfoActivity" />
+        <!-- 手表绑定码页 -->
+        <activity android:name=".home.activity.WatchBindCodeActivity" />
+        <!-- 手表绑定页 -->
+        <activity android:name=".home.activity.WatchBindActivity" />
+        <!-- 手表解绑页 -->
+        <activity android:name=".home.activity.WatchUnbindActivity" />
+        <!-- 手表解除与其他用户的绑定页 -->
+        <activity android:name=".home.activity.WatchUnbindOtherUserActivity" />
+        <!-- 宝贝头像页 -->
+        <activity android:name=".home.activity.BabyAvatarActivity" />
         <!-- 宝贝信息页 -->
         <activity android:name=".home.activity.BabyInfoActivity" />
-        <!-- 绑定码页 -->
-        <activity android:name=".home.activity.WatchBindCodeActivity" />
-        <!-- 绑定手表页 -->
-        <activity android:name=".home.activity.WatchBindActivity" />
-        <!-- 解绑手表页 -->
-        <activity android:name=".home.activity.WatchUnbindActivity" />
-        <!-- 解除与其他用户的绑定页 -->
-        <activity android:name=".home.activity.WatchUnbindOtherUserActivity" />
-        <!-- 设置宝贝头像页 -->
-        <activity android:name=".home.activity.BabySelectAvatarActivity" />
+        <!-- 技能-联系人信息页 -->
+        <activity android:name=".home.activity.SkillContactInfoActivity" />
+        <!-- 技能-联系人列表 -->
+        <activity android:name=".home.activity.SkillContactListActivity" />
+        <!-- 技能-远程拍摄 -->
+        <activity android:name=".home.activity.SkillRemotelyShotActivity" />
+        <!-- 技能-单项聆听 -->
+        <activity android:name=".home.activity.SkillSingleListenerActivity" />
+        <!-- 技能-课程表 -->
+        <activity android:name=".home.activity.SkillSyllabusActivity" />
+        <!-- 技能-运动统计 -->
+        <activity android:name=".home.activity.SkillSportActivity" />
+        <!-- 定时开关机页 -->
+        <activity android:name=".mine.activity.TimingActivity" />
+        <!-- 贴心设置页 -->
+        <activity android:name=".mine.activity.IntimateActivity" />
+        <!-- 消息通知模块 -->
+        <activity android:name=".mine.activity.MessageNotificationActivity" />
+        <!-- 找回密码 -->
         <activity android:name=".login.activity.ForgetPasswordActivity" />
+        <!-- 注册 -->
         <activity android:name=".login.activity.RegisterActivity" />
+        <!-- 验证码登录 -->
         <activity android:name=".login.activity.VerifyLoginActivity" />
+        <!-- 登录 -->
+        <activity android:name=".login.activity.LoginActivity" />
+        <!-- 我的信息 -->
+        <activity android:name=".mine.activity.MyInformationActivity" />
+        <!-- 修改密码 -->
+        <activity android:name=".mine.activity.ModifyPasswordActivity" />
+        <!-- 全局服务 -->
+        <service android:name=".common.service.OverallService" />
+
+        <activity android:name=".mine.activity.AvatarActivity" />
+        <!-- 消息通知(查看详细消息) -->
+        <activity android:name=".mine.activity.MessageDetailedInfoActivity" />
+        <!-- 修改手机号 -->
+        <activity android:name=".mine.activity.ModifyAccountActivity" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.waterworld.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity android:name=".location.activity.ElectronicFenceActivity" />
+        <activity android:name=".location.activity.AddElectronicFenceActivity"></activity>
     </application>
 
 </manifest>

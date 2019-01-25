@@ -1,26 +1,5 @@
 <resources>
     <string name="app_name">沃特手表</string>
-    <string-array name="year">
-        <item>2000</item>
-        <item>2001</item>
-        <item>2002</item>
-        <item>2003</item>
-        <item>2004</item>
-        <item>2005</item>
-        <item>2006</item>
-        <item>2007</item>
-        <item>2008</item>
-        <item>2009</item>
-        <item>2010</item>
-        <item>2011</item>
-        <item>2012</item>
-        <item>2013</item>
-        <item>2014</item>
-        <item>2015</item>
-        <item>2016</item>
-        <item>2017</item>
-        <item>2018</item>
-    </string-array>
     <!--TAB-->
     <string name="tab_me">我的</string>
     <string name="tab_home">主页</string>
@@ -30,19 +9,36 @@
     <string name="common_save">保存</string>
     <string name="common_finish">完成</string>
     <string name="common_default">未设置</string>
+    <string name="common_submit">上传</string>
+    <string name="common_delete">删除</string>
+    <string name="common_confirm">确认</string>
+    <string name="loading">加载中...</string>
+    <string name="load_success">加载成功</string>
+    <string name="load_fail">加载失败</string>
+    <string name="sweet_toast">提示</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+    <string name="check_net_is_error">网络错误，请检查网络</string>
+    <string name="event_user_login_invalid">您的账号登录失效或异地登录</string>
+    <string name="have_to_agree_premissions">您必须要同意该权限才可以使用该功能</string>
     <!--模拟数据-->
     <string name="test_1">宝贝的手表</string>
     <string name="test_2">宝贝儿子</string>
     <string name="my_application">我的应用</string>
     <string name="tip_1">按住拖动调整排序</string>
+    <string name="contact_text_1">禁止陌生电话打入</string>
+    <string name="data_name">唐家辉</string>
+    <string name="data_phone">17763693759</string>
     <!--解绑手表-->
-    <string name="act_unbind">解除绑定</string>
-    <string name="act_shift_manager">移交管理权</string>
-    <string name="act_unbind_other_user">解除其他用户绑定</string>
-    <string name="act_factory_setting">恢复手表出厂设置</string>
-    <string name="act_relation">与宝贝的关系：</string>
+    <string name="bind_error">绑定失败</string>
+    <string name="bind_success">绑定成功</string>
+    <string name="unbind">解除绑定</string>
+    <string name="watch_shiftManager">移交管理权</string>
+    <string name="watch_unbindOtherUser">解除其他用户绑定</string>
+    <string name="watch_factory">恢复手表出厂设置</string>
+    <string name="watch_relation">与宝贝的关系：</string>
     <!--手表信息-->
-    <string name="watch_bind_qr_code">绑定码</string>
+    <string name="watch_bind_code">绑定码</string>
     <string name="watch_type">手表型号</string>
     <string name="watch_version">固件版本号</string>
     <string name="watch_bind">绑定手表</string>
@@ -60,8 +56,7 @@
     <string name="babyInfo_phoneNumber">手表号码</string>
     <string name="common_photo">拍照</string>
     <string name="common_album">从相册选择</string>
-
-    <!--登录界面-->
+    <!--登录模块-->
     <string name="login">登录</string>
     <string name="phone_number">手机号码</string>
     <string name="input_password">输入密码</string>
@@ -72,5 +67,95 @@
     <string name="input_verification_code">输入验证码</string>
     <string name="get_verification_code">获取验证码</string>
     <string name="has_account">已经有账号，直接</string>
+    <string name="phone_number_format">手机号应为11位数</string>
+    <string name="phone_number_sure">请输入正确的手机号码</string>
+    <string name="two_password_no_same">两次输入的密码不相同</string>
+    <string name="password_limit">至少输入6位密码</string>
+    <string name="verification_no_empty">验证码不能为空</string>
+    <string name="verification_no_error">验证码错误,请输入正确的验证码</string>
+    <string name="verification_re_send">重新发送</string>
+    <string name="registering">正在注册...</string>
+    <string name="register_success">注册成功</string>
+    <string name="register_fail">注册失败</string>
+    <string name="logining">正在登录...</string>
+    <string name="login_success">登录成功</string>
+    <string name="login_fail">登录失败</string>
+    <!--技能(联系人模块)-->
+    <string name="skill_contact_normal_call">普通通话权限</string>
+    <string name="skill_contact_urgent_call">紧急通话权限</string>
+    <string name="skill_contact_listener">单向聆听权限</string>
+    <!--技能(远程拍摄)-->
+    <string name="skill_shot_remoteShot">远程拍摄</string>
+    <string name="skill_shot_shooting">拍摄中…</string>
+    <!--技能(单项聆听)-->
+    <string name="skill_listener_tip">拥有单向聆听权限的家长</string>
+    <string name="skill_listener_watch">聆听手表</string>
+    <!--我的模块-->
+    <string name="my_information">我的信息</string>
+    <string name="avatar">头像</string>
+    <string name="nickname">昵称</string>
+    <string name="relationship_with_baby">与宝贝的关系</string>
+    <string name="modify_account">修改账号</string>
+    <string name="modify_password">修改密码</string>
+    <string name="input_old_password">输入旧密码</string>
+    <string name="case_matters">若包含字母，请注意区分大小写</string>
+    <string name="input_new_password">输入新密码</string>
+    <string name="at_least_two_combinations">8-16位，至少含数字/字母/字符2种组合</string>
+    <string name="insert_sdcard">请插入内存卡</string>
+    <string name="have_refused_once">您已经拒绝过一次</string>
+    <string name="open_camera">请允许打开相机!</string>
+    <string name="open_sdcard">请允许操作SDCard!</string>
+    <string name="uploading">上传中...</string>
+    <string name="upload_fail">上传失败</string>
+    <string name="upload_success">上传成功</string>
+    <string name="modify_info_success">修改信息成功</string>
+    <string name="modify_info_fail">修改信息失败</string>
+    <string name="net_error">网络错误,请重新拍摄</string>
+    <string name="modify_account_success">修改账号成功</string>
+    <string name="modify_account_fail">修改账号失败</string>
+    <string name="modify_password_success">修改密码成功</string>
+    <string name="modify_password_fail">修改密码失败</string>s
+    <string name="modifying">修改中...</string>
+    <!--家长信息-->
+    <string name="parent_bind_watch">绑定手表：</string>
+    <!--error-->
+    <string name="data_error">网络出错啦，请重试</string>
+    <string name="shield_strange_phone">屏蔽陌生电话</string>
+    <string name="reserve_electricity">预留电量</string>
+    <string name="power_saving_mode">省电模式</string>
+    <string name="call_location">通话位置</string>
+    <string name="auto_answer">自动接听</string>
+    <string name="ban_shutDown">禁止关机</string>
+    <string name="vol_call">启用VOLTE高清通话</string>
+
+    <string name="mine_modify_phone">输入新手机号：</string>
+    <string name="mine_modify_phone_hint">请输入11位手机号码</string>
+    <string name="mine_modify_authCode">输入验证码：</string>
+    <string name="mine_modify_authCode_hint">请输入收到的验证码</string>
+    <string name="mine_modify_password">输入密码：</string>
+    <string name="mine_modify_password_hint">请输入原始密码</string>
+    <string name="skill_sport_calorie">消耗卡路里(卡)</string>
+    <string name="skill_sport_mileage">里程(米)</string>
+    <string name="skill_sport_locus">运动轨迹</string>
+
+    <!--技能-课程表-->
+    <string name="skill_curriculum_table_header">表头</string>
+    <string name="skill_curriculum_monday">周一</string>
+    <string name="skill_curriculum_tuesday">周二</string>
+    <string name="skill_curriculum_wednesday">周三</string>
+    <string name="skill_curriculum_thursday">周四</string>
+    <string name="skill_curriculum_friday">周五</string>
+    <string name="skill_curriculum_saturday">周六</string>
+    <string name="skill_curriculum_sunday">周日</string>
+
+    <!--电子围栏-->
+    <string name="electronic_fence">电子围栏</string>
+    <string name="electronic_fence_name">围栏名称：</string>
+    <string name="remind_way">提醒方式：</string>
+    <string name="safety_range">安全范围：</string>
+    <string name="meter">米</string>
+    <string name="remind_enter">进入提醒</string>
+    <string name="remind_leave">离开提醒</string>
+    <string name="remind_not_enter_on_time">定时未进入提醒</string>
 
 </resources>

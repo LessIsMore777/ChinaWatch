@@ -1,10 +1,14 @@
 package com.waterworld.watch.common.net;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.waterworld.watch.common.application.MyApplication;
+import com.waterworld.watch.common.util.AppManager;
+import com.waterworld.watch.login.activity.VerifyLoginActivity;
+import com.waterworld.watch.login.bean.LoginBean;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,10 +42,9 @@ import rx.schedulers.Schedulers;
 
 public class RetrofitClient {
     public static final String TAG = RetrofitClient.class.getSimpleName();
-
-    private static final Long DEFAULT_TIMEOUT = 60L;
+    private static final Long DEFAULT_TIMEOUT = 5L;
     private ApiService apiService;
-    private OkHttpClient okHttpClient;
+
 
     private static RetrofitClient mInstance;
 
@@ -76,7 +79,7 @@ public class RetrofitClient {
             url = UrlContants.BASE_URL;
         }
 
-        okHttpClient = new OkHttpClient.Builder()
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 //add cache
                 .cache(new Cache(new File(context.getExternalFilesDir("okhttpCache"), ""), 14 * 1024 * 100))
                 .addInterceptor(new CacheInterceptor())
@@ -120,17 +123,50 @@ public class RetrofitClient {
      * 添加请求头需要携带的参数
      */
     public class HeaderInterceptor implements Interceptor {
-        private final String HEADER_CONNECTION = "keep-alive";
-        private final String userAgent = "Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.87 Safari/537.36";
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
             Request requestBuilder = request.newBuilder()
-                    .addHeader("Connection", HEADER_CONNECTION)
-                    .addHeader("LoginBean-Agent", userAgent)
+                    .addHeader("Cookie","JSESSIONID="+MyApplication.getInstance().getSessionID())
                     .method(request.method(), request.body())
                     .build();
-            return chain.proceed(requestBuilder);
+
+            Response response = chain.proceed(requestBuilder);
+            ResponseBody responseBody = response.peekBody(1024 * 1024);
+            String bodyString = responseBody.string();
+            com.alibaba.fastjson.JSONObject object = (com.alibaba.fastjson.JSONObject)com.alibaba.fastjson.JSONObject.parse(bodyString);
+            if(object.getIntValue("code") == 2 && LoginBean.getInstance().getPassword().equals("")){
+                MyApplication.getContext().startActivity(new Intent(MyApplication.getContext(), VerifyLoginActivity.class));
+                AppManager.finishAllActivity();
+                return null;
+            }
+            if(object.getIntValue("code") == 2){
+                getNewCookie();
+                Request newRequest = request.newBuilder()
+                        .addHeader("Cookie","JSESSIONID="+MyApplication.getInstance().getSessionID())
+                        .method(request.method(), request.body())
+                        .build();
+                return chain.proceed(newRequest);
+            }
+            return response;
+        }
+
+        /**
+         * 同步请求，获取最新cookie
+         */
+        private void getNewCookie() throws IOException{
+            RequestBody requestBody = new FormBody.Builder()
+                    .add("phone",LoginBean.getInstance().getUsername())
+                    .add("type","0")
+                    .add("pwd",LoginBean.getInstance().getPassword())
+                    .build();
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder().url(UrlContants.BASE_URL+UrlContants.LOGIN).post(requestBody).build();
+            Response response = client.newCall(request).execute();
+            String result = response.body().string();
+            com.alibaba.fastjson.JSONObject object = (com.alibaba.fastjson.JSONObject) com.alibaba.fastjson.JSONObject.parse(result);
+            String SessionId = object.getString("data");
+            MyApplication.getInstance().setSessionID(SessionId);
         }
     }
 
@@ -211,7 +247,6 @@ public class RetrofitClient {
                     ));
             return response;
         }
-
     }
 }
 

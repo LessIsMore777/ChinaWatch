@@ -37,7 +37,7 @@ public class DBHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        //db.execSQL(TableConfig.LOGIN.LOGIN_SQL);
+        db.execSQL(TableConfig.LOGIN.LOGIN_SQL);
     }
 
     @Override

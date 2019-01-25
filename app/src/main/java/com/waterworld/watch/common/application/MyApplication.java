@@ -1,10 +1,15 @@
 package com.waterworld.watch.common.application;
 
 import android.app.Application;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.waterworld.watch.common.service.OverallService;
 
 /**
  * 编写者：Created by SunnyTang
@@ -19,12 +24,14 @@ public class MyApplication extends Application {
 
     private static MyApplication instance = null;
     private static Context mContext;
+    private OverallService mService = null;
 
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
         mContext = getApplicationContext();
+        bindService();   //绑定全局服务
     }
 
     /**
@@ -38,10 +45,42 @@ public class MyApplication extends Application {
         return mContext;
     }
 
-    public static void setViewSize(View view, int width, int height) {
+    public void setViewSize(View view, int width, int height) {
         ViewGroup.LayoutParams params = view.getLayoutParams();
         params.width = width;
         params.height = height;
         view.setLayoutParams(params);
+    }
+
+    private void bindService(){
+        Intent intent = new Intent(this, OverallService.class);
+        bindService(intent,conn,BIND_AUTO_CREATE);
+    }
+
+    public OverallService getService() {
+        return mService;
+    }
+
+    private ServiceConnection conn = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            OverallService.LocalBinder binder = (OverallService.LocalBinder) service;
+            mService = binder.getService();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            mService = null;
+        }
+    };
+
+    private String SessionID = "";
+
+    public void setSessionID(String SessionID){
+        this.SessionID = SessionID;
+    }
+
+    public String getSessionID() {
+        return SessionID;
     }
 }

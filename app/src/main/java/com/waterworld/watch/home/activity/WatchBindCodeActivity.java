@@ -15,7 +15,7 @@ import com.waterworld.watch.common.util.ScreenAdapterUtil;
 /**
  * 编写者：Created by SunnyTang
  * 时间：2018/12/5 17:40
- * 主要作用：绑定码页
+ * 主要作用：绑定码页(活动)
  */
 public class WatchBindCodeActivity extends BaseActivity implements View.OnClickListener {
 
@@ -39,7 +39,7 @@ public class WatchBindCodeActivity extends BaseActivity implements View.OnClickL
     }
 
     private void initView() {
-        setViewSize(header_parent, ViewGroup.LayoutParams.MATCH_PARENT, ScreenAdapterUtil.getHeightPx(this) / 11);
+        setViewSize(header_parent, ViewGroup.LayoutParams.MATCH_PARENT, ScreenAdapterUtil.getHeightPx(this) / 12);
         header_title.setText("绑定码");
         header_back.setVisibility(View.VISIBLE);
         header_title.setVisibility(View.VISIBLE);

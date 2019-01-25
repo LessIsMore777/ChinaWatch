@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/electronic_fence_dialog"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="进入时间"
+        android:textSize="17sp"
+        android:textColor="@color/black_1"
+        android:layout_marginTop="24dp"/>
+
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+                <cn.carbswang.android.numberpickerview.library.NumberPickerView
+                    android:id = "@+id/hour"
+                    android:layout_width = "wrap_content"
+                    android:layout_height = "wrap_content"
+                    android:background = "@color/white_1"
+                    app:npv_DividerColor = "@color/gray_2"
+                    app:npv_RespondChangeOnDetached = "false"
+                    app:npv_ShowCount = "3"
+                    app:npv_ShowDivider = "true"
+                    app:npv_TextColorHint = "@color/black_1"
+                    app:npv_TextColorNormal = "@color/gray_2"
+                    app:npv_TextColorSelected = "@color/black_1"
+                    app:npv_TextSizeHint = "20sp"
+                    app:npv_TextSizeNormal = "16sp"
+                    app:npv_TextSizeSelected = "20sp"
+                    app:npv_WrapSelectorWheel = "true" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="时"
+                    android:textColor="@color/black_1"
+                    android:textSize="12sp"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="100dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+                <cn.carbswang.android.numberpickerview.library.NumberPickerView
+                    android:id = "@+id/minute"
+                    android:layout_width = "wrap_content"
+                    android:layout_height = "wrap_content"
+                    android:background = "@color/white_1"
+                    app:npv_DividerColor = "@color/gray_2"
+                    app:npv_RespondChangeOnDetached = "false"
+                    app:npv_ShowCount = "3"
+                    app:npv_ShowDivider = "true"
+                    app:npv_TextColorHint = "@color/black_1"
+                    app:npv_TextColorNormal = "@color/gray_2"
+                    app:npv_TextColorSelected = "@color/black_1"
+                    app:npv_TextSizeHint = "20sp"
+                    app:npv_TextSizeNormal = "16sp"
+                    app:npv_TextSizeSelected = "20sp"
+                    app:npv_WrapSelectorWheel = "true" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="分"
+                    android:textColor="@color/black_1"
+                    android:textSize="12sp"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -6,10 +6,19 @@ package com.waterworld.watch.common.net;
  * Json parses the corresponding entity in a uniform format encapsulated
  */
 
-public class BaseResultBean {
+public class BaseResultBean<T> {
     private int code;
     private int count;
     private String msg;
+    private T data;
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
 
     public int getCode() {
         return code;

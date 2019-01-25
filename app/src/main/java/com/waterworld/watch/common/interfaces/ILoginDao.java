@@ -10,9 +10,9 @@ public interface ILoginDao<T> {
 
     void insert(T t);
 
-    void upDate(T t);
+    void upDate(String username,T t);
 
     T getNewsLogin();
 
-    void delPassword(int id);
+    void delPassword(String phone);
 }

@@ -13,4 +13,5 @@ public interface LoginResultListener<T> {
 
     void onError(T t);
 
+
 }

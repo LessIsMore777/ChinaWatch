@@ -1,56 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android = "http://schemas.android.com/apk/res/android"
 	xmlns:app = "http://schemas.android.com/apk/res-auto"
 	android:layout_width = "match_parent"
-	android:layout_height = "match_parent">
+	android:layout_height = "match_parent"
+	android:background="@color/white_1">
 	<!--header-->
 	<include
-		android:id = "@+id/include"
-		layout = "@layout/common_header"
-		app:layout_constraintEnd_toEndOf = "parent"
-		app:layout_constraintStart_toStartOf = "parent"
-		app:layout_constraintTop_toTopOf = "parent" />
+		android:id = "@+id/header"
+		layout = "@layout/common_header" />
 	<!--黑名单开关-->
-	<android.support.constraint.ConstraintLayout
-		android:id = "@+id/constraintLayout"
+	<RelativeLayout
+		android:id = "@+id/blackList"
 		android:layout_width = "match_parent"
 		android:layout_height = "wrap_content"
-		android:background = "@color/gray_2"
-		app:layout_constraintEnd_toEndOf = "parent"
-		app:layout_constraintStart_toStartOf = "parent"
-		app:layout_constraintTop_toBottomOf = "@+id/include">
+		android:layout_below = "@+id/header">
 		<!--开关-->
-		<Switch
+		<CheckBox
+			android:id="@+id/cb_blackList"
 			android:layout_width = "wrap_content"
 			android:layout_height = "wrap_content"
 			android:layout_marginEnd = "14dp"
-			app:layout_constraintBottom_toBottomOf = "parent"
-			app:layout_constraintEnd_toEndOf = "parent"
-			app:layout_constraintTop_toTopOf = "parent" />
+			android:layout_alignParentEnd="true"
+			android:layout_centerVertical="true"
+			android:button="@null"
+			android:background="@drawable/selector_check"
+			android:checked="true"/>
 		<!--文本-->
 		<TextView
+			android:id="@+id/textView1"
+			android:layout_alignParentStart="true"
 			android:layout_width = "wrap_content"
 			android:layout_height = "wrap_content"
 			android:layout_marginStart = "14dp"
 			android:layout_marginTop = "18dp"
 			android:layout_marginBottom = "18dp"
-			android:text = "禁止陌生电话打入"
+			android:text = "@string/contact_text_1"
 			android:textColor = "@color/black_1"
-			android:textSize = "16sp"
-			app:layout_constraintBottom_toBottomOf = "parent"
-			app:layout_constraintStart_toStartOf = "parent"
-			app:layout_constraintTop_toTopOf = "parent" />
-	</android.support.constraint.ConstraintLayout>
+			android:textSize = "16sp" />
+		<!--帮助-->
+		<ImageButton
+			android:id="@+id/ib_tip"
+			android:layout_width = "wrap_content"
+			android:layout_height = "wrap_content"
+			android:layout_toEndOf="@+id/textView1"
+			android:src="@drawable/ic_common_question"
+			android:background="@null"
+			android:layout_centerVertical="true"
+			android:layout_marginStart="8dp"/>
+	</RelativeLayout>
 	<!--联系人列表-->
 	<android.support.v7.widget.RecyclerView
-		android:id = "@+id/recyclerView"
+		android:layout_below="@id/blackList"
+		android:id = "@+id/rv_contact_recycler"
 		android:layout_width = "match_parent"
 		android:layout_height = "wrap_content"
 		android:layout_marginBottom = "14dp"
-		app:layout_constraintBottom_toTopOf = "@+id/btn_submit"
-		app:layout_constraintEnd_toEndOf = "parent"
-		app:layout_constraintStart_toStartOf = "parent"
-		app:layout_constraintTop_toBottomOf = "@+id/constraintLayout" />
+		android:layout_above="@id/btn_submit"/>
 	<!--上传-->
 	<Button
 		android:id = "@+id/btn_submit"
@@ -62,10 +67,8 @@
 		android:background = "@drawable/bg_rectangle_yellow"
 		android:minWidth = "0dp"
 		android:minHeight = "0dp"
-		android:text = "上传"
+		android:text = "@string/common_submit"
 		android:textColor = "@color/white_1"
 		android:textSize = "16sp"
-		app:layout_constraintBottom_toBottomOf = "parent"
-		app:layout_constraintEnd_toEndOf = "parent"
-		app:layout_constraintStart_toStartOf = "parent" />
-</android.support.constraint.ConstraintLayout>
+		android:layout_alignParentBottom="true"/>
+</RelativeLayout>

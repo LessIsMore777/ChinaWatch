@@ -9,7 +9,6 @@ import com.waterworld.watch.common.interfaces.ILoginDao;
 import com.waterworld.watch.common.net.BaseObserverListener;
 import com.waterworld.watch.common.net.NetManager;
 import com.waterworld.watch.login.bean.LoginBean;
-import com.waterworld.watch.login.bean.LoginResponse;
 import com.waterworld.watch.login.interfaces.ILoginManager;
 import com.waterworld.watch.common.net.BaseResultBean;
 
@@ -42,18 +41,19 @@ public class LoginManager implements ILoginManager{
         return mInstance;
     }
 
-    public LoginManager(Context context){
+    private LoginManager(Context context){
         super();
         this.mContext = context;
         iLoginDao = new LoginDao();
     }
 
+
     @Override
-    public void getAuthCode(String number, final BaseObserverListener baseObserverListener) {
-        NetManager.getInstance().getAuthCode(number, new Subscriber<BaseResultBean>() {
+    public void getAuthCode(String phone,String type ,final BaseObserverListener baseObserverListener){
+        NetManager.getInstance().getAuthCode(phone, type, new Subscriber<BaseResultBean<String>>() {
             @Override
-            public void onNext(BaseResultBean baseResultBean) {
-                baseObserverListener.onNext(baseResultBean);
+            public void onCompleted() {
+                baseObserverListener.onCompleted();
             }
 
             @Override
@@ -62,34 +62,44 @@ public class LoginManager implements ILoginManager{
             }
 
             @Override
-            public void onCompleted() {
-                baseObserverListener.onCompleted();
+            public void onNext(BaseResultBean<String> baseResultBean) {
+                baseObserverListener.onNext(baseResultBean);
             }
         });
     }
 
     @Override
-    public void register(String number, String pwd, BaseObserverListener baseObserverListener) {
-
-    }
-
-
-
-    @Override
-    public Object getLastLogin() {
-        return null;
-    }
-
-    @Override
-    public void login(String number, String pwd, String type ,final LoginResultListener loginResultListener) {
-        NetManager.getInstance().login(number, pwd, type,new Subscriber<LoginResponse>() {
+    public void register(String phone, String pwd, String authCode, final BaseObserverListener baseObserverListener) {
+        NetManager.getInstance().register(phone, pwd,authCode, new Subscriber<BaseResultBean>() {
             @Override
-            public void onNext(LoginResponse loginResponse) {
-                if(loginResponse.getCode() == 0){
-                    //LoginBean loginBean = loginResponse.getData();
-                    //LoginBean.getInstance().setUsername(loginBean.getUsername());
-                    //LoginBean.getInstance().setPassword(loginBean.getPassword());
-                    Log.d("nihuan","登录成功");
+            public void onCompleted() {
+                baseObserverListener.onCompleted();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                baseObserverListener.onError(e);
+            }
+
+            @Override
+            public void onNext(BaseResultBean baseResultBean) {
+                baseObserverListener.onNext(baseResultBean);
+            }
+        });
+    }
+
+    @Override
+    public void login(String phone, String type, String pwd ,final LoginResultListener loginResultListener) {
+        NetManager.getInstance().login(phone, type, pwd, new Subscriber<BaseResultBean<String>>() {
+            @Override
+            public void onNext(BaseResultBean<String> baseResultBean) {
+                if(baseResultBean.getCode() == 0){
+                    //获取sessionID
+                    String sessionID = baseResultBean.getData();
+                    MyApplication.getInstance().setSessionID(sessionID);
+                    loginResultListener.onSuccess(baseResultBean);
+                }else {
+                    loginResultListener.onFail(baseResultBean);
                 }
             }
 
@@ -97,7 +107,6 @@ public class LoginManager implements ILoginManager{
             public void onError(Throwable t) {
                 t.printStackTrace();
                 loginResultListener.onError(t);
-                Log.d("nihaun","失败");
             }
 
             @Override
@@ -105,5 +114,69 @@ public class LoginManager implements ILoginManager{
 
             }
         });
+    }
+
+
+
+    @Override
+    public void forgetPwd(String phone, String pwd, String authCode, final BaseObserverListener baseObserverListener) {
+        NetManager.getInstance().forgetPwd(phone, pwd, authCode, new Subscriber<BaseResultBean>() {
+            @Override
+            public void onCompleted() {
+                baseObserverListener.onCompleted();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                baseObserverListener.onError(e);
+            }
+
+            @Override
+            public void onNext(BaseResultBean baseResultBean) {
+                baseObserverListener.onNext(baseResultBean);
+            }
+        });
+    }
+
+    @Override
+    public Object getLastLogin() {
+        if (iLoginDao != null){
+            return iLoginDao.getNewsLogin();
+        }
+        return null;
+    }
+
+    @Override
+    public void logout(LoginResultListener loginResultListener) {
+
+    }
+
+    @Override
+    public boolean insertDB(Object o) {
+        if(iLoginDao != null){
+            iLoginDao.insert(o);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean update(String username, Object o) {
+        if(iLoginDao != null){
+            iLoginDao.upDate(username,o);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean isCheckAutoLogin() {
+        LoginBean loginBean = (LoginBean) getLastLogin();
+        if (loginBean != null){
+            if (loginBean.getPassword() != null && !loginBean.getPassword().equals("")){
+                return true;
+            }
+        }
+        return false;
     }
 }

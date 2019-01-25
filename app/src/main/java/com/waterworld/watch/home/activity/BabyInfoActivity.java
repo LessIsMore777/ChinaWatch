@@ -1,7 +1,11 @@
 package com.waterworld.watch.home.activity;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +16,7 @@ import android.widget.*;
 import com.waterworld.watch.R;
 import com.waterworld.watch.common.activity.BaseActivity;
 import com.waterworld.watch.common.customview.CommonPopupWindow;
-import com.waterworld.watch.common.util.GetCurrentTime;
+import com.waterworld.watch.common.util.TimeUtils;
 import com.waterworld.watch.common.util.ScreenAdapterUtil;
 
 import cn.carbswang.android.numberpickerview.library.NumberPickerView;
@@ -20,7 +24,7 @@ import cn.carbswang.android.numberpickerview.library.NumberPickerView;
 /**
  * 编写者：Created by SunnyTang
  * 时间：2018/12/7 14:30
- * 主要作用：宝贝信息页
+ * 主要作用：宝贝信息(活动)
  */
 public class BabyInfoActivity extends BaseActivity implements View.OnClickListener {
 
@@ -48,7 +52,6 @@ public class BabyInfoActivity extends BaseActivity implements View.OnClickListen
     private EditText heightText;//身高数据
     private EditText weightText;//体重数据
     private TextView phoneText;//手机号码
-
     /**
      * 生日选择
      */
@@ -87,7 +90,6 @@ public class BabyInfoActivity extends BaseActivity implements View.OnClickListen
         header_back = findViewById(R.id.header_back);
         header_title = findViewById(R.id.header_title);
         header_save = findViewById(R.id.header_save);
-
         babyAvatar = findViewById(R.id.rl_select_avatar);
         babyNick = findViewById(R.id.rl_nick);
         babyGender = findViewById(R.id.rl_gender);
@@ -107,7 +109,7 @@ public class BabyInfoActivity extends BaseActivity implements View.OnClickListen
      * 初始化View
      */
     private void initView() {
-        setViewSize(header_parent, ViewGroup.LayoutParams.MATCH_PARENT, ScreenAdapterUtil.getHeightPx(this) / 11);
+        setViewSize(header_parent, ViewGroup.LayoutParams.MATCH_PARENT, ScreenAdapterUtil.getHeightPx(this) / 12);
         header_title.setText("宝贝信息");
         header_back.setVisibility(View.VISIBLE);
         header_title.setVisibility(View.VISIBLE);
@@ -145,9 +147,9 @@ public class BabyInfoActivity extends BaseActivity implements View.OnClickListen
                 month = view.findViewById(R.id.month);
                 day = view.findViewById(R.id.day);
                 //设置年份区间
-                final String[] yearArray = GetCurrentTime.setYearInterval(1970, GetCurrentTime.getYear());
+                final String[] yearArray = TimeUtils.returnStringArray(1970, TimeUtils.getYear());
                 //设置月份区间
-                final String[] monthArray = GetCurrentTime.setYearInterval(1, 12);
+                final String[] monthArray = TimeUtils.returnStringArray(1, 12);
                 //初始化年份选择器
                 year.setDisplayedValues(yearArray);
                 year.setMinValue(0);
@@ -173,12 +175,12 @@ public class BabyInfoActivity extends BaseActivity implements View.OnClickListen
                         //判断当前月份是否为2月
                         if (month.getValue() + 1 == 2) {
                             //如果是2月，那么判断当前年份是否闰年
-                            if (GetCurrentTime.aaa(Integer.parseInt(currentYear)) == 0x01 || GetCurrentTime.aaa(Integer.parseInt(currentYear)) == 0x03) {//去判断当前是否闰年
+                            if (TimeUtils.aaa(Integer.parseInt(currentYear)) == 0x01 || TimeUtils.aaa(Integer.parseInt(currentYear)) == 0x03) {//去判断当前是否闰年
                                 //设置为29天
-                                day.refreshByNewDisplayedValues(GetCurrentTime.setYearInterval(1, 29));//设置为29天
+                                day.refreshByNewDisplayedValues(TimeUtils.returnStringArray(1, 29));//设置为29天
                             } else {
                                 //设置为28天
-                                day.refreshByNewDisplayedValues(GetCurrentTime.setYearInterval(1, 28));//设置为28天
+                                day.refreshByNewDisplayedValues(TimeUtils.returnStringArray(1, 28));//设置为28天
                             }
                         }
                     }
@@ -257,45 +259,45 @@ public class BabyInfoActivity extends BaseActivity implements View.OnClickListen
     private void monthTypeToDay(int month) {
         switch (month) {
             case 1://31天
-                day.refreshByNewDisplayedValues(GetCurrentTime.setYearInterval(1, 31));
+                day.refreshByNewDisplayedValues(TimeUtils.returnStringArray(1, 31));
                 break;
             case 2://闰年29天，平年28天
                 int currentYear = year.getValue();//拿到当前的年份
-                if (GetCurrentTime.aaa(currentYear) == 0x01 || GetCurrentTime.aaa(currentYear) == 0x03) {//去判断当前是否闰年
-                    day.refreshByNewDisplayedValues(GetCurrentTime.setYearInterval(1, 29));//设置为29天
+                if (TimeUtils.aaa(currentYear) == 0x01 || TimeUtils.aaa(currentYear) == 0x03) {//去判断当前是否闰年
+                    day.refreshByNewDisplayedValues(TimeUtils.returnStringArray(1, 29));//设置为29天
                 } else {
-                    day.refreshByNewDisplayedValues(GetCurrentTime.setYearInterval(1, 28));//设置为28天
+                    day.refreshByNewDisplayedValues(TimeUtils.returnStringArray(1, 28));//设置为28天
                 }
                 break;
             case 3://31天
-                day.refreshByNewDisplayedValues(GetCurrentTime.setYearInterval(1, 31));
+                day.refreshByNewDisplayedValues(TimeUtils.returnStringArray(1, 31));
                 break;
             case 4://30天
-                day.refreshByNewDisplayedValues(GetCurrentTime.setYearInterval(1, 30));
+                day.refreshByNewDisplayedValues(TimeUtils.returnStringArray(1, 30));
                 break;
             case 5://31天
-                day.refreshByNewDisplayedValues(GetCurrentTime.setYearInterval(1, 31));
+                day.refreshByNewDisplayedValues(TimeUtils.returnStringArray(1, 31));
                 break;
             case 6://30天
-                day.refreshByNewDisplayedValues(GetCurrentTime.setYearInterval(1, 30));
+                day.refreshByNewDisplayedValues(TimeUtils.returnStringArray(1, 30));
                 break;
             case 7://31天
-                day.refreshByNewDisplayedValues(GetCurrentTime.setYearInterval(1, 31));
+                day.refreshByNewDisplayedValues(TimeUtils.returnStringArray(1, 31));
                 break;
             case 8://31天
-                day.refreshByNewDisplayedValues(GetCurrentTime.setYearInterval(1, 31));
+                day.refreshByNewDisplayedValues(TimeUtils.returnStringArray(1, 31));
                 break;
             case 9://30天
-                day.refreshByNewDisplayedValues(GetCurrentTime.setYearInterval(1, 30));
+                day.refreshByNewDisplayedValues(TimeUtils.returnStringArray(1, 30));
                 break;
             case 10://31天
-                day.refreshByNewDisplayedValues(GetCurrentTime.setYearInterval(1, 31));
+                day.refreshByNewDisplayedValues(TimeUtils.returnStringArray(1, 31));
                 break;
             case 11://30天
-                day.refreshByNewDisplayedValues(GetCurrentTime.setYearInterval(1, 30));
+                day.refreshByNewDisplayedValues(TimeUtils.returnStringArray(1, 30));
                 break;
             case 12://31天
-                day.refreshByNewDisplayedValues(GetCurrentTime.setYearInterval(1, 31));
+                day.refreshByNewDisplayedValues(TimeUtils.returnStringArray(1, 31));
                 break;
         }
     }
@@ -324,21 +326,19 @@ public class BabyInfoActivity extends BaseActivity implements View.OnClickListen
             case R.id.header_save:
                 break;
             case R.id.rl_select_avatar://头像
-                goActivity(BabySelectAvatarActivity.class);
+                goActivity(BabyAvatarActivity.class);
                 break;
             case R.id.rl_gender://性别
-                closeKeyBoard();
+                closeKeyBoard(thisActivity);
                 //设置背景变暗
                 backgroundAlpha(0.5f);
-                //显示popupWindow
-                genderPopupWindow.showBashOfAnchor(parentView, layoutGravity, 0, 0);
+                mHandler.sendEmptyMessageDelayed(0x01,100);
                 break;
             case R.id.rl_birthday://生日
-                closeKeyBoard();
+                closeKeyBoard(thisActivity);
                 //设置背景变暗
                 backgroundAlpha(0.5f);
-                //显示popupWindow
-                datePopupWindow.showBashOfAnchor(parentView, layoutGravity, 0, 0);
+                mHandler.sendEmptyMessageDelayed(0x02,100);
                 break;
         }
     }
@@ -387,11 +387,14 @@ public class BabyInfoActivity extends BaseActivity implements View.OnClickListen
         });
     }
 
-    private void closeKeyBoard(){
-        InputMethodManager immm = (InputMethodManager) thisActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (immm.isActive() && thisActivity.getCurrentFocus() != null) {
-            if (thisActivity.getCurrentFocus().getWindowToken() != null) {
-                immm.hideSoftInputFromWindow(thisActivity.getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+    /**
+     * 强制关闭键盘
+     */
+    private void closeKeyBoard(Activity activity) {
+        InputMethodManager immm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (immm.isActive() && activity.getCurrentFocus() != null) {
+            if (activity.getCurrentFocus().getWindowToken() != null) {
+                immm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
             }
         }
     }
@@ -401,4 +404,21 @@ public class BabyInfoActivity extends BaseActivity implements View.OnClickListen
         super.onResume();
         //这里每次可见的时候，都要请求一下数据，得到最新的消息
     }
+
+    @SuppressLint("HandlerLeak")
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 0x01:
+                    //显示popupWindow
+                    genderPopupWindow.showBashOfAnchor(parentView, layoutGravity, 0, 0);
+                    break;
+                case 0x02:
+                    //显示popupWindow
+                    datePopupWindow.showBashOfAnchor(parentView, layoutGravity, 0, 0);
+                    break;
+            }
+        }
+    };
 }
