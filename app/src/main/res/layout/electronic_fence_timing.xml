@@ -25,74 +25,190 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp">
-            <LinearLayout
+            android:layout_marginStart="70dp">
+            <cn.carbswang.android.numberpickerview.library.NumberPickerView
+                android:id = "@+id/hour"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:background = "@color/white_1"
+                app:npv_DividerColor = "@color/gray_2"
+                app:npv_RespondChangeOnDetached = "false"
+                android:layout_centerInParent="true"
+                app:npv_ShowCount = "5"
+                app:npv_ShowDivider = "true"
+                app:npv_TextColorHint = "@color/black_1"
+                app:npv_TextColorNormal = "@color/gray_2"
+                app:npv_TextColorSelected = "@color/black_1"
+                app:npv_TextSizeHint = "30sp"
+                app:npv_TextSizeNormal = "24sp"
+                app:npv_TextSizeSelected = "30sp"
+                app:npv_WrapSelectorWheel = "true" />
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true">
-                <cn.carbswang.android.numberpickerview.library.NumberPickerView
-                    android:id = "@+id/hour"
-                    android:layout_width = "wrap_content"
-                    android:layout_height = "wrap_content"
-                    android:background = "@color/white_1"
-                    app:npv_DividerColor = "@color/gray_2"
-                    app:npv_RespondChangeOnDetached = "false"
-                    app:npv_ShowCount = "3"
-                    app:npv_ShowDivider = "true"
-                    app:npv_TextColorHint = "@color/black_1"
-                    app:npv_TextColorNormal = "@color/gray_2"
-                    app:npv_TextColorSelected = "@color/black_1"
-                    app:npv_TextSizeHint = "20sp"
-                    app:npv_TextSizeNormal = "16sp"
-                    app:npv_TextSizeSelected = "20sp"
-                    app:npv_WrapSelectorWheel = "true" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="时"
-                    android:textColor="@color/black_1"
-                    android:textSize="12sp"
-                    android:layout_gravity="center"/>
-            </LinearLayout>
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/hour"
+                android:layout_centerVertical="true"
+                android:text="时"
+                android:textColor="@color/black_1"
+                android:textSize="12sp"
+                android:layout_gravity="center"/>
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="100dp">
-            <LinearLayout
+            android:layout_marginEnd="70dp">
+            <cn.carbswang.android.numberpickerview.library.NumberPickerView
+                android:id = "@+id/minute"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:background = "@color/white_1"
+                app:npv_DividerColor = "@color/gray_2"
+                app:npv_RespondChangeOnDetached = "false"
+                android:layout_centerInParent="true"
+                app:npv_ShowCount = "5"
+                app:npv_ShowDivider = "true"
+                app:npv_TextColorHint = "@color/black_1"
+                app:npv_TextColorNormal = "@color/gray_2"
+                app:npv_TextColorSelected = "@color/black_1"
+                app:npv_TextSizeHint = "30sp"
+                app:npv_TextSizeNormal = "24sp"
+                app:npv_TextSizeSelected = "30sp"
+                app:npv_WrapSelectorWheel = "true" />
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true">
-                <cn.carbswang.android.numberpickerview.library.NumberPickerView
-                    android:id = "@+id/minute"
-                    android:layout_width = "wrap_content"
-                    android:layout_height = "wrap_content"
-                    android:background = "@color/white_1"
-                    app:npv_DividerColor = "@color/gray_2"
-                    app:npv_RespondChangeOnDetached = "false"
-                    app:npv_ShowCount = "3"
-                    app:npv_ShowDivider = "true"
-                    app:npv_TextColorHint = "@color/black_1"
-                    app:npv_TextColorNormal = "@color/gray_2"
-                    app:npv_TextColorSelected = "@color/black_1"
-                    app:npv_TextSizeHint = "20sp"
-                    app:npv_TextSizeNormal = "16sp"
-                    app:npv_TextSizeSelected = "20sp"
-                    app:npv_WrapSelectorWheel = "true" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="分"
-                    android:textColor="@color/black_1"
-                    android:textSize="12sp"
-                    android:layout_gravity="center"/>
-            </LinearLayout>
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/minute"
+                android:layout_centerVertical="true"
+                android:text="分"
+                android:textColor="@color/black_1"
+                android:textSize="12sp"
+                android:layout_gravity="center"/>
         </RelativeLayout>
     </LinearLayout>
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="重复方式"
+        android:textColor="@color/black_1"
+        android:textSize="17sp"
+        android:layout_marginTop="19dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginEnd="42dp">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/weekday_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:textColor="@color/gray_7"
+                android:background="@drawable/electronic_fence_week_normal"
+                android:text="一"
+                android:textSize="15sp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/weekday_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:textColor="@color/gray_7"
+                android:background="@drawable/electronic_fence_week_normal"
+                android:text="二"
+                android:textSize="15sp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/weekday_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:textColor="@color/gray_7"
+                android:background="@drawable/electronic_fence_week_normal"
+                android:text="三"
+                android:textSize="15sp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/weekday_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:textColor="@color/gray_7"
+                android:background="@drawable/electronic_fence_week_normal"
+                android:text="四"
+                android:textSize="15sp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/weekday_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:textColor="@color/gray_7"
+                android:background="@drawable/electronic_fence_week_normal"
+                android:text="五"
+                android:textSize="15sp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/weekday_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:textColor="@color/gray_7"
+                android:background="@drawable/electronic_fence_week_normal"
+                android:text="六"
+                android:textSize="15sp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/weekday_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:textColor="@color/gray_7"
+                android:background="@drawable/electronic_fence_week_normal"
+                android:text="日"
+                android:textSize="15sp" />
+        </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

@@ -22,11 +22,13 @@ import com.waterworld.watch.common.activity.BaseActivity;
 import com.waterworld.watch.common.customview.CommonPopupWindow;
 import com.waterworld.watch.common.util.DialogUtils;
 import com.waterworld.watch.common.util.ScreenAdapterUtil;
+import com.waterworld.watch.common.util.TimeUtils;
 import com.waterworld.watch.common.util.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.carbswang.android.numberpickerview.library.NumberPickerView;
 
 public class AddElectronicFenceActivity extends BaseActivity {
 
@@ -107,7 +109,22 @@ public class AddElectronicFenceActivity extends BaseActivity {
         popupWindow = new CommonPopupWindow(this,R.layout.electronic_fence_timing,(int)(ScreenAdapterUtil.getWidthPx(this)*0.9),(int)(ScreenAdapterUtil.getHeightPx(this)*0.7)) {
             @Override
             protected void initView() {
+                View view = getContentView();
+                NumberPickerView hour = view.findViewById(R.id.hour);
+                NumberPickerView minute = view.findViewById(R.id.minute);
 
+                final String[] hourArray = TimeUtils.returnStringArray(0,23);
+                final String[] minuteArray = TimeUtils.returnStringArray(0,59);
+
+                hour.setDisplayedValues(hourArray);
+                hour.setMinValue(0);
+                hour.setMaxValue(hourArray.length-1);
+                hour.setValue(hourArray.length-1);
+
+                minute.setDisplayedValues(minuteArray);
+                minute.setMinValue(0);
+                minute.setMaxValue(minuteArray.length-1);
+                minute.setValue(minuteArray.length-1);
             }
 
             @Override

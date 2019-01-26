@@ -24,7 +24,8 @@
     <color name = "gray_3">#A4A4A4</color>
     <color name = "gray_4">#555555</color>
     <color name = "gray_5">#EFEFEF</color>
-    <color name="gray_6">#818181</color>
+    <color name = "gray_6">#818181</color>
+    <color name = "gray_7">#B3B3B3</color>
     <!--透明系-->
     <color name="translate">#00000000</color>
 </resources>
