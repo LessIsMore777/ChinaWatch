@@ -180,7 +180,7 @@ public class HomePagerActivity extends BaseActivity implements ViewPager.OnPageC
         //设置自定义ViewPager禁止滑动
         view_pager.setScanScroll(false);
         //设置公共头部栏的高度为手机屏幕的10分之1
-        setViewSize(headerParent, ViewGroup.LayoutParams.MATCH_PARENT, ScreenAdapterUtil.getHeightPx(thisActivity) / 11);
+        setViewSize(headerParent, ViewGroup.LayoutParams.MATCH_PARENT, ScreenAdapterUtil.getHeightPx(thisActivity) / 10);
         headerBabyAvatar.setVisibility(View.VISIBLE);
         headerBabySelect.setVisibility(View.VISIBLE);
         headerQrCode.setVisibility(View.VISIBLE);

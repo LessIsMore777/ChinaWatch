@@ -2,11 +2,11 @@ package com.waterworld.watch.login.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.InputType;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,7 +23,8 @@ import com.waterworld.watch.login.bean.LoginBean;
 import com.waterworld.watch.login.interfaces.ILoginManager;
 import com.waterworld.watch.login.interfaces.LoginResultListener;
 import com.waterworld.watch.login.manager.LoginManager;
-import com.waterworld.watch.mine.activity.MyInformationActivity;
+
+import crossoverone.statuslib.StatusUtil;
 
 /**
  * 登录页

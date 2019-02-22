@@ -101,7 +101,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="45dp"
         android:layout_marginStart="42dp"
         android:layout_marginEnd="42dp">
         <RelativeLayout
@@ -209,6 +209,33 @@
                 android:text="日"
                 android:textSize="15sp" />
         </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginStart="42dp"
+        android:layout_marginEnd="42dp">
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            android:textColor="@color/black_1"
+            android:gravity="center_horizontal"
+            android:textSize="17sp"/>
+        <TextView
+            android:id="@+id/tv_confirm"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/confirm"
+            android:textColor="@color/black_1"
+            android:gravity="center_horizontal"
+            android:textSize="17sp"/>
     </LinearLayout>
 
 </LinearLayout>

@@ -6,9 +6,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alibaba.sdk.android.push.CloudPushService;
+import com.alibaba.sdk.android.push.CommonCallback;
+import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory;
 import com.waterworld.watch.common.service.OverallService;
 
 /**
@@ -25,13 +29,29 @@ public class MyApplication extends Application {
     private static MyApplication instance = null;
     private static Context mContext;
     private OverallService mService = null;
-
+    private static final String TAG = MyApplication.class.getSimpleName();
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
         mContext = getApplicationContext();
         bindService();   //绑定全局服务
+        //initCloudChannel(this);
+    }
+
+    private void initCloudChannel(Context applicationContext) {
+        PushServiceFactory.init(applicationContext);
+        CloudPushService pushService = PushServiceFactory.getCloudPushService();
+        pushService.register(applicationContext, new CommonCallback() {
+            @Override
+            public void onSuccess(String response) {
+                Log.d(TAG, "init cloudchannel success");
+            }
+            @Override
+            public void onFailed(String errorCode, String errorMessage) {
+                Log.d(TAG, "init cloudchannel failed -- errorcode:" + errorCode + " -- errorMessage:" + errorMessage);
+            }
+        });
     }
 
     /**

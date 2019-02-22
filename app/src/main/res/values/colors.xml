@@ -10,7 +10,8 @@
     <!--红色系-->
     
     <!--蓝色系-->
-    
+    <color name="blue_1">#E2EDFE</color>
+    <color name="blue_2">#AECEFF</color>
     <!--黑色系-->
     <color name = "black_1">#000000</color>
     <!--白色系-->

@@ -27,3 +27,30 @@
 #2D地图
 -keep class com.amap.api.maps2d.**{*;}
 -keep class com.amap.api.mapcore2d.**{*;}
+
+#阿里推送
+-keepclasseswithmembernames class ** {
+    native <methods>;
+}
+-keepattributes Signature
+-keep class sun.misc.Unsafe { *; }
+-keep class com.taobao.** {*;}
+-keep class com.alibaba.** {*;}
+-keep class com.alipay.** {*;}
+-keep class com.ut.** {*;}
+-keep class com.ta.** {*;}
+-keep class anet.**{*;}
+-keep class anetwork.**{*;}
+-keep class org.android.spdy.**{*;}
+-keep class org.android.agoo.**{*;}
+-keep class android.os.**{*;}
+-dontwarn com.taobao.**
+-dontwarn com.alibaba.**
+-dontwarn com.alipay.**
+-dontwarn anet.**
+-dontwarn org.android.spdy.**
+-dontwarn org.android.agoo.**
+-dontwarn anetwork.**
+-dontwarn com.ut.**
+-dontwarn com.ta.**
+

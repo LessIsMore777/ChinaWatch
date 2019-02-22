@@ -88,6 +88,7 @@ public class NetManager implements INetManager {
         } else if (type.equals("1")) {     //验证码登录
             map.put("authCode", pwd);
         }
+        map.put("loginDeviceType","1");
         RetrofitClient.getInstance().getApiService().login(UrlContants.LOGIN, map)
                 .compose(RetrofitClient.getInstance().schedulersTransformer())
                 .subscribe((Observer) subscriber);
