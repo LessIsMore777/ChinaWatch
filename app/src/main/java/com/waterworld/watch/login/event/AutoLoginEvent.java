@@ -8,6 +8,7 @@ package com.waterworld.watch.login.event;
 public class AutoLoginEvent {
     private int Auto = 0; //0是否正在连接中,1是成功，2是失败
     private String message ;
+
     public int getAuto() {
         return Auto;
     }

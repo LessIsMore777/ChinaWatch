@@ -1,60 +1,65 @@
 package com.waterworld.watch.home.activity;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.waterworld.watch.R;
 import com.waterworld.watch.common.activity.BaseActivity;
+import com.waterworld.watch.common.bean.WatchUserInfoBean;
+import com.waterworld.watch.common.util.QRCodeUtil;
 import com.waterworld.watch.common.util.ScreenAdapterUtil;
 
-/**
- * 编写者：Created by SunnyTang
- * 时间：2018/12/5 17:40
- * 主要作用：绑定码页(活动)
- */
-public class WatchBindCodeActivity extends BaseActivity implements View.OnClickListener {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-    private LinearLayout header_parent;
-    private ImageButton header_back;
-    private TextView header_title;
+public class WatchBindCodeActivity extends BaseActivity{
+
+
+    @BindView(R.id.header_parent)
+    LinearLayout header_parent;
+
+    @BindView(R.id.header_back)
+    ImageView header_back;
+
+    @BindView(R.id.header_title)
+    TextView header_title;
+
+    @BindView(R.id.iv_bind_code)
+    ImageView iv_bind_code;
+
+    @BindView(R.id.tv_code)
+    TextView tv_code;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_watch_bind_code);
-        bindView();
+        ButterKnife.bind(this);
         initView();
-        bindClick();
     }
 
-    private void bindView() {
-        header_parent = findViewById(R.id.header_parent);
-        header_back = findViewById(R.id.header_back);
-        header_title = findViewById(R.id.header_title);
-    }
 
     private void initView() {
-        setViewSize(header_parent, ViewGroup.LayoutParams.MATCH_PARENT, ScreenAdapterUtil.getHeightPx(this) / 12);
-        header_title.setText("绑定码");
+        setViewSize(header_parent, ViewGroup.LayoutParams.MATCH_PARENT, ScreenAdapterUtil.getHeightPx(this) / 10);
+        header_title.setText(getString(R.string.watch_bind_code));
         header_back.setVisibility(View.VISIBLE);
         header_title.setVisibility(View.VISIBLE);
+
+        Bitmap mBitmap = QRCodeUtil.createQRCodeBitmap(WatchUserInfoBean.getInstance().getWatchInfo().getImei(), 480, 480);
+        iv_bind_code.setImageBitmap(mBitmap);
+        tv_code.setText(WatchUserInfoBean.getInstance().getWatchInfo().getImei());
     }
 
-    private void bindClick() {
-        header_back.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.header_back:
-                finish();
-                break;
-        }
+    @OnClick(R.id.header_back)
+    void onBack(){
+        finish();
     }
 }

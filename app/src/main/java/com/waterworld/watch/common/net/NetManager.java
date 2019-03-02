@@ -4,6 +4,7 @@ import com.waterworld.watch.common.bean.BindWatchBean;
 import com.waterworld.watch.common.bean.BindWatchUserBean;
 import com.waterworld.watch.common.bean.UserInfoBean;
 import com.waterworld.watch.common.bean.WatchUserInfoBean;
+import com.waterworld.watch.home.bean.RoleBean;
 
 import java.io.File;
 import java.util.HashMap;
@@ -215,24 +216,41 @@ public class NetManager implements INetManager {
      * @param subscriber
      */
     @Override
-    public void bindWatch(String imei, Subscriber<BaseResultBean> subscriber) {
+    public void bindWatch(String imei , String relationWithBaby, Subscriber<BaseResultBean<RoleBean>> subscriber) {
         Map<String, String> map = new HashMap<>();
         map.put("imei", imei);
+        map.put("relationWithBaby",relationWithBaby);
         RetrofitClient.getInstance().getApiService().bindWatch(UrlContants.BIND_WATCH, map)
                 .compose(RetrofitClient.getInstance().schedulersTransformer())
                 .subscribe(subscriber);
     }
 
+
     /**
      * 保存或更新手表用户
-     *
-     * @param imei       IMEI号
+     * @param head
+     * @param name
+     * @param sex
+     * @param birthday
+     * @param grade
+     * @param classes
+     * @param height
+     * @param weight
+     * @param phone
      * @param subscriber
      */
     @Override
-    public void saveWatchUserInfo(String imei, Subscriber<BaseResultBean> subscriber) {
-        Map<String, String> map = new HashMap<>();
-        map.put("imei", imei);
+    public void saveWatchUserInfo(String head,String name,Integer sex,String birthday,String grade,String classes,String height,String weight, String phone, Subscriber<BaseResultBean> subscriber) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("head", head);
+        map.put("name", name);
+        map.put("sex", sex);
+        map.put("birthday", birthday);
+        map.put("grade", grade);
+        map.put("classes", classes);
+        map.put("height", height);
+        map.put("weight", weight);
+        map.put("phone", phone);
         RetrofitClient.getInstance().getApiService().saveWatchUserInfo(UrlContants.SAVE_WATCH_USERINFO, map)
                 .compose(RetrofitClient.getInstance().schedulersTransformer())
                 .subscribe(subscriber);

@@ -7,11 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * 编写者：Created by SunnyTang
- * 时间：2019/1/11 18:18
- * 主要作用：
- */
+
 public class SkillCurriculumAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
     private Context mContext;
     private int TYPE_CLASS = 1;

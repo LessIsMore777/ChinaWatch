@@ -5,6 +5,7 @@ import com.waterworld.watch.common.bean.BindWatchBean;
 import com.waterworld.watch.common.bean.BindWatchUserBean;
 import com.waterworld.watch.common.bean.UserInfoBean;
 import com.waterworld.watch.common.bean.WatchUserInfoBean;
+import com.waterworld.watch.home.bean.RoleBean;
 
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import okhttp3.MultipartBody;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -76,17 +78,17 @@ public interface ApiService {
     //绑定手表
     @FormUrlEncoded
     @POST("{url}")
-    Observable<BaseResultBean> bindWatch(@Path(value = "url",encoded = true)String url,@FieldMap Map<String,String> map);
+    Observable<BaseResultBean<RoleBean>> bindWatch(@Path(value = "url",encoded = true)String url, @FieldMap Map<String,String> map);
 
     //保存或更新手表用户
     @FormUrlEncoded
     @POST("{url}")
-    Observable<BaseResultBean> saveWatchUserInfo(@Path(value = "url",encoded = true)String url,Map<String,String> map);
+    Observable<BaseResultBean> saveWatchUserInfo(@Path(value = "url",encoded = true)String url,@FieldMap Map<String,Object> map);
 
     //切换手表
     @FormUrlEncoded
     @POST("{url}")
-    Observable<BaseResultBean> switchWatch(@Path(value = "url",encoded = true)String url,Map<String,Integer> map);
+    Observable<BaseResultBean> switchWatch(@Path(value = "url",encoded = true)String url,@FieldMap Map<String,Integer> map);
 
     //获取当前手表用户信息
     @GET("{url}")
@@ -103,13 +105,13 @@ public interface ApiService {
     //移交管理权限
     @FormUrlEncoded
     @POST("{url}")
-    Observable<BaseResultBean> transferAuthority(@Path(value = "url",encoded = true)String url,Map<String,Integer> map);
+    Observable<BaseResultBean> transferAuthority(@Path(value = "url",encoded = true)String url,@FieldMap Map<String,Integer> map);
 
     //解除绑定（自身或其他用户）
     //被解绑用户标识；不传默认解绑自身
     @FormUrlEncoded
     @POST("{url}")
-    Observable<BaseResultBean> unbindWatch(@Path(value = "url",encoded = true)String url,Map<String,Integer> map);
+    Observable<BaseResultBean> unbindWatch(@Path(value = "url",encoded = true)String url,@FieldMap Map<String,Integer> map);
 
     //恢复出厂设置
     @FormUrlEncoded
@@ -119,13 +121,13 @@ public interface ApiService {
     //编辑主页功能区
     @FormUrlEncoded
     @POST("{url}")
-    Observable<BaseResultBean> editHomePagerFunction(@Path(value = "url", encoded = true) String url, Map<String, String> map);
+    Observable<BaseResultBean> editHomePagerFunction(@Path(value = "url", encoded = true) String url, @FieldMap Map<String, String> map);
 
     //获取所有功能
     @GET("{url}")
-    Observable<BaseResultBean> getAllFunction(@Path(value = "url", encoded = true) String url);
+    Observable<BaseResultBean<String>> getAllFunction(@Path(value = "url", encoded = true) String url);
 
     //获取未应用的功能
     @POST("{url}")
-    Observable<BaseResultBean> getNotUseFunction(@Path(value = "url", encoded = true) String url);
+    Observable<BaseResultBean<String>> getNotUseFunction(@Path(value = "url", encoded = true) String url);
 }

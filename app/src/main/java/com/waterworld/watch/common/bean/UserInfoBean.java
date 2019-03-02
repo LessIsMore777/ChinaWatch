@@ -1,5 +1,6 @@
 package com.waterworld.watch.common.bean;
 
+
 /**
  * Created by nhuan
  * Time:2019/1/10.
@@ -10,7 +11,8 @@ package com.waterworld.watch.common.bean;
 public class UserInfoBean {
 
     private static UserInfoBean userInfoBean;
-
+    private WatchUser watchUser;
+    private User user;
     public static UserInfoBean getInstance() {
         if (userInfoBean == null) {
             synchronized (UserInfoBean.class){
@@ -22,29 +24,32 @@ public class UserInfoBean {
         return userInfoBean;
     }
 
-    private watchUser MyWatchUser;
-    private user MyUser;
-
-    public watchUser getMyWatchUser() {
-        return MyWatchUser;
+    @Override
+    public String toString() {
+        return watchUser.getHead().toString();
+    }
+    public WatchUser getWatchUser() {
+        return watchUser;
     }
 
-    public void setMyWatchUser(watchUser myWatchUser) {
-        MyWatchUser = myWatchUser;
+    public void setWatchUser(WatchUser watchUser) {
+        this.watchUser = watchUser;
     }
 
-    public user getMyUser() {
-        return MyUser;
+    public User getUser() {
+        return user;
     }
 
-    public void setMyUser(user myUser) {
-        MyUser = myUser;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    //登录手表信息
-    class watchUser {
+    //当前登录手表用户信息
+    public class WatchUser {
         private String head;  //头像地址，自定义图像下载地址需拼接 baseUrl/resources/watch/+head
+        private String phone;
         private int watchId;
+        private String name;
         private String userRelation;
         private int userRole;
         private int userId;
@@ -88,19 +93,25 @@ public class UserInfoBean {
         public void setUserId(int userId) {
             this.userId = userId;
         }
+
+        @Override
+        public String toString() {
+            return super.toString();
+        }
     }
     //登录用户信息
-    class user {
+    public class User {
         private String address;
         private String createTime;
         private String head;  //头像地址，自定义图像下载地址需拼接 baseUrl/resources/watch/+head
+        private int loginDeviceType;
         private String name;
         private int operatingWatch;
         private String password;
         private String phone;
         private int sex;      //性别 1-男，2-女,0-不明
         private int status;
-        private int updateTime;
+        private String updateTime;
         private int userId;
 
         public String getAddress() {
@@ -175,11 +186,19 @@ public class UserInfoBean {
             this.status = status;
         }
 
-        public int getUpdateTime() {
+        public int getLoginDeviceType() {
+            return loginDeviceType;
+        }
+
+        public void setLoginDeviceType(int loginDeviceType) {
+            this.loginDeviceType = loginDeviceType;
+        }
+
+        public String getUpdateTime() {
             return updateTime;
         }
 
-        public void setUpdateTime(int updateTime) {
+        public void setUpdateTime(String updateTime) {
             this.updateTime = updateTime;
         }
 
@@ -191,4 +210,5 @@ public class UserInfoBean {
             this.userId = userId;
         }
     }
+
 }

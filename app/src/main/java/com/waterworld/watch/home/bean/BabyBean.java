@@ -1,34 +1,19 @@
 package com.waterworld.watch.home.bean;
 
-import android.graphics.drawable.Drawable;
-
-/**
- * 编写者：Created by SunnyTang
- * 时间：2018/11/29 18:31
- * 主要作用：
- */
 public class BabyBean {
+    private Object babyAvatar;//头像链接
+    private String babyName;//名字
 
-    private int babyID;//宝贝id
-    private Drawable babyAvatar;//宝贝头像
-    private String babyName;//宝贝名称
-
-    public BabyBean(int babyID, Drawable babyAvatar, String babyName) {
-        this.babyID = babyID;
+    public BabyBean(Object babyAvatar, String babyName) {
         this.babyAvatar = babyAvatar;
         this.babyName = babyName;
     }
 
-    public BabyBean(Drawable babyAvatar, String babyName) {
-        this.babyAvatar = babyAvatar;
-        this.babyName = babyName;
-    }
-
-    public Drawable getBabyAvatar() {
+    public Object getBabyAvatar() {
         return babyAvatar;
     }
 
-    public void setBabyAvatar(Drawable babyAvatar) {
+    public void setBabyAvatar(Object babyAvatar) {
         this.babyAvatar = babyAvatar;
     }
 
@@ -40,11 +25,4 @@ public class BabyBean {
         this.babyName = babyName;
     }
 
-    public int getBabyID() {
-        return babyID;
-    }
-
-    public void setBabyID(int babyID) {
-        this.babyID = babyID;
-    }
 }

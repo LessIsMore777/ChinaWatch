@@ -10,7 +10,7 @@ public class UrlContants {
     //服务器地址
     public final static String BASE_URL = "http://47.107.145.228:8071/";
     //测试服务器地址
-    public final static String TEST_BASE_URL = "http://192.168.20.213:8089/";
+    //public final static String BASE_URL = "http://192.168.20.213:8089/";
     //获取验证码
     public final static String GET_AUTH_CODE = "getAuthCode";
     //注册

@@ -62,8 +62,8 @@ public class MyInformationActivity extends BaseActivity {
     @BindView(R.id.header_title)
     TextView header_title;
 
-    @BindView(R.id.header_save)
-    Button header_save;
+    @BindView(R.id.header_confirm)
+    TextView header_save;
 
     @BindView(R.id.header_parent)
     LinearLayout header_parent;
@@ -113,7 +113,7 @@ public class MyInformationActivity extends BaseActivity {
         finish();
     }
 
-    @OnClick(R.id.header_save)
+    @OnClick(R.id.header_confirm)
     void save() {
         showDialog(getString(R.string.uploading),null,null);
         modifyUserInfo();
@@ -150,7 +150,7 @@ public class MyInformationActivity extends BaseActivity {
     }
 
     //EventBus设置头像数据
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    @Subscribe(sticky = true,threadMode = ThreadMode.MAIN)
     public void setAvatar(AvatarEvent avatar){
         if(avatar.getType() == 0){
             //自定义头像,在拍照完后上传至服务器，再从服务器获取图片uri,便于统一操作

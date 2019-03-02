@@ -1,10 +1,5 @@
 package com.waterworld.watch.home.constant;
 
-/**
- * 编写者：Created by SunnyTang
- * 时间：2019/1/19 11:22
- * 主要作用：
- */
 public class SkillConstant {
     //通讯录
     public final static String ADDRESS_BOOK = "ADDRESS_BOOK";

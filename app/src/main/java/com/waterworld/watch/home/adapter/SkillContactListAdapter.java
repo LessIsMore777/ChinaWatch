@@ -15,11 +15,6 @@ import com.waterworld.watch.home.bean.SkillContactBean;
 
 import java.util.List;
 
-/**
- * 编写者：Created by SunnyTang
- * 时间：2018/12/12 19:15
- * 主要作用：联系人列表(适配器)
- */
 public class SkillContactListAdapter extends RecyclerView.Adapter<SkillContactListAdapter.MyHolder> {
 
     private Context mContext;

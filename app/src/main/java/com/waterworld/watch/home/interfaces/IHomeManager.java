@@ -13,7 +13,7 @@ public interface IHomeManager {
      * @param imei 设备IMEI号
      * @param baseObserverListener
      */
-    void bindWatch(String imei, BaseObserverListener baseObserverListener);
+    void bindWatch(String imei, String relationWithBaby, BaseObserverListener baseObserverListener);
 
     /**
      * 编辑主页功能区
@@ -33,4 +33,24 @@ public interface IHomeManager {
      * @param baseObserverListener
      */
     void getNotUseFunction(BaseObserverListener baseObserverListener);
+
+    /**
+     * 获取用户绑定手表列表
+     */
+    void listBindWatch(BaseObserverListener baseObserverListener);
+
+    /**
+     * 获取当前手表用户信息
+     */
+    void getCurrentWatchUserInfo(BaseObserverListener baseObserverListener);
+
+    /**
+     * 获取当前用户信息
+     */
+    void getCurrentUser(BaseObserverListener baseObserverListener);
+
+    /**
+     * 保存或更新手表用户
+     */
+    void saveWatchUserInfo(String head,String name,Integer sex,String birthday,String grade,String classes,String height,String weight, String phone,BaseObserverListener baseObserverListener);
 }

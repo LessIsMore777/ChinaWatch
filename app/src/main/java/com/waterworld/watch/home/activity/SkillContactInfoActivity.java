@@ -28,7 +28,7 @@ public class SkillContactInfoActivity extends BaseActivity  {
     private LinearLayout header_parent;
     private ImageView header_back;
     private TextView header_title;
-    private Button header_save;
+    private TextView header_save;
     /**
      * 联系人信息view
      */
@@ -70,7 +70,7 @@ public class SkillContactInfoActivity extends BaseActivity  {
         header_parent = findViewById(R.id.header_parent);
         header_back = findViewById(R.id.header_back);
         header_title = findViewById(R.id.header_title);
-        header_save = findViewById(R.id.header_save);
+        header_save = findViewById(R.id.header_confirm);
         editName = findViewById(R.id.et_contact_name);
         editPhone = findViewById(R.id.et_contact_phone);
         normalCall = findViewById(R.id.cb_normal_call);

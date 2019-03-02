@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android = "http://schemas.android.com/apk/res/android"
 	xmlns:app = "http://schemas.android.com/apk/res-auto"
-	xmlns:tools = "http://schemas.android.com/tools"
 	android:layout_width = "match_parent"
-	android:layout_height = "match_parent">
+	android:layout_height = "match_parent"
+	android:background="#EBEBEB"
+	android:orientation="vertical">
 	
 	<include
 		android:id = "@+id/header"
@@ -11,14 +12,71 @@
 		app:layout_constraintEnd_toEndOf = "parent"
 		app:layout_constraintStart_toStartOf = "parent"
 		app:layout_constraintTop_toTopOf = "parent" />
-	
-	<FrameLayout
-		android:layout_width = "0dp"
-		android:layout_height = "0dp"
-		app:layout_constraintBottom_toBottomOf = "parent"
-		app:layout_constraintEnd_toEndOf = "parent"
-		app:layout_constraintStart_toStartOf = "parent"
-		app:layout_constraintTop_toBottomOf = "@+id/header">
-		
-	</FrameLayout>
-</android.support.constraint.ConstraintLayout>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+		<EditText
+			android:id="@+id/et_bind_code"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@color/white_1"
+			android:paddingStart="20dp"
+			android:paddingTop="18dp"
+			android:paddingBottom="18dp"
+			android:hint="@string/watch_bind_code"
+			android:textCursorDrawable = "@drawable/edit_cursor"
+			android:textSize="16sp"
+			android:textColor="@color/gray_3"/>
+		<ImageView
+			android:id="@+id/iv_scan_qr"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/ic_qr_code_yellow"
+			android:layout_alignParentRight="true"
+			android:layout_centerVertical="true"
+			android:layout_marginEnd="15dp"/>
+	</RelativeLayout>
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/bind_step1"
+		android:layout_marginStart="13dp"
+		android:layout_marginTop="15dp"
+		android:textColor="@color/gray_1"
+		android:textSize="13sp"/>
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/bind_step2"
+		android:layout_marginStart="13dp"
+		android:layout_marginTop="11dp"
+		android:textColor="@color/gray_1"
+		android:textSize="13sp"/>
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/bind_step3"
+		android:layout_marginStart="13dp"
+		android:layout_marginTop="11dp"
+		android:textColor="@color/gray_1"
+		android:textSize="13sp"/>
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+		<Button
+			android:id="@+id/btn_confirm"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@drawable/qr_bind_button"
+			android:layout_alignParentBottom="true"
+			android:layout_marginBottom="30dp"
+			android:layout_marginStart="60dp"
+			android:layout_marginEnd="60dp"
+			android:text="@string/confirm"
+			android:textColor="@color/white_1"
+			android:textSize="16sp" />
+	</RelativeLayout>
+
+</LinearLayout>

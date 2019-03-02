@@ -83,7 +83,7 @@ public class TimeUtils {
      * @param year 年份
      * @return 关于年份四种不同的区别
      */
-    public static int aaa(int year) {
+    public static int isLeapYear(int year) {
         if (year % 100 == 0) {//能被100整除的就是世纪年
             if (year % 400 == 0) {
                 return 0x01;//世纪年 闰年
@@ -118,5 +118,18 @@ public class TimeUtils {
             }
         }
         return data;
+    }
+
+    public static String arrayToString(String[] array) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i=0 ; i<array.length ; i++){
+            if(i != array.length-1) {
+                stringBuilder.append(array[i]);
+                stringBuilder.append(",");
+            }else {
+                stringBuilder.append(array[i]);
+            }
+        }
+        return stringBuilder.toString();
     }
 }

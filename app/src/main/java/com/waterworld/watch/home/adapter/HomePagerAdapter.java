@@ -6,11 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.List;
 
-/**
- * 编写者：Created by SunnyTang
- * 时间：2018/11/27 18:16
- * 主要作用：
- */
+
 public class HomePagerAdapter extends FragmentPagerAdapter {
 
     private List<Fragment> mList;

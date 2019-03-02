@@ -12,6 +12,7 @@
     <!--蓝色系-->
     <color name="blue_1">#E2EDFE</color>
     <color name="blue_2">#AECEFF</color>
+    <color name="blue_3">#07C6FF</color>
     <!--黑色系-->
     <color name = "black_1">#000000</color>
     <!--白色系-->
@@ -27,6 +28,7 @@
     <color name = "gray_5">#EFEFEF</color>
     <color name = "gray_6">#818181</color>
     <color name = "gray_7">#B3B3B3</color>
+    <color name="fadegray">#AFAFAF</color>
     <!--透明系-->
     <color name="translate">#00000000</color>
 </resources>

@@ -11,7 +11,6 @@ import com.waterworld.watch.R;
 import com.waterworld.watch.common.activity.BaseActivity;
 import com.waterworld.watch.common.net.NetworkUtils;
 import com.waterworld.watch.common.util.ToastUtils;
-import com.waterworld.watch.home.activity.HomePagerActivity;
 import com.waterworld.watch.common.application.MyApplication;
 import com.waterworld.watch.login.manager.LoginManager;
 
@@ -44,9 +43,7 @@ public class WelcomeActivity extends BaseActivity {
 
     private void autoLogin() {
         if(NetworkUtils.isNetworkAvailable(this)) {
-            startActivity(new Intent(WelcomeActivity.this, HomePagerActivity.class));
             MyApplication.getInstance().getService().autoLogin();
-            finish();
         }else {
             ToastUtils.showShort(this,getString(R.string.check_net_is_error));
             startActivity(new Intent(WelcomeActivity.this,LoginActivity.class));

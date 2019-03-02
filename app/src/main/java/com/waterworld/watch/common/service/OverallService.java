@@ -13,10 +13,15 @@ import android.view.View;
 
 import com.waterworld.watch.R;
 import com.waterworld.watch.common.application.MyApplication;
-import com.waterworld.watch.common.customview.dialog.LoadingDialog;
+import com.waterworld.watch.common.bean.BindWatchBean;
+import com.waterworld.watch.common.net.BaseObserverListener;
 import com.waterworld.watch.common.net.BaseResultBean;
 import com.waterworld.watch.common.util.AppManager;
 import com.waterworld.watch.common.util.DialogUtils;
+import com.waterworld.watch.common.util.ToastUtils;
+import com.waterworld.watch.home.activity.HomePagerActivity;
+import com.waterworld.watch.home.activity.WatchBindActivity;
+import com.waterworld.watch.home.manager.HomeManager;
 import com.waterworld.watch.login.activity.LoginActivity;
 import com.waterworld.watch.login.bean.LoginBean;
 import com.waterworld.watch.login.event.AutoLoginEvent;
@@ -136,11 +141,36 @@ public class OverallService extends Service {
             @Override
             public void onSuccess(Object o) {
                 BaseResultBean<String> baseResultBean = (BaseResultBean<String>) o;
-                //MyApplication.getInstance().setSessionID(baseResultBean.getData());
                 autoLoginEvent.setAuto(1);
                 autoLoginEvent.setMessage(baseResultBean.getMsg());
                 sendEvent(autoLoginEvent);
+                HomeManager.getInstance().listBindWatch(new BaseObserverListener<BaseResultBean<BindWatchBean[]>>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        ToastUtils.showShort(MyApplication.getContext(), getString(R.string.data_error));
+                        Intent intent = new Intent(MyApplication.getContext(), WatchBindActivity.class);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onNext(BaseResultBean<BindWatchBean[]> baseResultBean) {
+                        BindWatchBean[] bindWatchs = baseResultBean.getData();
+                        if (bindWatchs.length > 0) {
+                            Intent intent = new Intent(MyApplication.getContext(), HomePagerActivity.class);
+                            startActivity(intent);
+                        }else {
+                            Intent intent = new Intent(MyApplication.getContext(), WatchBindActivity.class);
+                            startActivity(intent);
+                        }
+                        AppManager.finishAllActivity();
+                    }
+                });
             }
+
 
             @Override
             public void onFail(Object o) {
@@ -160,7 +190,7 @@ public class OverallService extends Service {
 
     private void sendEvent(Object o){
         if (o != null){
-            EventBus.getDefault().post(o);
+            EventBus.getDefault().postSticky(o);
         }
     }
 }

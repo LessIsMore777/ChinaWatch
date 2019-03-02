@@ -6,6 +6,7 @@ import com.waterworld.watch.common.bean.BindWatchBean;
 import com.waterworld.watch.common.bean.BindWatchUserBean;
 import com.waterworld.watch.common.bean.UserInfoBean;
 import com.waterworld.watch.common.bean.WatchUserInfoBean;
+import com.waterworld.watch.home.bean.RoleBean;
 import com.waterworld.watch.login.bean.BindBean;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -74,12 +75,12 @@ public interface INetManager {
     /**
      * 绑定手表
      */
-    void bindWatch(String imei, Subscriber<BaseResultBean> subscriber);
+    void bindWatch(String imei, String relationWithBaby, Subscriber<BaseResultBean<RoleBean>> subscriber);
 
     /**
      * 保存或更新手表用户
      */
-    void saveWatchUserInfo(String imei, Subscriber<BaseResultBean> subscriber);
+    void saveWatchUserInfo(String head,String name,Integer sex,String birthday,String grade,String classes,String height,String weight, String phone,Subscriber<BaseResultBean> subscriber);
 
     /**
      * 切换手表

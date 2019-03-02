@@ -1,12 +1,17 @@
 package com.waterworld.watch.home.manager;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.waterworld.watch.common.application.MyApplication;
+import com.waterworld.watch.common.bean.BindWatchBean;
+import com.waterworld.watch.common.bean.UserInfoBean;
+import com.waterworld.watch.common.bean.WatchUserInfoBean;
 import com.waterworld.watch.common.dao.LoginDao;
 import com.waterworld.watch.common.net.BaseObserverListener;
 import com.waterworld.watch.common.net.BaseResultBean;
 import com.waterworld.watch.common.net.NetManager;
+import com.waterworld.watch.home.bean.RoleBean;
 import com.waterworld.watch.home.interfaces.IHomeManager;
 import com.waterworld.watch.login.manager.LoginManager;
 
@@ -44,8 +49,8 @@ public class HomeManager implements IHomeManager {
      * @param baseObserverListener
      */
     @Override
-    public void bindWatch(String imei, BaseObserverListener baseObserverListener) {
-        NetManager.getInstance().bindWatch(imei, new Subscriber<BaseResultBean>() {
+    public void bindWatch(String imei, String relationWithBaby,BaseObserverListener baseObserverListener) {
+        NetManager.getInstance().bindWatch(imei, relationWithBaby, new Subscriber<BaseResultBean<RoleBean>>() {
             @Override
             public void onCompleted() {
                 baseObserverListener.onCompleted();
@@ -57,7 +62,7 @@ public class HomeManager implements IHomeManager {
             }
 
             @Override
-            public void onNext(BaseResultBean baseResultBean) {
+            public void onNext(BaseResultBean<RoleBean> baseResultBean) {
                 baseObserverListener.onNext(baseResultBean);
             }
         });
@@ -127,6 +132,107 @@ public class HomeManager implements IHomeManager {
             @Override
             public void onError(Throwable e) {
                 baseObserverListener.onError(e);
+            }
+
+            @Override
+            public void onNext(BaseResultBean baseResultBean) {
+                baseObserverListener.onNext(baseResultBean);
+            }
+        });
+    }
+
+    /**
+     * 获取用户绑定手表列表
+     */
+    @Override
+    public void listBindWatch(BaseObserverListener baseObserverListener) {
+        NetManager.getInstance().listBindWatch(new Subscriber<BaseResultBean<BindWatchBean[]>>() {
+            @Override
+            public void onCompleted() {
+                baseObserverListener.onCompleted();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                baseObserverListener.onError(e);
+            }
+
+            @Override
+            public void onNext(BaseResultBean<BindWatchBean[]> baseResultBean) {
+                baseObserverListener.onNext(baseResultBean);
+            }
+        });
+    }
+
+    @Override
+    public void getCurrentWatchUserInfo(BaseObserverListener baseObserverListener) {
+        NetManager.getInstance().getCurrentWatchUserInfo(new Subscriber<BaseResultBean<WatchUserInfoBean>>() {
+            @Override
+            public void onCompleted() {
+                baseObserverListener.onCompleted();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                baseObserverListener.onError(e);
+            }
+
+            @Override
+            public void onNext(BaseResultBean<WatchUserInfoBean> baseResultBean) {
+                baseObserverListener.onNext(baseResultBean);
+            }
+        });
+    }
+
+    /**
+     * 获取当前用户信息
+     * @param baseObserverListener
+     */
+    @Override
+    public void getCurrentUser(BaseObserverListener baseObserverListener) {
+        NetManager.getInstance().getCurrentUser(new Subscriber<BaseResultBean<UserInfoBean>>() {
+            @Override
+            public void onCompleted() {
+                baseObserverListener.onCompleted();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                baseObserverListener.onError(e);
+            }
+
+            @Override
+            public void onNext(BaseResultBean<UserInfoBean> baseResultBean) {
+                baseObserverListener.onNext(baseResultBean);
+            }
+        });
+    }
+
+    /**
+     * 保存手表用户信息
+     * @param head
+     * @param name
+     * @param sex
+     * @param birthday
+     * @param grade
+     * @param classes
+     * @param height
+     * @param weight
+     * @param phone
+     * @param baseObserverListener
+     */
+    @Override
+    public void saveWatchUserInfo(String head, String name, Integer sex, String birthday, String grade, String classes, String height, String weight, String phone, BaseObserverListener baseObserverListener) {
+        NetManager.getInstance().saveWatchUserInfo(head, name, sex, birthday, grade, classes, height, weight, phone, new Subscriber<BaseResultBean>() {
+            @Override
+            public void onCompleted() {
+                baseObserverListener.onCompleted();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                baseObserverListener.onError(e);
+                Log.e("nh",e.toString());
             }
 
             @Override

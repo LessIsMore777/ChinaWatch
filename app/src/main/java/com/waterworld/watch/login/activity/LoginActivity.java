@@ -15,14 +15,23 @@ import android.widget.TextView;
 
 import com.waterworld.watch.R;
 import com.waterworld.watch.common.activity.BaseActivity;
+import com.waterworld.watch.common.bean.BindWatchBean;
+import com.waterworld.watch.common.net.BaseObserverListener;
+import com.waterworld.watch.common.net.BaseResultBean;
 import com.waterworld.watch.home.activity.HomePagerActivity;
 import com.waterworld.watch.common.util.AppManager;
 import com.waterworld.watch.common.util.LoginUtils;
 import com.waterworld.watch.common.util.ToastUtils;
+import com.waterworld.watch.home.activity.WatchBindActivity;
+import com.waterworld.watch.home.interfaces.IHomeManager;
+import com.waterworld.watch.home.manager.HomeManager;
 import com.waterworld.watch.login.bean.LoginBean;
+import com.waterworld.watch.login.event.AutoLoginEvent;
 import com.waterworld.watch.login.interfaces.ILoginManager;
 import com.waterworld.watch.login.interfaces.LoginResultListener;
 import com.waterworld.watch.login.manager.LoginManager;
+
+import org.greenrobot.eventbus.EventBus;
 
 import crossoverone.statuslib.StatusUtil;
 
@@ -55,6 +64,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     //密码是否显示(默认不显示)
     private boolean inputPwdIsShow = false;
     private ILoginManager iLoginManager = LoginManager.getInstance();
+    private IHomeManager iHomeManager = HomeManager.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,6 +147,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             switch (msg.what) {
                 case LOGIN_SUCCESS_TYPE:
                     loginSuccess();
+
                     break;
                 case LOGIN_FAIL_TYPE:
                     loginFail();
@@ -153,12 +164,39 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         if (iLoginManager != null){
             iLoginManager.insertDB(LoginBean.getInstance());
         }
-        closeDialog();
-        ToastUtils.showShort(this,getString(R.string.login_success));
-        Intent intent = new Intent(LoginActivity.this, HomePagerActivity.class);
-        startActivity(intent);
-        AppManager.finishAllActivity();
-        finish();
+        //ToastUtils.showShort(this,getString(R.string.login_success));
+        if (iHomeManager != null) {
+            iHomeManager.listBindWatch(new BaseObserverListener<BaseResultBean<BindWatchBean[]>>() {
+                @Override
+                public void onCompleted() {
+
+                }
+
+                @Override
+                public void onError(Throwable e) {
+                    ToastUtils.showShort(LoginActivity.this, getString(R.string.data_error));
+                }
+
+                @Override
+                public void onNext(BaseResultBean<BindWatchBean[]> baseResultBean) {
+                    BindWatchBean[] bindWatchs = baseResultBean.getData();
+                    AutoLoginEvent autoLoginEvent = new AutoLoginEvent();
+                    autoLoginEvent.setAuto(1);
+                    EventBus.getDefault().postSticky(autoLoginEvent);
+                    if (bindWatchs.length > 0) {
+                        Intent intent = new Intent(LoginActivity.this, HomePagerActivity.class);
+                        startActivity(intent);
+                    }else {
+                        Intent intent = new Intent(LoginActivity.this, WatchBindActivity.class);
+                        startActivity(intent);
+                    }
+                    closeDialog();
+                    AppManager.finishAllActivity();
+                    finish();
+                }
+            });
+        }
+
     }
 
     private void loginFail(){

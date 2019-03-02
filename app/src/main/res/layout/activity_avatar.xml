@@ -3,11 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:CircleImageView="http://schemas.android.com/apk/res-auto"
     tools:context="com.waterworld.watch.mine.activity.AvatarActivity"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true"
-    android:background="@color/gray_2">
+    android:orientation="vertical">
 
     <include layout="@layout/common_header"/>
 

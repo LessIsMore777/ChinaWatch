@@ -1,150 +1,120 @@
-<?xml version="1.0" encoding="utf-8"?><!--此头部布局为公共的，可以被多个界面所include。
-此头部的高度，在代码中动态设置，高度为设备高度的11分之1。
-下面设置的高度为60dp，只是为了方便开发的时候观察效果-->
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android = "http://schemas.android.com/apk/res/android"
 	xmlns:tools = "http://schemas.android.com/tools"
-	android:layout_width = "match_parent"
-	android:layout_height = "wrap_content"
-	android:orientation = "vertical">
-	
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical">
 	<LinearLayout
-		android:id = "@+id/header_parent"
-		android:layout_width = "match_parent"
-		android:layout_height = "60dp"
-		android:background = "@color/yellow_1"
-		android:orientation = "horizontal">
-		<!--头部栏左部父控件-->
+		android:id="@+id/header_parent"
+		android:layout_width="match_parent"
+		android:layout_height="42dp"
+		android:background="@color/yellow_1"
+		android:orientation="horizontal">
 		<RelativeLayout
-			android:layout_width = "0dp"
-			android:layout_height = "match_parent"
-			android:layout_weight = "1">
-			<!--宝贝头像-->
-			<ImageButton
-				android:id = "@+id/header_baby_avatar"
-				android:layout_width = "match_parent"
-				android:layout_height = "match_parent"
-				android:layout_centerInParent = "true"
-				android:layout_centerVertical = "true"
-				android:background = "@null"
-				android:src = "@drawable/ic_avatar_1_smile"
-				android:visibility = "gone" />
-			<!--返回-->
-			<ImageButton
-				android:id = "@+id/header_back"
-				android:layout_width = "match_parent"
-				android:layout_height = "match_parent"
-				android:layout_centerInParent = "true"
-				android:layout_centerVertical = "true"
-				android:background = "@null"
-				android:src = "@drawable/ic_arrow_left"
-				android:visibility = "gone" />
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1">
+			<com.waterworld.watch.common.customview.CircleImageView
+				android:id="@+id/header_baby_avatar"
+				android:layout_width="35dp"
+				android:layout_height="35dp"
+				android:layout_centerHorizontal="true"
+				android:layout_alignParentBottom="true"
+				android:layout_marginBottom="8dp"
+				android:src="@drawable/ic_avatar_1_smile"
+				android:visibility="gone"/>
+			<ImageView
+				android:id="@+id/header_back"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerHorizontal="true"
+				android:layout_alignParentBottom="true"
+				android:layout_marginBottom="10dp"
+				android:src="@drawable/ic_arrow_left"
+				android:visibility="gone" />
 		</RelativeLayout>
-		<!--头部栏中部父控件-->
 		<RelativeLayout
-			android:layout_width = "8dp"
-			android:layout_height = "match_parent"
-			android:layout_weight = "5">
-			<!--选择宝贝手表-->
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="5">
 			<LinearLayout
-				android:id = "@+id/header_baby_select"
-				android:layout_width = "wrap_content"
-				android:layout_height = "match_parent"
-				android:layout_centerInParent = "true"
-				android:gravity = "center"
-				android:orientation = "vertical"
-				android:padding = "4dp"
-				android:visibility = "gone">
-				<!--宝贝名称-->
+				android:id="@+id/header_baby_select"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:layout_centerHorizontal="true"
+				android:layout_alignParentBottom="true"
+				android:gravity="bottom"
+				android:orientation="vertical"
+				android:padding="4dp"
+				android:visibility="gone">
 				<TextView
-					android:id = "@+id/header_baby_name"
-					android:layout_width = "wrap_content"
-					android:layout_height = "wrap_content"
-					android:textColor = "@color/white_1"
-					android:textSize = "16sp"
-					android:textStyle = "bold"
-					tools:text = "宝贝的手表" />
-				<!--箭头-->
+					android:id="@+id/header_baby_name"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textColor="@color/white_1"
+					android:textSize="16sp"
+					android:textStyle="bold"
+					tools:text="@string/baby_watch" />
 				<ImageView
-					android:layout_width = "wrap_content"
-					android:layout_height = "wrap_content"
-					android:src = "@drawable/ic_arrow_down_white" />
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_horizontal"
+					android:src="@drawable/ic_arrow_down_white" />
 			</LinearLayout>
-			<!--标题-->
 			<TextView
-				android:id = "@+id/header_title"
-				android:layout_width = "wrap_content"
-				android:layout_height = "match_parent"
-				android:layout_centerInParent = "true"
-				android:gravity = "center"
-				android:textColor = "@color/white_1"
-				android:textSize = "16sp"
-				android:textStyle = "bold"
-				android:visibility = "gone"
-				tools:text = "宝贝的手表" />
+				android:id="@+id/header_title"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:layout_centerHorizontal="true"
+				android:layout_alignParentBottom="true"
+				android:layout_marginBottom="11dp"
+				android:gravity="bottom"
+				android:textColor="@color/white_1"
+				android:textSize="16sp"
+				android:textStyle="bold"
+				android:visibility="gone"
+				tools:text="@string/baby_watch"/>
 		</RelativeLayout>
-		<!--头部栏右部父控件-->
 		<RelativeLayout
-			android:layout_width = "0dp"
-			android:layout_height = "match_parent"
-			android:layout_weight = "1">
-			<!--二维码-->
-			<ImageButton
-				android:id = "@+id/header_qr_code"
-				android:layout_width = "match_parent"
-				android:layout_height = "match_parent"
-				android:layout_centerInParent = "true"
-				android:background = "@null"
-				android:src = "@drawable/ic_qr_code"
-				android:visibility = "gone" />
-			<!--完成-->
-			<Button
-				android:id = "@+id/header_finish"
-				android:layout_width = "match_parent"
-				android:layout_height = "match_parent"
-				android:layout_centerInParent = "true"
-				android:background = "@null"
-				android:text = "@string/common_finish"
-				android:textColor = "@color/white_1"
-				android:textSize = "16sp"
-				android:visibility = "gone" />
-			<!--保存-->
-			<Button
-				android:id = "@+id/header_save"
-				android:layout_width = "match_parent"
-				android:layout_height = "match_parent"
-				android:layout_centerInParent = "true"
-				android:background = "@null"
-				android:text = "@string/common_save"
-				android:textColor = "@color/white_1"
-				android:textSize = "16sp"
-				android:visibility = "gone" />
-			<!--确认-->
-			<Button
-				android:id = "@+id/header_confirm"
-				android:layout_width = "match_parent"
-				android:layout_height = "match_parent"
-				android:layout_centerInParent = "true"
-				android:background = "@null"
-				android:text = "@string/common_confirm"
-				android:textColor = "@color/white_1"
-				android:textSize = "16sp"
-				android:visibility = "gone" />
-			<!--增加-->
-			<ImageButton
-				android:id = "@+id/header_add"
-				android:layout_width = "match_parent"
-				android:layout_height = "match_parent"
-				android:layout_centerInParent = "true"
-				android:background = "@null"
-				android:src = "@drawable/ic_common_add"
-				android:visibility = "gone" />
-			<!--菜单-->
-			<ImageButton
+			android:layout_width="0dp"
+			android:layout_height="match_parent"
+			android:layout_weight="1">
+			<ImageView
+				android:id="@+id/header_qr_code"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerHorizontal="true"
+				android:layout_alignParentBottom="true"
+				android:layout_marginBottom="10dp"
+				android:src="@drawable/ic_qr_code"
+				android:visibility="gone" />
+			<TextView
+				android:id="@+id/header_confirm"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerHorizontal="true"
+				android:layout_alignParentBottom="true"
+				android:layout_marginBottom="10dp"
+				android:text="@string/common_finish"
+				android:textColor="@color/white_1"
+				android:textSize="16sp"
+				android:visibility="gone" />
+			<ImageView
+				android:id="@+id/header_add"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerHorizontal="true"
+				android:layout_alignParentBottom="true"
+				android:layout_marginBottom="10dp"
+				android:src="@drawable/ic_common_add"
+				android:visibility="gone" />
+			<ImageView
 				android:id="@+id/header_menu"
-				android:layout_width = "match_parent"
-				android:layout_height = "match_parent"
-				android:layout_centerInParent = "true"
-				android:background = "@null"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerHorizontal="true"
+				android:layout_alignParentBottom="true"
+				android:layout_marginBottom="10dp"
 				android:src="@drawable/ic_menu_1"
 				android:visibility="gone"/>
 		</RelativeLayout>

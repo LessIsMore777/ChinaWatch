@@ -9,7 +9,9 @@ package com.waterworld.watch.common.bean;
 public class BindWatchBean {
 
     private String head;
+    private String phone;
     private int watchId;
+    private String name;
     private String userRelation;
     private int userRole;
     private int userId;
@@ -52,5 +54,21 @@ public class BindWatchBean {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

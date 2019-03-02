@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -52,19 +53,17 @@ import butterknife.OnClick;
 
 public class AvatarActivity extends BaseActivity{
 
-    private String TAG = AvatarActivity.class.getSimpleName();
-
     @BindView(R.id.header_parent)
     LinearLayout header_parent;
 
     @BindView(R.id.header_back)
-    ImageButton header_back;
+    ImageView header_back;
 
     @BindView(R.id.header_title)
     TextView header_title;
 
-    @BindView(R.id.header_save)
-    Button header_save;
+    @BindView(R.id.header_confirm)
+    TextView header_save;
 
     @BindView(R.id.rv_avatar)
     RecyclerView rv_avatar;
@@ -158,7 +157,7 @@ public class AvatarActivity extends BaseActivity{
         finish();
     }
 
-    @OnClick(R.id.header_save)
+    @OnClick(R.id.header_confirm)
     void save(){
         AvatarEvent avatarEvent = new AvatarEvent();
         avatarEvent.setType(1);

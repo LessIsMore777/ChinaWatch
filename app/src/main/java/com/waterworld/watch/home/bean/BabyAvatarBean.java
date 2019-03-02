@@ -2,11 +2,7 @@ package com.waterworld.watch.home.bean;
 
 import android.graphics.drawable.Drawable;
 
-/**
- * 编写者：Created by SunnyTang
- * 时间：2018/12/7 19:56
- * 主要作用：宝贝(实体)
- */
+
 public class BabyAvatarBean {
 
     private Drawable avatar;

@@ -10,11 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * 编写者：Created by SunnyTang
- * 时间：2018/11/28 14:01
- * 主要作用：
- */
 public abstract class BaseFragment extends Fragment {
 
     protected boolean isInit = false;//是否初始化

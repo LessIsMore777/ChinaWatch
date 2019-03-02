@@ -23,9 +23,9 @@ android {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
-    aaptOptions{
-        cruncherEnabled=false
-        useNewCruncher=false
+    aaptOptions {
+        cruncherEnabled = false
+        useNewCruncher = false
     }
     packagingOptions {
         doNotStrip '*/mips/*.so'
@@ -94,4 +94,7 @@ dependencies {
     implementation 'com.aliyun.ams:alicloud-android-push:3.1.4'
     //沉浸式状态栏
     implementation 'com.github.crossoverone:StatusBarUtil:1.3.3'
+
+    implementation 'com.google.zxing:core:3.3.0'
+    implementation('com.journeyapps:zxing-android-embedded:3.6.0') { transitive = false }
 }

@@ -2,11 +2,7 @@ package com.waterworld.watch.home.bean;
 
 import android.graphics.drawable.Drawable;
 
-/**
- * 编写者：Created by SunnyTang
- * 时间：2018/12/6 11:25
- * 主要作用：与手表绑定的其他用户(实体类)
- */
+
 public class WatchOtherUserBean {
 
     private int userID;//其他用户ID

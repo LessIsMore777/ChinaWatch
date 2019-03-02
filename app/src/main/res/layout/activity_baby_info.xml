@@ -4,67 +4,60 @@
 	android:layout_width = "match_parent"
 	android:layout_height = "match_parent"
 	android:orientation = "vertical">
-	<!--header-->
 	<include
 		android:id = "@+id/header"
 		layout = "@layout/common_header" />
-	<!--body-->
 	<ScrollView
 		android:layout_width = "match_parent"
 		android:layout_height = "match_parent">
-		<!--ScrollView里面只有一个View的时候才能滚动-->
 		<LinearLayout
 			android:layout_width = "match_parent"
 			android:layout_height = "wrap_content"
 			android:orientation = "vertical">
-			<!--头像-->
 			<RelativeLayout
 				android:id = "@+id/rl_select_avatar"
 				android:layout_width = "match_parent"
 				android:layout_height = "wrap_content">
-				<!--头像-->
 				<TextView
 					android:layout_width = "wrap_content"
 					android:layout_height = "wrap_content"
 					android:layout_alignParentStart = "true"
 					android:layout_centerVertical = "true"
 					android:layout_margin = "18dp"
-					android:text = "头像"
+					android:text = "@string/avatar"
 					android:textColor = "@color/black_1"
 					android:textSize = "16sp" />
-				<!--用户数据-->
-				<ImageView
-					android:id = "@+id/iv_avatar"
-					android:layout_width = "wrap_content"
-					android:layout_height = "wrap_content"
+
+				<com.waterworld.watch.common.customview.CircleImageView
+					android:id="@+id/iv_avatar"
+					android:layout_width="40dp"
+					android:layout_height="40dp"
 					android:layout_centerVertical = "true"
-					android:layout_toStartOf = "@id/iv_enter1"
-					android:src = "@drawable/ic_avatar_1" />
-				<!--箭头图标-->
+					android:layout_toStartOf = "@id/iv_enter"
+					android:background="@drawable/sys_parent_01" />
+
 				<ImageView
-					android:id = "@+id/iv_enter1"
-					android:layout_width = "wrap_content"
-					android:layout_height = "wrap_content"
-					android:layout_alignParentEnd = "true"
-					android:layout_centerVertical = "true"
-					android:layout_marginStart = "20dp"
-					android:layout_marginEnd = "20dp"
-					android:src = "@drawable/ic_arrow_right" />
+					android:id="@+id/iv_enter"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentEnd="true"
+					android:layout_centerVertical="true"
+					android:layout_marginEnd="20dp"
+					android:layout_marginStart="20dp"
+					android:src="@drawable/ic_arrow_right" />
 			</RelativeLayout>
-			<!--分割线-->
 			<View
 				android:layout_width = "match_parent"
 				android:layout_height = "0.1dp"
 				android:background = "@color/gray_1" />
-			<!--昵称-->
 			<RelativeLayout
 				android:id = "@+id/rl_nick"
 				android:layout_width = "match_parent"
 				android:layout_height = "wrap_content"
 				android:focusable = "true"
 				android:focusableInTouchMode = "true">
-				<!--昵称-->
 				<TextView
+					android:id="@+id/tv_nick"
 					android:layout_width = "wrap_content"
 					android:layout_height = "wrap_content"
 					android:layout_alignParentStart = "true"
@@ -73,22 +66,22 @@
 					android:text = "@string/babyInfo_nick"
 					android:textColor = "@color/black_1"
 					android:textSize = "16sp" />
-				<!--用户数据-->
 				<EditText
 					android:id = "@+id/et_nick"
-					android:layout_width = "wrap_content"
+					android:layout_width = "match_parent"
 					android:layout_height = "wrap_content"
 					android:layout_centerVertical = "true"
-					android:layout_toStartOf = "@id/iv_enter2"
+					android:layout_toEndOf = "@id/tv_nick"
+					android:layout_toStartOf="@+id/iv_nick"
+					android:gravity="end"
 					android:background = "@null"
-					android:hint = "@string/common_default"
+					android:hint = "@string/baby"
 					android:singleLine = "true"
 					android:textColor = "@color/gray_1"
 					android:textCursorDrawable = "@drawable/edit_cursor"
 					android:textSize = "14sp" />
-				<!--箭头图标-->
 				<ImageView
-					android:id = "@+id/iv_enter2"
+					android:id = "@+id/iv_nick"
 					android:layout_width = "wrap_content"
 					android:layout_height = "wrap_content"
 					android:layout_alignParentEnd = "true"
@@ -97,19 +90,16 @@
 					android:layout_marginEnd = "20dp"
 					android:src = "@drawable/ic_arrow_right" />
 			</RelativeLayout>
-			<!--分割线-->
 			<View
 				android:layout_width = "match_parent"
 				android:layout_height = "0.1dp"
 				android:background = "@color/gray_1" />
-			<!--性别-->
 			<RelativeLayout
 				android:id = "@+id/rl_gender"
 				android:layout_width = "match_parent"
 				android:layout_height = "wrap_content"
 				android:clickable = "true"
 				android:focusable = "true">
-				<!--性别-->
 				<TextView
 					android:layout_width = "wrap_content"
 					android:layout_height = "wrap_content"
@@ -119,19 +109,17 @@
 					android:text = "@string/babyInfo_gender"
 					android:textColor = "@color/black_1"
 					android:textSize = "16sp" />
-				<!--用户数据-->
 				<TextView
 					android:id = "@+id/tv_gender"
 					android:layout_width = "wrap_content"
 					android:layout_height = "wrap_content"
 					android:layout_centerVertical = "true"
-					android:layout_toStartOf = "@id/iv_enter3"
+					android:layout_toStartOf = "@id/iv_gender"
 					android:text = "@string/common_default"
 					android:textColor = "@color/gray_1"
 					android:textSize = "14sp" />
-				<!--箭头图标-->
 				<ImageView
-					android:id = "@+id/iv_enter3"
+					android:id = "@+id/iv_gender"
 					android:layout_width = "wrap_content"
 					android:layout_height = "wrap_content"
 					android:layout_alignParentEnd = "true"
@@ -140,19 +128,16 @@
 					android:layout_marginEnd = "20dp"
 					android:src = "@drawable/ic_arrow_right" />
 			</RelativeLayout>
-			<!--分割线-->
 			<View
 				android:layout_width = "match_parent"
 				android:layout_height = "0.1dp"
 				android:background = "@color/gray_1" />
-			<!--生日-->
 			<RelativeLayout
 				android:id = "@+id/rl_birthday"
 				android:layout_width = "match_parent"
 				android:layout_height = "wrap_content"
 				android:clickable = "true"
 				android:focusable = "true">
-				<!--生日-->
 				<TextView
 					android:layout_width = "wrap_content"
 					android:layout_height = "wrap_content"
@@ -162,19 +147,17 @@
 					android:text = "@string/babyInfo_birthday"
 					android:textColor = "@color/black_1"
 					android:textSize = "16sp" />
-				<!--用户数据-->
 				<TextView
 					android:id = "@+id/tv_birthday"
 					android:layout_width = "wrap_content"
 					android:layout_height = "wrap_content"
 					android:layout_centerVertical = "true"
-					android:layout_toStartOf = "@id/iv_enter4"
+					android:layout_toStartOf = "@id/iv_birthday"
 					android:text = "@string/common_default"
 					android:textColor = "@color/gray_1"
 					android:textSize = "14sp" />
-				<!--箭头图标-->
 				<ImageView
-					android:id = "@+id/iv_enter4"
+					android:id = "@+id/iv_birthday"
 					android:layout_width = "wrap_content"
 					android:layout_height = "wrap_content"
 					android:layout_alignParentEnd = "true"
@@ -183,20 +166,18 @@
 					android:layout_marginEnd = "20dp"
 					android:src = "@drawable/ic_arrow_right" />
 			</RelativeLayout>
-			<!--分割线-->
 			<View
 				android:layout_width = "match_parent"
 				android:layout_height = "0.1dp"
 				android:background = "@color/gray_1" />
-			<!--年级-->
 			<RelativeLayout
 				android:id = "@+id/rl_grade"
 				android:layout_width = "match_parent"
 				android:layout_height = "wrap_content"
 				android:focusable = "true"
 				android:focusableInTouchMode = "true">
-				<!--年级-->
 				<TextView
+					android:id="@+id/tv_grade"
 					android:layout_width = "wrap_content"
 					android:layout_height = "wrap_content"
 					android:layout_alignParentStart = "true"
@@ -205,22 +186,22 @@
 					android:text = "@string/babyInfo_grade"
 					android:textColor = "@color/black_1"
 					android:textSize = "16sp" />
-				<!--用户数据-->
 				<EditText
 					android:id = "@+id/et_grade"
 					android:layout_width = "wrap_content"
 					android:layout_height = "wrap_content"
 					android:layout_centerVertical = "true"
-					android:layout_toStartOf = "@id/iv_enter5"
+					android:layout_toEndOf="@+id/tv_grade"
+					android:gravity="end"
+					android:layout_toStartOf = "@id/iv_grade"
 					android:background = "@null"
 					android:hint = "@string/common_default"
 					android:singleLine = "true"
 					android:textColor = "@color/gray_1"
 					android:textCursorDrawable = "@drawable/edit_cursor"
 					android:textSize = "14sp" />
-				<!--箭头图标-->
 				<ImageView
-					android:id = "@+id/iv_enter5"
+					android:id = "@+id/iv_grade"
 					android:layout_width = "wrap_content"
 					android:layout_height = "wrap_content"
 					android:layout_alignParentEnd = "true"
@@ -229,20 +210,18 @@
 					android:layout_marginEnd = "20dp"
 					android:src = "@drawable/ic_arrow_right" />
 			</RelativeLayout>
-			<!--分割线-->
 			<View
 				android:layout_width = "match_parent"
 				android:layout_height = "0.1dp"
 				android:background = "@color/gray_1" />
-			<!--班级-->
 			<RelativeLayout
 				android:id = "@+id/rl_class"
 				android:layout_width = "match_parent"
 				android:layout_height = "wrap_content"
 				android:focusable = "true"
 				android:focusableInTouchMode = "true">
-				<!--班级-->
 				<TextView
+					android:id="@+id/tv_class"
 					android:layout_width = "wrap_content"
 					android:layout_height = "wrap_content"
 					android:layout_alignParentStart = "true"
@@ -251,22 +230,22 @@
 					android:text = "@string/babyInfo_class"
 					android:textColor = "@color/black_1"
 					android:textSize = "16sp" />
-				<!--用户数据-->
 				<EditText
 					android:id = "@+id/et_class"
 					android:layout_width = "wrap_content"
 					android:layout_height = "wrap_content"
 					android:layout_centerVertical = "true"
-					android:layout_toStartOf = "@id/iv_enter6"
+					android:layout_toEndOf="@id/tv_class"
+					android:gravity="end"
+					android:layout_toStartOf = "@id/iv_class"
 					android:background = "@null"
 					android:hint = "@string/common_default"
 					android:singleLine = "true"
 					android:textColor = "@color/gray_1"
 					android:textCursorDrawable = "@drawable/edit_cursor"
 					android:textSize = "14sp" />
-				<!--箭头图标-->
 				<ImageView
-					android:id = "@+id/iv_enter6"
+					android:id = "@+id/iv_class"
 					android:layout_width = "wrap_content"
 					android:layout_height = "wrap_content"
 					android:layout_alignParentEnd = "true"
@@ -275,20 +254,18 @@
 					android:layout_marginEnd = "20dp"
 					android:src = "@drawable/ic_arrow_right" />
 			</RelativeLayout>
-			<!--分割线-->
 			<View
 				android:layout_width = "match_parent"
 				android:layout_height = "0.1dp"
 				android:background = "@color/gray_1" />
-			<!--身高-->
 			<RelativeLayout
 				android:id = "@+id/rl_height"
 				android:layout_width = "match_parent"
 				android:layout_height = "wrap_content"
 				android:focusable = "true"
 				android:focusableInTouchMode = "true">
-				<!--身高-->
 				<TextView
+					android:id="@+id/tv_height"
 					android:layout_width = "wrap_content"
 					android:layout_height = "wrap_content"
 					android:layout_alignParentStart = "true"
@@ -297,45 +274,46 @@
 					android:text = "@string/babyInfo_height"
 					android:textColor = "@color/black_1"
 					android:textSize = "16sp" />
-				<!--用户数据-->
 				<EditText
 					android:id = "@+id/et_height"
-					android:layout_width = "wrap_content"
+					android:layout_width = "match_parent"
 					android:layout_height = "wrap_content"
 					android:layout_centerVertical = "true"
-					android:layout_toStartOf = "@id/iv_enter7"
+					android:gravity="end"
+					android:layout_toEndOf="@id/tv_height"
+					android:layout_toStartOf="@+id/tv_cm"
 					android:background = "@null"
-					android:hint = "@string/common_default"
+					android:hint = "100"
 					android:inputType = "number"
 					android:singleLine = "true"
 					android:textColor = "@color/gray_1"
 					android:textCursorDrawable = "@drawable/edit_cursor"
-					android:textSize = "14sp" />
-				<!--箭头图标-->
-				<ImageView
-					android:id = "@+id/iv_enter7"
-					android:layout_width = "wrap_content"
-					android:layout_height = "wrap_content"
-					android:layout_alignParentEnd = "true"
+					android:textSize = "16sp" />
+				<TextView
+					android:id="@+id/tv_cm"
+					android:layout_width="wrap_content"
+					android:layout_height="match_parent"
 					android:layout_centerVertical = "true"
-					android:layout_marginStart = "20dp"
-					android:layout_marginEnd = "20dp"
-					android:src = "@drawable/ic_arrow_right" />
+					android:text="cm"
+					android:gravity="center"
+					android:textColor = "@color/black_1"
+					android:layout_alignParentEnd="true"
+					android:layout_marginEnd="18dp"
+					android:layout_marginStart="10dp"
+					android:textSize = "16sp"/>
 			</RelativeLayout>
-			<!--分割线-->
 			<View
 				android:layout_width = "match_parent"
 				android:layout_height = "0.1dp"
 				android:background = "@color/gray_1" />
-			<!--体重-->
 			<RelativeLayout
 				android:id = "@+id/rl_weight"
 				android:layout_width = "match_parent"
 				android:layout_height = "wrap_content"
 				android:focusable = "true"
 				android:focusableInTouchMode = "true">
-				<!--体重-->
 				<TextView
+					android:id="@+id/tv_weight"
 					android:layout_width = "wrap_content"
 					android:layout_height = "wrap_content"
 					android:layout_alignParentStart = "true"
@@ -344,45 +322,46 @@
 					android:text = "@string/babyInfo_weight"
 					android:textColor = "@color/black_1"
 					android:textSize = "16sp" />
-				<!--用户数据-->
 				<EditText
 					android:id = "@+id/et_weight"
-					android:layout_width = "wrap_content"
+					android:layout_width = "match_parent"
 					android:layout_height = "wrap_content"
 					android:layout_centerVertical = "true"
-					android:layout_toStartOf = "@id/iv_enter8"
+					android:layout_toEndOf="@+id/tv_weight"
+					android:layout_toStartOf="@+id/tv_kg"
 					android:background = "@null"
-					android:hint = "@string/common_default"
+					android:hint = "30"
+					android:gravity="end"
 					android:inputType = "number"
 					android:singleLine = "true"
 					android:textColor = "@color/gray_1"
 					android:textCursorDrawable = "@drawable/edit_cursor"
-					android:textSize = "14sp" />
-				<!--箭头图标-->
-				<ImageView
-					android:id = "@+id/iv_enter8"
-					android:layout_width = "wrap_content"
-					android:layout_height = "wrap_content"
-					android:layout_alignParentEnd = "true"
+					android:textSize = "16sp" />
+				<TextView
+					android:id="@+id/tv_kg"
+					android:layout_width="wrap_content"
+					android:layout_height="match_parent"
 					android:layout_centerVertical = "true"
-					android:layout_marginStart = "20dp"
-					android:layout_marginEnd = "20dp"
-					android:src = "@drawable/ic_arrow_right" />
+					android:text="kg"
+					android:gravity="center"
+					android:textColor = "@color/black_1"
+					android:layout_alignParentEnd="true"
+					android:layout_marginStart="10dp"
+					android:layout_marginEnd="18dp"
+					android:textSize = "16sp"/>
 			</RelativeLayout>
-			<!--分割线-->
 			<View
 				android:layout_width = "match_parent"
 				android:layout_height = "0.1dp"
 				android:background = "@color/gray_1" />
-			<!--手表号码-->
 			<RelativeLayout
 				android:id = "@+id/rl_phoneNumber"
 				android:layout_width = "match_parent"
 				android:layout_height = "wrap_content"
 				android:focusable = "true"
 				android:focusableInTouchMode = "true">
-				<!--手表号码-->
 				<TextView
+					android:id="@+id/tv_phoneNumber"
 					android:layout_width = "wrap_content"
 					android:layout_height = "wrap_content"
 					android:layout_alignParentStart = "true"
@@ -391,19 +370,23 @@
 					android:text = "@string/babyInfo_phoneNumber"
 					android:textColor = "@color/black_1"
 					android:textSize = "16sp" />
-				<!--用户数据-->
-				<TextView
-					android:id = "@+id/tv_phoneNumber"
+				<EditText
+					android:id = "@+id/et_phoneNumber"
 					android:layout_width = "wrap_content"
 					android:layout_height = "wrap_content"
 					android:layout_centerVertical = "true"
-					android:layout_toStartOf = "@id/iv_enter9"
-					android:text = "@string/common_default"
+					android:layout_toEndOf="@+id/tv_phoneNumber"
+					android:layout_toStartOf="@+id/iv_phoneNumber"
+					android:background = "@null"
+					android:hint = "@string/common_default"
+					android:gravity="end"
+					android:inputType = "number"
+					android:singleLine = "true"
 					android:textColor = "@color/gray_1"
-					android:textSize = "14sp" />
-				<!--箭头图标-->
+					android:textCursorDrawable = "@drawable/edit_cursor"
+					android:textSize = "16sp" />
 				<ImageView
-					android:id = "@+id/iv_enter9"
+					android:id = "@+id/iv_phoneNumber"
 					android:layout_width = "wrap_content"
 					android:layout_height = "wrap_content"
 					android:layout_alignParentEnd = "true"
@@ -412,7 +395,6 @@
 					android:layout_marginEnd = "20dp"
 					android:src = "@drawable/ic_arrow_right" />
 			</RelativeLayout>
-			<!--分割线-->
 			<View
 				android:layout_width = "match_parent"
 				android:layout_height = "0.1dp"

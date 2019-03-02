@@ -159,6 +159,7 @@ public class RetrofitClient {
                     .add("phone",LoginBean.getInstance().getUsername())
                     .add("type","0")
                     .add("pwd",LoginBean.getInstance().getPassword())
+                    .add("loginDeviceType","1")
                     .build();
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder().url(UrlContants.BASE_URL+UrlContants.LOGIN).post(requestBody).build();

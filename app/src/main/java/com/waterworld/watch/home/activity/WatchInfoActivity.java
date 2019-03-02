@@ -1,76 +1,100 @@
 package com.waterworld.watch.home.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.waterworld.watch.R;
 import com.waterworld.watch.common.activity.BaseActivity;
+import com.waterworld.watch.common.bean.UserInfoBean;
+import com.waterworld.watch.common.bean.WatchUserInfoBean;
+import com.waterworld.watch.common.net.BaseObserverListener;
+import com.waterworld.watch.common.net.BaseResultBean;
+import com.waterworld.watch.common.net.UrlContants;
+import com.waterworld.watch.common.util.PhotoUtils;
 import com.waterworld.watch.common.util.ScreenAdapterUtil;
+import com.waterworld.watch.home.interfaces.IHomeManager;
+import com.waterworld.watch.home.manager.HomeManager;
 
-/**
- * 编写者：Created by SunnyTang
- * 时间：2018/12/5 15:11
- * 主要作用：手表信息(活动)
- */
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class WatchInfoActivity extends BaseActivity implements View.OnClickListener {
-    /**
-     * 头部组件
-     */
-    private LinearLayout header_parent;
-    private ImageButton header_back;
-    private TextView header_title;
 
-    /**
-     * 头部信息
-     */
-    private ConstraintLayout babyInfo;//宝贝信息
-    private ConstraintLayout watchBindCode;//绑定码
-    private TextView watchType;//手表型号
-    private TextView watchVersion;//固件版本号
-    private ConstraintLayout watchBind;//绑定手表
-    private ConstraintLayout watchUnbind;//解绑手表
+    @BindView(R.id.header_parent)
+    LinearLayout header_parent;
+
+    @BindView(R.id.header_back)
+    ImageView header_back;
+
+    @BindView(R.id.header_title)
+    TextView header_title;
+
+    @BindView(R.id.iv_baby_avatar)
+    ImageView iv_baby_avatar;
+
+    @BindView(R.id.cl_baby_info)
+    ConstraintLayout cl_baby_info;
+
+    @BindView(R.id.tv_baby_name)
+    TextView tv_baby_name;
+
+    @BindView(R.id.tv_baby_phoneNumber)
+    TextView tv_baby_phoneNumber;
+
+    @BindView(R.id.cl_watch_bind_code)
+    ConstraintLayout cl_watch_bind_code;
+
+    @BindView(R.id.tv_watch_type_info)
+    TextView tv_watch_type_info;
+
+    @BindView(R.id.tv_watch_version_info)
+    TextView tv_watch_version_info;
+
+    @BindView(R.id.cl_watch_bind)
+    ConstraintLayout cl_watch_bind;
+
+    @BindView(R.id.cl_watch_unbind)
+    ConstraintLayout cl_watch_unbind;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_watch_info);
-        bindView();
+        ButterKnife.bind(this);
         initView();
-        bindClick();
     }
 
-    private void bindView(){
-        header_parent = findViewById(R.id.header_parent);
-        header_back = findViewById(R.id.header_back);
-        header_title = findViewById(R.id.header_title);
-
-        babyInfo = findViewById(R.id.cl_baby_info);
-        watchBindCode = findViewById(R.id.cl_watch_bind_code);
-        watchType = findViewById(R.id.tv_watch_type_info);
-        watchVersion = findViewById(R.id.tv_watch_version_info);
-        watchBind = findViewById(R.id.cl_watch_bind);
-        watchUnbind = findViewById(R.id.cl_watch_unbind);
-    }
     private void initView(){
         setViewSize(header_parent,ViewGroup.LayoutParams.MATCH_PARENT,ScreenAdapterUtil.getHeightPx(this) / 12);
         header_back.setVisibility(View.VISIBLE);
         header_title.setVisibility(View.VISIBLE);
-        header_title.setText("手表信息");
-        watchType.setText("Q20TC");
-        watchVersion.setText("Q20TC_TY_V04");
-    }
+        header_title.setText(getString(R.string.watch_info));
 
-    private void bindClick(){
+        if(WatchUserInfoBean.getInstance().getWatchUserInfo().getHead().startsWith("sys")){
+            Glide.with(this).load(PhotoUtils.getResource(WatchUserInfoBean.getInstance().getWatchUserInfo().getHead().substring(0,13))).into(iv_baby_avatar);
+        }else {
+            Glide.with(this).load(UrlContants.BASE_URL + "resources/watch/" + WatchUserInfoBean.getInstance().getWatchUserInfo().getHead()).into(iv_baby_avatar);
+        }
+        tv_baby_name.setText(WatchUserInfoBean.getInstance().getWatchUserInfo().getName());
+        tv_baby_phoneNumber.setText(WatchUserInfoBean.getInstance().getWatchUserInfo().getPhone());
+        tv_watch_type_info.setText(WatchUserInfoBean.getInstance().getWatchInfo().getModel());
+        tv_watch_version_info.setText(WatchUserInfoBean.getInstance().getWatchInfo().getDv());
+
         header_back.setOnClickListener(this);
-        babyInfo.setOnClickListener(this);
-        watchBindCode.setOnClickListener(this);
-        watchBind.setOnClickListener(this);
-        watchUnbind.setOnClickListener(this);
+        cl_baby_info.setOnClickListener(this);
+        cl_watch_bind_code.setOnClickListener(this);
+        cl_watch_bind.setOnClickListener(this);
+        cl_watch_unbind.setOnClickListener(this);
+
     }
 
     @Override
@@ -80,16 +104,16 @@ public class WatchInfoActivity extends BaseActivity implements View.OnClickListe
                 finish();
                 break;
             case R.id.cl_baby_info:
-                goActivity(BabyInfoActivity.class);
+                startActivity(new Intent(this,BabyInfoActivity.class));
                 break;
             case R.id.cl_watch_bind_code:
-                goActivity(WatchBindCodeActivity.class);
+                startActivity(new Intent(this,WatchBindCodeActivity.class));
                 break;
             case R.id.cl_watch_bind:
-                goActivity(WatchBindActivity.class);
+                startActivity(new Intent(this,WatchBindActivity.class));
                 break;
             case R.id.cl_watch_unbind:
-                goActivity(WatchUnbindActivity.class);
+                startActivity(new Intent(this,WatchUnbindActivity.class));
                 break;
         }
     }

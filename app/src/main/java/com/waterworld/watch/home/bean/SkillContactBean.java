@@ -4,11 +4,7 @@ import android.graphics.drawable.Drawable;
 
 import java.io.Serializable;
 
-/**
- * 编写者：Created by SunnyTang
- * 时间：2018/12/12 19:16
- * 主要作用：联系人(实体)
- */
+
 public class SkillContactBean implements Serializable {
     private Drawable contactAvatar;//联系人头像
     private String contactName;//联系人名称

@@ -29,8 +29,7 @@
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning"
-        >
+        tools:ignore="GoogleAppIndexingWarning">
 
         <!-- 启动页 -->
         <activity android:name=".login.activity.WelcomeActivity">
@@ -117,15 +116,18 @@
 
         <activity android:name=".location.activity.ElectronicFenceActivity" />
         <activity android:name=".location.activity.AddElectronicFenceActivity" />
-        <activity android:name=".login.activity.GuidePageActivity"></activity>
+        <activity android:name=".login.activity.GuidePageActivity" />
 
-
-        <meta-data android:name="com.alibaba.app.appkey" android:value="25653629"/> <!-- 请填写你自己的- appKey -->
-        <meta-data android:name="com.alibaba.app.appsecret" android:value="4307f8569e6f8aeb55f57146746c9863"/> <!-- 请填写你自己的appSecret -->
+        <meta-data
+            android:name="com.alibaba.app.appkey"
+            android:value="25653629" /> <!-- 请填写你自己的- appKey -->
+        <meta-data
+            android:name="com.alibaba.app.appsecret"
+            android:value="4307f8569e6f8aeb55f57146746c9863" /> <!-- 请填写你自己的appSecret -->
         <!-- 消息接收监听器 （用户可自主扩展） -->
         <receiver
-                android:name=".push.MyMessageReceiver"
-                android:exported="false"> <!-- 为保证receiver安全，建议设置不可导出，如需对其他应用开放可通过android：permission进行限制 -->
+            android:name=".push.MyMessageReceiver"
+            android:exported="false"> <!-- 为保证receiver安全，建议设置不可导出，如需对其他应用开放可通过android：permission进行限制 -->
             <intent-filter>
                 <action android:name="com.alibaba.push2.action.NOTIFICATION_OPENED" />
             </intent-filter>
@@ -136,6 +138,12 @@
                 <action android:name="com.alibaba.sdk.android.push.RECEIVE" />
             </intent-filter>
         </receiver>
+
+        <activity
+            android:name=".home.activity.ScanQRCodeActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+        <activity android:name=".home.activity.BabyRelationShipActivity"></activity>
     </application>
 
 </manifest>

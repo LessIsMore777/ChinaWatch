@@ -10,16 +10,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.waterworld.watch.R;
 import com.waterworld.watch.home.bean.BabyBean;
 
 import java.util.List;
 
-/**
- * 编写者：Created by SunnyTang
- * 时间：2018/11/29 18:29
- * 主要作用：
- */
 public class BabyAdapter extends RecyclerView.Adapter<BabyAdapter.MyHolder> {
 
     private Context mContext;
@@ -41,7 +37,7 @@ public class BabyAdapter extends RecyclerView.Adapter<BabyAdapter.MyHolder> {
     @Override
     public void onBindViewHolder(@NonNull final MyHolder myHolder, int position) {
         myHolder.baby_name.setText(mData.get(position).getBabyName());
-        myHolder.baby_avatar.setImageDrawable(mData.get(position).getBabyAvatar());
+        Glide.with(mContext).load(mData.get(position).getBabyAvatar()).into(myHolder.baby_avatar);
         if (babyClick != null) {
             myHolder.baby_item.setOnClickListener(new View.OnClickListener() {
                 @Override

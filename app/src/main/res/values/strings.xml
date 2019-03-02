@@ -17,18 +17,27 @@
     <string name="load_fail">加载失败</string>
     <string name="sweet_toast">提示</string>
     <string name="confirm">确定</string>
+    <string name="save">保存</string>
     <string name="cancel">取消</string>
     <string name="check_net_is_error">网络错误，请检查网络</string>
     <string name="event_user_login_invalid">您的账号登录失效或异地登录</string>
     <string name="have_to_agree_premissions">您必须要同意该权限才可以使用该功能</string>
-    <!--模拟数据-->
+    <string name="warm_prompt">温馨提示</string>
+    <string name="confirm_exit_app">确定退出App？</string>
+    <string name="how_to_develop_good_habits">如何培养孩子的良好习惯？</string>
     <string name="test_1">宝贝的手表</string>
     <string name="test_2">宝贝儿子</string>
     <string name="my_application">我的应用</string>
-    <string name="tip_1">按住拖动调整排序</string>
+    <string name="add_application">增加应用</string>
+    <string name="click_add">点击添加应用</string>
+    <string name="click_delete">点击删除应用</string>
     <string name="contact_text_1">禁止陌生电话打入</string>
-    <string name="data_name">唐家辉</string>
-    <string name="data_phone">17763693759</string>
+    <string name="data_name">null</string>
+    <string name="data_phone">null</string>
+    <string name="edit_function">编辑功能</string>
+    <string name="baby">宝贝</string>
+    <string name="call">电话：</string>
+    <string name="watch_info">手表信息</string>
     <!--解绑手表-->
     <string name="bind_error">绑定失败</string>
     <string name="bind_success">绑定成功</string>
@@ -37,18 +46,28 @@
     <string name="watch_unbindOtherUser">解除其他用户绑定</string>
     <string name="watch_factory">恢复手表出厂设置</string>
     <string name="watch_relation">与宝贝的关系：</string>
+    <string name="bind_step1">1.手表插卡,开机</string>
+    <string name="bind_step2">2.点击【设置】-【绑定向导】-【下一步】</string>
+    <string name="bind_step3">3.填写32位绑定码</string>
     <!--手表信息-->
-    <string name="watch_bind_code">绑定码</string>
+    <string name="watch_bind_code">手表绑定码</string>
     <string name="watch_type">手表型号</string>
     <string name="watch_version">固件版本号</string>
     <string name="watch_bind">绑定手表</string>
     <string name="watch_unbind">解绑手表</string>
     <string name="watch_imei">IMEI号</string>
+    <string name="imei_illegal">IMEI长度不合法!</string>
+    <string name="input_right_relationship">关系不能为空！</string>
     <!--宝贝信息-->
+    <string name="baby_info">宝贝信息</string>
+    <string name="baby_watch">宝贝的手表</string>
     <string name="babyInfo_avatar">头像</string>
     <string name="babyInfo_nick">昵称</string>
     <string name="babyInfo_gender">性别</string>
     <string name="babyInfo_birthday">生日</string>
+    <string name="man">男</string>
+    <string name="woman">女</string>
+    <string name="grade_2">二年级</string>
     <string name="babyInfo_grade">年级</string>
     <string name="babyInfo_class">班级</string>
     <string name="babyInfo_height">身高</string>
@@ -80,6 +99,19 @@
     <string name="logining">正在登录...</string>
     <string name="login_success">登录成功</string>
     <string name="login_fail">登录失败</string>
+    <!--主页-->
+    <string name="address_book">通讯录</string>
+    <string name="ban_class">上课禁用</string>
+    <string name="curriculum">课程表</string>
+    <string name="intimate_set">贴心设置</string>
+    <string name="msg_notice">消息通知</string>
+    <string name="one_way_listen">单向聆听</string>
+    <string name="phone">打电话</string>
+    <string name="remote_shutdown">远程关机</string>
+    <string name="schedule_reminder">日程提醒</string>
+    <string name="sport_count">运动统计</string>
+    <string name="timed_shutdown">定时开关机</string>
+    <string name="add_function">增加功能</string>
     <!--技能(联系人模块)-->
     <string name="skill_contact_normal_call">普通通话权限</string>
     <string name="skill_contact_urgent_call">紧急通话权限</string>

@@ -1,208 +1,296 @@
 package com.waterworld.watch.home.activity;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.waterworld.watch.R;
 import com.waterworld.watch.common.activity.BaseActivity;
+import com.waterworld.watch.common.net.BaseObserverListener;
+import com.waterworld.watch.common.net.BaseResultBean;
+import com.waterworld.watch.common.util.PhotoUtils;
 import com.waterworld.watch.common.util.ScreenAdapterUtil;
 import com.waterworld.watch.common.util.ToastUtils;
-import com.waterworld.watch.home.adapter.BabyAvatarAdapter;
-import com.waterworld.watch.home.bean.BabyAvatarBean;
+import com.waterworld.watch.home.event.BabyAvatarEvent;
+import com.waterworld.watch.mine.adapter.AvatarAdapter;
+import com.waterworld.watch.mine.bean.AvatarBean;
+import com.waterworld.watch.mine.event.AvatarEvent;
+import com.waterworld.watch.mine.interfaces.IMineManager;
+import com.waterworld.watch.mine.interfaces.onAvatarSelectListener;
+import com.waterworld.watch.mine.manager.MineManager;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
-import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 编写者：Created by SunnyTang
- * 时间：2018/12/7 19:53
- * 主要作用：宝贝头像(活动)
- */
-public class BabyAvatarActivity extends BaseActivity implements View.OnClickListener {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-    private BabyAvatarActivity thisActivity;
-    /**
-     * header部分
-     */
-    private LinearLayout header_parent;
-    private ImageButton header_back;
-    private TextView header_title;
-    private Button header_save;
-    /**
-     * recycler
-     */
-    private RecyclerView avatarRecycler;
-    private BabyAvatarAdapter avatarAdapter;
-    private List<BabyAvatarBean> avatarData;
-    /**
-     *
-     */
-    private ConstraintLayout click_takePhoto;//拍照
-    private ConstraintLayout click_album;//从相册选择
-    public static final int TAKE_PHOTO = 1;//拍摄照片
-    public static final int CROP_PHOTO = 2;//修改照片
-    private Uri imageUri;//自拍的URI
+import static com.waterworld.watch.mine.activity.AvatarActivity.hasSdcard;
+
+
+public class BabyAvatarActivity extends BaseActivity {
+
+    @BindView(R.id.header_parent)
+    LinearLayout header_parent;
+
+    @BindView(R.id.header_back)
+    ImageView header_back;
+
+    @BindView(R.id.header_title)
+    TextView header_title;
+
+    @BindView(R.id.header_confirm)
+    TextView header_save;
+
+    @BindView(R.id.rv_avatar)
+    RecyclerView rv_avatar;
+
+    @BindView(R.id.rv_take_photo)
+    RelativeLayout rv_take_photo;
+
+    @BindView(R.id.rv_select_photo)
+    RelativeLayout rv_select_photo;
+
+    private List<AvatarBean> list;
+    private AvatarAdapter adapter;
+
+    private static final int CODE_GALLERY_REQUEST = 0x00;               //打开相册请求
+    private static final int CODE_CAMERA_REQUEST = 0x01;                //打开相机请求
+    private static final int CODE_RESULT_REQUEST = 0x02;                //结果回调
+    private static final int CAMERA_PERMISSIONS_REQUEST_CODE = 0x03;    //相机访问权限检测
+    private static final int STORAGE_PERMISSIONS_REQUEST_CODE = 0x04;   //sdcard访问权限检测
+
+    private int output_X = 480;
+    private int output_Y = 480;
+
+    private File fileUri = new File(Environment.getExternalStorageDirectory().getPath()+"/WaterWorld/BabyAvatar/photo.jpg");
+    private File fileCropUri = new File(Environment.getExternalStorageDirectory().getPath()+"/WaterWorld/BabyAvatar/crop_photo.jpg");
+
+    private Uri imageUri;
+    private Uri cropImageUri;
+
+    //recycleView点击位置
+    private int sys_avatar;
+    private String imgName;
+
+    private IMineManager iMineManager = MineManager.getInstance();
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        thisActivity = this;
         setContentView(R.layout.activity_baby_avatar);
-        bindView();
+        ButterKnife.bind(this);
+        if(!fileUri.getParentFile().exists()){
+            fileUri.getParentFile().mkdirs();
+        }
         initView();
-        bindClick();
-        initRecycler();
-        listClick();
-    }
-
-    private void initView() {
-        setViewSize(header_parent, ViewGroup.LayoutParams.MATCH_PARENT, ScreenAdapterUtil.getHeightPx(this) / 12);
-        header_title.setText("头像");
-        header_back.setVisibility(View.VISIBLE);
-        header_title.setVisibility(View.VISIBLE);
-        header_save.setVisibility(View.VISIBLE);
-    }
-
-    private void bindView() {
-        header_parent = findViewById(R.id.header_parent);
-        header_back = findViewById(R.id.header_back);
-        header_title = findViewById(R.id.header_title);
-        header_save = findViewById(R.id.header_save);
-        click_takePhoto = findViewById(R.id.cl_take_photo);
-        click_album = findViewById(R.id.cl_album);
-        avatarRecycler = findViewById(R.id.avatarRecycler);
-    }
-
-    private void bindClick() {
-        header_back.setOnClickListener(this);
-        header_save.setOnClickListener(this);
-        click_takePhoto.setOnClickListener(this);
-        click_album.setOnClickListener(this);
-    }
-
-    private void initRecycler() {
-        avatarData = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            avatarData.add(new BabyAvatarBean(getResources().getDrawable(R.drawable.ic_avatar_1_smile), false));
-        }
-        avatarAdapter = new BabyAvatarAdapter(thisActivity, avatarData);
-        avatarRecycler.setLayoutManager(new GridLayoutManager(thisActivity, 4));
-        avatarRecycler.setAdapter(avatarAdapter);
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.header_back:
-                finish();
-                break;
-            case R.id.header_save:
-                save();
-                //保存
-                break;
-            case R.id.cl_take_photo:
-                takePhoto();
-                //拍照
-                break;
-            case R.id.cl_album:
-                //从相册选择
-                break;
-        }
-    }
-
-    /**
-     * 列表item点击事件
-     * 实现单选效果
-     */
-    private void listClick() {
-        avatarAdapter.setOnSelectAvatarClick(new BabyAvatarAdapter.onSelectAvatarClick() {
+        adapter.setOnAvatarSelectListener(new onAvatarSelectListener() {
             @Override
-            public void onSelectClick(View view, int position) {
-                //1.首先判断当前点击的item头像选中状态是否为true
-                if (avatarAdapter.getmData().get(position).isChecked()) {
-                    //1.1遍历当前的list。
-                    for (int i = 0; i <= avatarData.size() - 1; i++) {
-                        //把全部的item头像选中状态设置为false。
-                        avatarData.get(i).setChecked(false);
-                    }
-                    //1.2记得刷新适配器
-                    avatarAdapter.notifyDataSetChanged();
-                } else {//2.如果不是true，则有两种情况要判断
-                    int falseCount = 0;//2.1 falseCount表示记录list中item头像没有被选中的数量
-                    int trueCount = 0;//2.2 trueCount表示记录list中item头像被选中的下标
-                    //2.3 遍历list
-                    for (int j = 0; j <= avatarData.size() - 1; j++) {
-                        //2.4 判断每一个item选中状态是否为false
-                        if (!avatarData.get(j).isChecked()) {
-                            //2.5 如果为false，那么falseCount自增。
-                            falseCount++;
-                        } else {
-                            //2.6 如果为true，则记录true的下标。
-                            trueCount = j;
-                        }
-                    }
-                    //3.循环结束，判断falseCount的数量是否为list的元素个数，如果相等。则表示当前list中所有的item没有一个是被选中的
-                    if (falseCount == avatarData.size()) {
-                        //3.1那么就设置当前点击的item为选中状态
-                        avatarData.get(position).setChecked(true);
-                        //3.2记得刷新适配器
-                        avatarAdapter.notifyDataSetChanged();
-                    } else {//4.如果不相等，表示list中有某个元素被选中了
-                        //4.1那么设置被选中的为false
-                        avatarData.get(trueCount).setChecked(false);
-                        //4.2把点击的item设置为true
-                        avatarData.get(position).setChecked(true);
-                        avatarAdapter.notifyDataSetChanged();
-                    }
+            public void onSelect(View view, int position) {
+                for (int i = 0 ; i<list.size(); i++){
+                    list.get(i).setSelect(false);
                 }
+                list.get(position).setSelect(true);
+                adapter.notifyDataSetChanged();
+                sys_avatar = position;
             }
         });
     }
 
-    /**
-     * 保存数据
-     */
-    private void save() {
-        for (int i = 0; i <= avatarData.size() - 1; i++) {
-            if (avatarData.get(i).isChecked()) {
-                ToastUtils.showCustomTime(thisActivity, "当前选中的是第:" + (i + 1) + "个头像", 3000);
-                break;
+    private void initView(){
+        //setTitle
+        setViewSize(header_parent, ViewGroup.LayoutParams.MATCH_PARENT, ScreenAdapterUtil.getHeightPx(this)/12);
+        header_back.setVisibility(View.VISIBLE);
+        header_title.setVisibility(View.VISIBLE);
+        header_title.setText(getString(R.string.avatar));
+        header_save.setVisibility(View.VISIBLE);
+
+        //setRecycleView
+        list = new ArrayList<>();
+        list.add(new AvatarBean(getResources().getDrawable(R.drawable.sys_parent_01),true));
+        list.add(new AvatarBean(getResources().getDrawable(R.drawable.sys_parent_02),false));
+        list.add(new AvatarBean(getResources().getDrawable(R.drawable.sys_parent_03),false));
+        list.add(new AvatarBean(getResources().getDrawable(R.drawable.sys_parent_04),false));
+        list.add(new AvatarBean(getResources().getDrawable(R.drawable.sys_parent_05),false));
+        list.add(new AvatarBean(getResources().getDrawable(R.drawable.sys_parent_06),false));
+        list.add(new AvatarBean(getResources().getDrawable(R.drawable.sys_parent_07),false));
+        list.add(new AvatarBean(getResources().getDrawable(R.drawable.sys_parent_08),false));
+        list.add(new AvatarBean(getResources().getDrawable(R.drawable.sys_parent_09),false));
+        list.add(new AvatarBean(getResources().getDrawable(R.drawable.sys_parent_10),false));
+        list.add(new AvatarBean(getResources().getDrawable(R.drawable.sys_parent_11),false));
+        list.add(new AvatarBean(getResources().getDrawable(R.drawable.sys_parent_12),false));
+        list.add(new AvatarBean(getResources().getDrawable(R.drawable.sys_parent_13),false));
+        list.add(new AvatarBean(getResources().getDrawable(R.drawable.sys_parent_14),false));
+        list.add(new AvatarBean(getResources().getDrawable(R.drawable.sys_parent_15),false));
+        list.add(new AvatarBean(getResources().getDrawable(R.drawable.sys_parent_16),false));
+        adapter = new AvatarAdapter(this,list);
+        rv_avatar.setLayoutManager(new GridLayoutManager(this,4));
+        rv_avatar.setAdapter(adapter);
+    }
+
+    @OnClick(R.id.header_back)
+    void back(){
+        finish();
+    }
+
+    @OnClick(R.id.header_confirm)
+    void save(){
+        BabyAvatarEvent babyAvatarEvent = new BabyAvatarEvent();
+        babyAvatarEvent.setType(1);
+        babyAvatarEvent.setName("sys_parent_"+new DecimalFormat("00").format(sys_avatar+1)+".png");
+        EventBus.getDefault().post(babyAvatarEvent);
+        finish();
+    }
+
+    @OnClick(R.id.rv_take_photo)
+    void onTakePhoto(){
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
+                || ContextCompat.checkSelfPermission(this,Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.CAMERA)){
+                ToastUtils.showShort(this,getString(R.string.have_refused_once));
+            }
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CAMERA,Manifest.permission.READ_EXTERNAL_STORAGE}
+                    ,CAMERA_PERMISSIONS_REQUEST_CODE);
+        }else {
+            if(hasSdcard()) {
+                imageUri = Uri.fromFile(fileUri);
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    imageUri = FileProvider.getUriForFile(this,"com.waterworld.fileprovider",fileUri);
+                }
+                PhotoUtils.takePicture(this,imageUri,CODE_CAMERA_REQUEST);
             } else {
-                ToastUtils.showCustomTime(thisActivity, "请选择系统头像或者自定义头像", 3000);
+                ToastUtils.showShort(this,getString(R.string.insert_sdcard));
             }
         }
     }
 
-    private void takePhoto() {
-        File outputImage = new File(Environment.getExternalStorageDirectory(),
-                "tempImage" + ".jpg");
-        try {
-            if (outputImage.exists()) {
-                outputImage.delete();
-            }
-            outputImage.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
+    @OnClick(R.id.rv_select_photo)
+    void onSelectPhoto(){
+        if (ContextCompat.checkSelfPermission(this,Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},STORAGE_PERMISSIONS_REQUEST_CODE);
+        } else {
+            PhotoUtils.openPic(this,CODE_GALLERY_REQUEST);
         }
-        imageUri = Uri.fromFile(outputImage);
-        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-        startActivityForResult(intent, TAKE_PHOTO);
+    }
 
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode){
+            //调用系统相机申请拍照权限回调
+            case CAMERA_PERMISSIONS_REQUEST_CODE:
+                if (grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    if (hasSdcard()) {
+                        imageUri = Uri.fromFile(fileUri);
+                        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            imageUri = FileProvider.getUriForFile(this,"com.waterworld.fileprovider",fileUri);
+                        }
+                        PhotoUtils.takePicture(this,imageUri,CODE_CAMERA_REQUEST);
+                    }else {
+                        ToastUtils.showShort(this,getString(R.string.insert_sdcard));
+                    }
+                }else {
+                    ToastUtils.showShort(this,getString(R.string.open_camera));
+                }
+                break;
+            //调用系统相册申请sdcard权限回调
+            case STORAGE_PERMISSIONS_REQUEST_CODE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    PhotoUtils.openPic(this,CODE_GALLERY_REQUEST);
+                }else {
+                    ToastUtils.showShort(this,getString(R.string.open_sdcard));
+                }
+                break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == Activity.RESULT_OK){
+            switch (requestCode){
+                //拍照完成回调
+                case CODE_CAMERA_REQUEST:
+                    cropImageUri = Uri.fromFile(fileCropUri);
+                    PhotoUtils.cropImageUri(this,imageUri,cropImageUri,1,1
+                            ,output_X,output_Y,CODE_RESULT_REQUEST);
+                    break;
+                //访问相册完成回调
+                case CODE_GALLERY_REQUEST:
+                    if (hasSdcard()){
+                        cropImageUri = Uri.fromFile(fileCropUri);
+                        Uri newUri = Uri.parse(PhotoUtils.getPath(this,data.getData()));
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            newUri = FileProvider.getUriForFile(this,"com.waterworld.fileprovider",new File(newUri.getPath()));
+                        }
+                        PhotoUtils.cropImageUri(this,newUri,cropImageUri,1,1,
+                                output_X,output_Y,CODE_RESULT_REQUEST);
+                    } else {
+                        ToastUtils.showShort(this,getString(R.string.insert_sdcard));
+                    }
+                    break;
+                case CODE_RESULT_REQUEST:
+                    uploadImg();
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    //上传自定义图片
+    private void uploadImg() {
+        if (iMineManager != null) {
+            iMineManager.uploadImg(fileCropUri, new BaseObserverListener<BaseResultBean<String>>() {
+                @Override
+                public void onCompleted() {
+                }
+
+                @Override
+                public void onError(Throwable e) {
+                    ToastUtils.showShort(BabyAvatarActivity.this,getString(R.string.net_error));
+                }
+
+                @Override
+                public void onNext(BaseResultBean<String> baseResultBean) {
+                    if(baseResultBean.getCode() == 0) {
+                        imgName = baseResultBean.getData();
+                        BabyAvatarEvent babyAvatarEvent = new BabyAvatarEvent();
+                        babyAvatarEvent.setType(0);
+                        babyAvatarEvent.setName(imgName);
+                        EventBus.getDefault().post(babyAvatarEvent);
+                        finish();
+                    }else {
+                        ToastUtils.showShort(BabyAvatarActivity.this,getString(R.string.upload_fail)+","+baseResultBean.getMsg());
+                    }
+                }
+            });
+        }
     }
 }
